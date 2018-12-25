@@ -1,21 +1,43 @@
-source /opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-set laststatus=2
-set guifont=Inconsolata\ for\ Powerline:h15
-let g:Powerline_symbols = 'fancy'
+"set laststatus=2
 set encoding=utf-8
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
 set termencoding=utf-8
+"set backspace to work like in other editors
+set backspace=2
+"indent settings
+set shiftwidth=4
+set tabstop=4
+set expandtab
+"show ruler
+set colorcolumn=85
+"enable gui stuff
+if !has('nvim')
+	set term=xterm-256color
+	set termguicolors
+	set ttymouse=xterm2
+endif
+if &term =~ '256color'
+	set t_ut=
+endif
+"line numbers
 set nu
+"activate mouse support
 set mouse=a
-colo chroma
+"dark theme
+set background=dark
+"sytnax highlightning
 syntax on
+"folding
+set foldmethod=indent
+"workaround for nerdtree
+let NERDTreeNodeDelimiter = "\t"
 
+" Vundle section
 set nocompatible              " be iMproved, required
 filetype off                  " required
 let mapleader=","               " leader is comma
 let g:EasyMotion_leader_key = '<Leader>'
+set listchars=tab:▸\ ,trail:·
+set list
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -30,36 +52,48 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'Valloric/YouCompleteMe'
+" Plugin 'lifepillar/vim-mucomplete'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'easymotion/vim-easymotion'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'rhysd/vim-crystal'
+Plugin 'rhysd/vim-grammarous'
+Plugin 'hzchirs/vim-material'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-if &term =~ '256color'
-	set t_ut=
-endif
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+
+"color theme
+colo vim-material
+
+"YCM config
+let g:ycm_confirm_extra_conf = 0
+
+"NERDTree config
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+
+"Airline config
+let g:airline_powerline_fonts = 1
+let g:airline_theme='material'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"FZF config
+nnoremap <Leader>f :Files<CR>
+
+"Build command
+map <Leader>b :!make<CR>
+
+"Misc key mappings
+nnoremap <tab> <C-W><C-W>
+nnoremap <S-tab> :bn<CR>
