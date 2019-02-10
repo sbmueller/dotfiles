@@ -11,12 +11,12 @@ set expandtab
 set colorcolumn=85
 "enable gui stuff
 if !has('nvim')
-	set term=xterm-256color
-	set termguicolors
-	set ttymouse=xterm2
+    set term=xterm-256color
+    set termguicolors
+    set ttymouse=xterm2
 endif
 if &term =~ '256color'
-	set t_ut=
+    set t_ut=
 endif
 "line numbers
 set nu
@@ -67,6 +67,7 @@ Plugin 'hzchirs/vim-material'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'luochen1990/rainbow'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -91,9 +92,15 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 "FZF config
 nnoremap <Leader>f :Files<CR>
 
+"Rainbow config
+let g:rainbow_active = 0
+map <Leader>r :RainbowToggle<CR>
+
 "Build command
 map <Leader>b :!make<CR>
 
 "Misc key mappings
 nnoremap <tab> <C-W><C-W>
 nnoremap <S-tab> :bn<CR>
+nnoremap <Leader>e :w !gpg -ea -r ""
+nnoremap <Leader>d :w !gpg -d<CR>

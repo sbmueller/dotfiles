@@ -1,6 +1,7 @@
 export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/senpo/.oh-my-zsh
+export LANG="en_US.UTF-8"
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -64,8 +65,8 @@ TMUX_ICON=
 DISABLE_UPDATE_PROMPT=true
 
 #autostart tmux
-if command -v tmux>/dev/null; then
-    [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux new -A -s ${TMUX_ICON}
-fi
+#if command -v tmux>/dev/null; then
+    #[[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux new -A -s ${TMUX_ICON}
+#fi
 
 source ~/.dotfiles/aliases
