@@ -1,23 +1,20 @@
 #!/bin/bash
-if ! [ -x "$(command -v port)" ]; then
-    echo 'Error: install macports first.' >&2
-    exit 1
+if [ -x "$(command -v port)" ]; then
+    # install basics
+    sudo port install -N --quiet zsh wget git tmux fasd
+    #install vim
+    sudo port install -N --quiet vim +huge +python37 +clientserver
 fi
 
-# install basics
-sudo port install -N --quiet zsh wget git tmux fasd
-
 #install oh-my-zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #install P9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-#install vim
-sudo port install -N --quiet vim +huge +python37 +clientserver
-
-#install vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 #symlink all the files
-ln -s ~/.dotfiles/.vimrc ~/.dotfiles/.vim ~/.dotfiles/.zshrc ~/.dotfiles/.tmux.conf ~
+ln -s ~/.dotfiles/.vimrc ~/.dotfiles/.zshrc ~/.dotfiles/.tmux.conf ~
+
+#install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

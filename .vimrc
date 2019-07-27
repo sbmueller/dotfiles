@@ -1,17 +1,26 @@
-"set laststatus=2
 set encoding=utf-8
 set termencoding=utf-8
 "set backspace to work like in other editors
 set backspace=2
+" show line number
+set number
+"sytnax highlightning
+syntax on
 "indent settings
 set shiftwidth=4
 set tabstop=4
 set expandtab
+" always show status bar
+set laststatus=2
+"highlight search
+set hlsearch
 "show ruler
-set colorcolumn=85
+set colorcolumn=100
 "enable gui stuff
 if !has('nvim')
     set term=xterm-256color
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
     set ttymouse=xterm2
 endif
@@ -24,64 +33,121 @@ set nu
 set mouse=a
 "dark theme
 set background=dark
-"sytnax highlightning
-syntax on
+"allow hidden buffers
+set hidden
 "folding
 set foldmethod=indent
 "workaround for nerdtree
 let NERDTreeNodeDelimiter = "\t"
-
-" Vundle section
-set nocompatible              " be iMproved, required
-filetype off                  " required
-let mapleader=","               " leader is comma
-let g:EasyMotion_leader_key = '<Leader>'
-set listchars=tab:▸\ ,trail:·
+if has('win32')
+    " set line endings
+    set ffs=dos
+else
+    " highlight current line
+    set cursorline
+    " set line endings
+    set ffs=unix
+endif
+"persistent undo
+set undofile
+set undodir=~/.vim/undodir
+"disable tex rendering
+let g:tex_conceal = ""
+"Display unprintable characters f12 - switches
 set list
+"Unprintable chars mapping
+set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+"highlight TODO statements
+if has('win32')
+    augroup HiglightTODO
+        autocmd!
+        autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
+    augroup END
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" remove whitespaces on save
+autocmd BufWritePre * %s/\s\+$//e
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'Valloric/YouCompleteMe'
-" Plugin 'lifepillar/vim-mucomplete'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'rhysd/vim-crystal'
-Plugin 'rhysd/vim-grammarous'
-Plugin 'hzchirs/vim-material'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'luochen1990/rainbow'
+"filetype specific settings
+autocmd Filetype cpp setlocal ts=2 sw=2 tw=100 expandtab colorcolumn=100
+autocmd Filetype c setlocal ts=2 sw=2 tw=100 expandtab colorcolumn=100
+autocmd Filetype markdown setlocal tw=80 colorcolumn=80
+autocmd Filetype tex setlocal tw=80 colorcolumn=80
+"git commit messages always at beginning
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+""""""""""""""""""""""""""""""""""""""""""
+""" Plugins
+""""""""""""""""""""""""""""""""""""""""""
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'nvie/vim-flake8'
+Plug 'Chiel92/vim-autoformat'
+Plug 'lervag/vimtex'
+Plug 'rhysd/vim-grammarous'
+Plug 'hzchirs/vim-material'
+Plug 'chriskempson/base16-vim'
+Plug 'scrooloose/nerdcommenter'
+if has('win32')
+    Plugin 'wincent/command-t'
+else
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+endif
+Plug 'luochen1990/rainbow'
+Plug 'ryanoasis/vim-devicons'
+Plug 'sjl/gundo.vim'
+Plug 'qpkorr/vim-bufkill'
+
+" Initialize plugin system
+call plug#end()
 
 "color theme
 colo vim-material
 
+" rainbow config
+let g:rainbow_active = 0
+map <Leader>r :RainbowToggle<CR>
+
 "YCM config
 let g:ycm_confirm_extra_conf = 0
+"let g:ycm_server_python_interpreter = '/usr/bin/python'
+"let g:ycm_show_diagnostics_ui = 1
+"let g:ycm_max_diagnostics_to_display = 999
+"let g:ycm_python_interpreter_path = ''
 
 "NERDTree config
 map <C-n> :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 1
+
+" gundo
+nnoremap <F5> :GundoToggle<CR>
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 "Airline config
 let g:airline_powerline_fonts = 1
@@ -89,18 +155,35 @@ let g:airline_theme='material'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-"FZF config
-nnoremap <Leader>f :Files<CR>
+"FZF/Command-T config
+if has('win32')
+    noremap <Leader>f :CommandT<CR>
+else
+    nnoremap <Leader>f :Files<CR>
+endif
+
+"Autoformat
+noremap <F8> :Autoformat<CR>
 
 "Rainbow config
 let g:rainbow_active = 0
 map <Leader>r :RainbowToggle<CR>
 
-"Build command
-map <Leader>b :!make<CR>
+" Show leading whitespace that includes spaces, and trailing whitespace.
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"match ExtraWhitespace /\s\+$/
+"autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"autocmd BufWinLeave * call clearmatches()
+"autocmd BufWritePre * %s/\s\+$//e
 
 "Misc key mappings
-nnoremap <tab> <C-W><C-W>
-nnoremap <S-tab> :bn<CR>
-nnoremap <Leader>e :w !gpg -ea -r ""
-nnoremap <Leader>d :w !gpg -d<CR>
+noremap <Leader>c :Flog<CR>
+noremap <F12> :syntax sync fromstart<CR>
+"buffer navigation
+nnoremap <space> <C-W><C-W>
+nnoremap <tab> :bn<CR>
+nnoremap <S-tab> :bp<CR>
+"make
+nnoremap <Leader>b :silent make\|redraw!\|cc<CR>
