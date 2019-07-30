@@ -39,10 +39,7 @@ set hidden
 set foldmethod=indent
 "workaround for nerdtree
 let NERDTreeNodeDelimiter = "\t"
-if has('win32')
-    " set line endings
-    set ffs=dos
-else
+if !has('win32unix')
     " highlight current line
     set cursorline
     " set line endings
@@ -59,7 +56,7 @@ set list
 set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 
 "highlight TODO statements
-if has('win32')
+if has('win32unix')
     augroup HiglightTODO
         autocmd!
         autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
@@ -101,10 +98,10 @@ Plug 'rhysd/vim-grammarous'
 Plug 'hzchirs/vim-material'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdcommenter'
-if has('win32')
-    Plugin 'wincent/command-t'
+if has('win32unix')
+    Plug 'wincent/command-t'
 else
-    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
 endif
 Plug 'luochen1990/rainbow'
@@ -156,7 +153,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "FZF/Command-T config
-if has('win32')
+if has('win32unix')
     noremap <Leader>f :CommandT<CR>
 else
     nnoremap <Leader>f :Files<CR>
