@@ -93,3 +93,5 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.dotfiles/aliases ]; then
     source ~/.dotfiles/aliases
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

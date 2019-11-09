@@ -14,6 +14,7 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 
 #symlink all the files
 ln -s ~/.dotfiles/.vimrc ~/.dotfiles/.zshrc ~/.dotfiles/.tmux.conf ~
+ln -s ~/.dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 #install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
