@@ -82,8 +82,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nvie/vim-flake8'
-Plug 'Chiel92/vim-autoformat'
 Plug 'lervag/vimtex'
 Plug 'rhysd/vim-grammarous'
 Plug 'hzchirs/vim-material'
@@ -100,6 +98,7 @@ Plug 'honza/vim-snippets'
 Plug 'Yggdroot/indentLine'
 Plug 'rust-lang/rust.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -113,6 +112,7 @@ map <Leader>r :RainbowToggle<CR>
 
 "YCM config
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_invoke_completion = '<c-x>'
 "let g:ycm_log_level='debug'
 "let g:ycm_server_python_interpreter = '/usr/bin/python'
 "let g:ycm_show_diagnostics_ui = 1
@@ -170,3 +170,31 @@ nnoremap <tab> :bn<CR>
 nnoremap <S-tab> :bp<CR>
 "make
 nnoremap <Leader>b :silent make\|redraw!\|cc<CR>
+
+"ale
+let g:ale_linters = {
+\   'cpp': ['clangtidy'],
+\   'python': ['flake8'],
+\}
+let g:ale_fixers= {
+\   'cpp': ['clangtidy'],
+\   'python': ['autopep8'],
+\}
+let g:airline#extensions#ale#enabled = 1
+
+" Map Colemak keys to QWERTY keys (in alphabetical order).
+"noremap n j
+"noremap e k
+"noremap i l
+
+"noremap j e
+"noremap k n
+"noremap l i
+
+"noremap N J
+"noremap E K
+"noremap I L
+
+"noremap J E
+"noremap K N
+"noremap L I
