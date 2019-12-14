@@ -99,6 +99,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'rust-lang/rust.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " Initialize plugin system
 call plug#end()
@@ -146,7 +147,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "FZF/Command-T config
-nnoremap <Leader>f :Files<CR>
+"nnoremap <Leader>f :Files<CR>
 
 "Autoformat
 noremap <F8> :Autoformat<CR>
@@ -181,6 +182,10 @@ let g:ale_fixers= {
 \   'python': ['autopep8'],
 \}
 let g:airline#extensions#ale#enabled = 1
+
+"LeaderF
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
 
 " Map Colemak keys to QWERTY keys (in alphabetical order).
 "noremap n j
