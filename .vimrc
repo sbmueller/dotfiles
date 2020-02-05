@@ -24,6 +24,9 @@ if !has('nvim')
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
+" fix italic fonts
+let &t_ZH="\<Esc>[3m"
+let &t_ZR="\<Esc>[23m"
 "activate mouse support
 set mouse=a
 "dark theme
