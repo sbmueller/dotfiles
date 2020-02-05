@@ -6,7 +6,7 @@ set backspace=2
 set number
 "sytnax highlightning
 syntax on
-"indent settings
+"global indent settings (4 spaces)
 set shiftwidth=4
 set tabstop=4
 set expandtab
@@ -14,23 +14,16 @@ set expandtab
 set laststatus=2
 "highlight search
 set hlsearch
-"show ruler
+"show ruler globally
 set colorcolumn=100
 "cursorline
 set cursorline
 "enable gui stuff
 if !has('nvim')
-    set term=xterm-256color
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
-    set ttymouse=xterm2
 endif
-if &term =~ '256color'
-    set t_ut=
-endif
-"line numbers
-set nu
 "activate mouse support
 set mouse=a
 "dark theme
@@ -42,7 +35,6 @@ set foldmethod=indent
 "workaround for nerdtree
 let NERDTreeNodeDelimiter = "\t"
 if !has('win32unix')
-    " highlight current line
     " set line endings
     set ffs=unix
 endif
@@ -51,6 +43,8 @@ set undofile
 set undodir=~/.vim/undodir
 "disable tex rendering
 let g:tex_conceal = ""
+"Disable hiding of format characters
+set conceallevel=0
 "Display unprintable characters f12 - switches
 set list
 "Unprintable chars mapping
@@ -62,7 +56,9 @@ autocmd BufWritePre * %s/\s\+$//e
 "filetype specific settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=100 expandtab colorcolumn=100
 autocmd Filetype c setlocal ts=2 sw=2 tw=100 expandtab colorcolumn=100
-autocmd Filetype markdown setlocal tw=80 colorcolumn=80
+autocmd Filetype markdown setlocal tw=79 colorcolumn=79
+autocmd Filetype rst setlocal tw=79 colorcolumn=79
+autocmd Filetype cmake setlocal tw=79 colorcolumn=79
 autocmd Filetype tex setlocal tw=80 colorcolumn=80
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
@@ -78,38 +74,32 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'lervag/vimtex'
-Plug 'rhysd/vim-grammarous'
-Plug 'hzchirs/vim-material'
-Plug 'chriskempson/base16-vim'
+Plug 'dense-analysis/ale'
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugithve'
+Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'luochen1990/rainbow'
-Plug 'ryanoasis/vim-devicons'
-Plug 'sjl/gundo.vim'
 Plug 'qpkorr/vim-bufkill'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Yggdroot/indentLine'
-Plug 'rust-lang/rust.vim'
+" themes / colors
+Plug 'hzchirs/vim-material'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" filetypes
+Plug 'lervag/vimtex'
+Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 call plug#end()
 
 "color theme
 colo vim-material
-
-" rainbow config
-let g:rainbow_active = 0
-map <Leader>r :RainbowToggle<CR>
 
 "YCM config
 let g:ycm_confirm_extra_conf = 0
@@ -125,9 +115,6 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
-
-" gundo
-nnoremap <F5> :GundoToggle<CR>
 
 " The Silver Searcher
 if executable('ag')
@@ -147,10 +134,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "FZF/Command-T config
-"nnoremap <Leader>f :Files<CR>
-
-"Autoformat
-noremap <F8> :Autoformat<CR>
+nnoremap <Leader>f :Files<CR>
 
 "Rainbow config
 let g:rainbow_active = 0
@@ -174,18 +158,18 @@ nnoremap <Leader>b :silent make\|redraw!\|cc<CR>
 
 "ale
 let g:ale_linters = {
-\   'cpp': ['clangtidy'],
+\   'cpp': ['clang', 'clangtidy'],
 \   'python': ['flake8'],
 \}
 let g:ale_fixers= {
-\   'cpp': ['clangtidy'],
+\   'cpp': ['clang-format', 'clangtidy'],
 \   'python': ['autopep8'],
 \}
 let g:airline#extensions#ale#enabled = 1
 
 "LeaderF
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
+"let g:Lf_WindowPosition = 'popup'
+"let g:Lf_PreviewInPopup = 1
 
 " Map Colemak keys to QWERTY keys (in alphabetical order).
 "noremap n j
