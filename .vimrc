@@ -81,7 +81,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-fugithve'
+Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -161,7 +161,7 @@ nnoremap <Leader>b :silent make\|redraw!\|cc<CR>
 
 "ale
 let g:ale_linters = {
-\   'cpp': ['clang', 'clangtidy'],
+\   'cpp': ['clangcheck', 'clangtidy'],
 \   'python': ['flake8'],
 \}
 let g:ale_fixers= {
