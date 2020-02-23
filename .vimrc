@@ -169,6 +169,7 @@ let g:ale_fixers= {
 \   'python': ['autopep8'],
 \}
 let g:airline#extensions#ale#enabled = 1
+let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 
 "LeaderF
 "let g:Lf_WindowPosition = 'popup'
