@@ -106,7 +106,10 @@ colo vim-material
 
 "YCM config
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_invoke_completion = '<c-x>'
+if has('macunix')
+    " C-Space is already occupied on MacOS
+    let g:ycm_key_invoke_completion = '<c-x>'
+endif
 "let g:ycm_log_level='debug'
 "let g:ycm_server_python_interpreter = '/usr/bin/python'
 "let g:ycm_show_diagnostics_ui = 1
@@ -170,6 +173,9 @@ let g:ale_fixers= {
 \}
 let g:airline#extensions#ale#enabled = 1
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
+
+"polyglot
+let g:polyglot_disabled = ['latex']
 
 "LeaderF
 "let g:Lf_WindowPosition = 'popup'
