@@ -7,3 +7,4 @@ alias sign='gpg --detach-sig'
 alias verify='gpg --verify'
 #alias ls='colorls --gs'
 #alias l='ls -al'
+alias vim=nvim

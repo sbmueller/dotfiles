@@ -53,9 +53,6 @@ set list
 "Unprintable chars mapping
 set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 
-" remove whitespaces on save
-autocmd BufWritePre * %s/\s\+$//e
-
 "filetype specific settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=100 expandtab colorcolumn=100
 autocmd Filetype c setlocal ts=2 sw=2 tw=100 expandtab colorcolumn=100
@@ -153,6 +150,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:snips_author = "Sebastian Mueller"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
+"indentLine
+let g:indentLine_char='┆'
+
 "Misc key mappings
 noremap <F12> :syntax sync fromstart<CR>
 "buffer navigation
@@ -170,9 +170,15 @@ let g:ale_linters = {
 let g:ale_fixers= {
 \   'cpp': ['clang-format', 'clangtidy'],
 \   'python': ['autopep8'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
+let g:ale_cpp_clangtidy_checks = ['*']
 let g:airline#extensions#ale#enabled = 1
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
+let g:ale_sign_error=''
+let g:ale_sign_warning=''
+hi link ALEErrorSign    Error
+hi link ALEWarningSign  Warning
 
 "polyglot
 let g:polyglot_disabled = ['latex']
