@@ -1,4 +1,8 @@
 #!/bin/bash
+# TODO this file is deprecated, needs revision on a fresh system
+if [ -x "$(command -v brew)" ]; then
+    brew install stow
+fi
 if [ -x "$(command -v port)" ]; then
     # install basics
     sudo port install -N --quiet zsh wget git tmux fasd
@@ -16,8 +20,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 #symlink all the files
-ln -s ~/.dotfiles/.vimrc ~/.dotfiles/.zshrc ~/.dotfiles/.tmux.conf ~
-ln -s ~/.dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+stow alacritty
+stow tmux
+stow vim
+stow zsh
 
 #install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
