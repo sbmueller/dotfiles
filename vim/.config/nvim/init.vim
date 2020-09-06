@@ -75,6 +75,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF'
+Plug 'dyng/ctrlsf.vim'
 " themes / colors
 Plug 'hzchirs/vim-material'
 Plug 'vim-airline/vim-airline-themes'
@@ -188,16 +189,12 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
 
-" The Silver Searcher
-if executable('ag')
-    " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-endif
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" CtrlSF
+nmap <leader>a :CtrlSF -R ""<Left>
+nmap <leader>A <Plug>CtrlSFCwordPath<CR>
+let g:ctrlsf_ackprg = '/opt/local/bin/ag'
+let g:ctrlsf_winsize = '33%'
+let g:ctrlsf_auto_close = 0
 
 "UltiSnips config
 let g:UltiSnipsExpandTrigger="<c-j>"

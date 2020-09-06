@@ -86,6 +86,7 @@ Plug 'luochen1990/rainbow'
 Plug 'qpkorr/vim-bufkill'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'dyng/ctrlsf.vim'
 " themes / colors
 Plug 'hzchirs/vim-material'
 Plug 'vim-airline/vim-airline-themes'
@@ -119,16 +120,11 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
 
-" The Silver Searcher
-if executable('ag')
-    " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-endif
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" CtrlSF
+nmap <leader>a :CtrlSF -R ""<Left>
+let g:ctrlsf_ackprg = '/opt/local/bin/ag'
+let g:ctrlsf_winsize = '33%'
+let g:ctrlsf_auto_close = 0
 
 "Airline config
 let g:airline_powerline_fonts = 1
