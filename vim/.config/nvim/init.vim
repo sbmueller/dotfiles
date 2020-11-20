@@ -35,10 +35,10 @@ set undofile
 set undodir=~/.vim/undodir
 "disable tex rendering
 let g:tex_conceal = ""
-"Disable hiding of format characters
-set conceallevel=0
 "Display unprintable characters f12 - switches
 set list
+"Disable hiding of format characters
+set conceallevel=0
 "Unprintable chars mapping
 set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 
@@ -49,6 +49,7 @@ autocmd Filetype markdown setlocal tw=79 colorcolumn=79
 autocmd Filetype rst setlocal tw=79 colorcolumn=79
 autocmd Filetype cmake setlocal tw=79 colorcolumn=79
 autocmd Filetype tex setlocal tw=80 colorcolumn=80
+autocmd Filetype python setlocal tw=88 colorcolumn=88
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
@@ -56,6 +57,9 @@ autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 nnoremap <space> <C-W><C-W>
 nnoremap <tab> :bn<CR>
 nnoremap <S-tab> :bp<CR>
+
+"polyglot
+let g:polyglot_disabled = ['latex']
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -89,6 +93,9 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 colo vim-material
+
+"vimtex
+let g:tex_flavor = 'latex'
 
 "COC
 
@@ -205,15 +212,16 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
 "indentLine
 let g:indentLine_char='┆'
+autocmd FileType markdown let g:indentLine_enabled=0
 
 "ale
 let g:ale_linters = {
-\   'cpp': ['clangcheck', 'clangtidy'],
-\   'python': ['flake8'],
+\   'cpp': ['cppcheck', 'clangtidy'],
+\   'python': ['flake8', 'mypy'],
 \}
 let g:ale_fixers= {
 \   'cpp': ['clang-format', 'clangtidy'],
-\   'python': ['autopep8'],
+\   'python': ['black'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_cpp_clangtidy_checks = ['*']
@@ -221,11 +229,9 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 let g:ale_sign_error=''
 let g:ale_sign_warning=''
+let g:ale_fix_on_save = 1
 hi link ALEErrorSign    Error
 hi link ALEWarningSign  Warning
-
-"polyglot
-let g:polyglot_disabled = ['latex']
 
 "LeaderF
 let g:Lf_WindowPosition = 'popup'

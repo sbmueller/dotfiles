@@ -12,8 +12,11 @@ export LANG="en_US.UTF-8"
 export ZSH=$HOME/.oh-my-zsh
 
 POWERLEVEL9K_MODE='nerdfont-complete'
-ZSH_THEME="powerlevel10k/powerlevel10k"
-#ZSH_THEME="spaceship"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="spaceship"
+
+# Spaceship Configuration
+SPACESHIP_RUST_SYMBOL='\uE7A8 '
 
 # Powerlevel9k configuration
 if [ ${machine} = "Cygwin" ]; then
@@ -67,6 +70,7 @@ TMUX_ICON=
 DISABLE_UPDATE_PROMPT=true
 
 
+export PATH=$HOME/Library/Python/3.8/bin:$PATH
 if [ ${machine} = "Cygwin" ]; then
     plugins=(git
              gitfast
@@ -95,3 +99,5 @@ if [ -f ~/.dotfiles/aliases ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bitcomplete bit
