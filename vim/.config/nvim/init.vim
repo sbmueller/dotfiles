@@ -78,7 +78,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Yggdroot/LeaderF'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 " themes / colors
 Plug 'hzchirs/vim-material'
@@ -88,6 +89,7 @@ Plug 'sheerun/vim-polyglot'
 " filetypes
 Plug 'lervag/vimtex'
 Plug 'rust-lang/rust.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Initialize plugin system
 call plug#end()
@@ -222,6 +224,7 @@ let g:ale_linters = {
 let g:ale_fixers= {
 \   'cpp': ['clang-format', 'clangtidy'],
 \   'python': ['black'],
+\   'rust': ['rustfmt'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_cpp_clangtidy_checks = ['*']
@@ -233,7 +236,5 @@ let g:ale_fix_on_save = 1
 hi link ALEErrorSign    Error
 hi link ALEWarningSign  Warning
 
-"LeaderF
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-noremap <leader>f :Leaderf file<CR>
+"fzf
+noremap <leader>f :Files<CR>

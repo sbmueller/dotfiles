@@ -70,7 +70,8 @@ TMUX_ICON=
 DISABLE_UPDATE_PROMPT=true
 
 
-export PATH=$HOME/Library/Python/3.8/bin:$PATH
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
+export PATH=/usr/local/opt/llvm/bin:$PATH
 if [ ${machine} = "Cygwin" ]; then
     plugins=(git
              gitfast
