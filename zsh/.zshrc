@@ -72,6 +72,10 @@ DISABLE_UPDATE_PROMPT=true
 
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 export PATH=/usr/local/opt/llvm/bin:$PATH
+export PATH=/usr/local/opt/qt/bin:$PATH
+export LDFLAGS="-L/usr/local/opt/qt/lib"
+export CPPFLAGS="-I/usr/local/opt/qt/include"
+export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
 if [ ${machine} = "Cygwin" ]; then
     plugins=(git
              gitfast
@@ -102,3 +106,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
+
+
+eval $(thefuck --alias)

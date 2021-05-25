@@ -28,11 +28,9 @@ set background=dark
 set hidden
 "folding
 set foldmethod=indent
-"workaround for nerdtree
-let NERDTreeNodeDelimiter = "\t"
 "persistent undo
 set undofile
-set undodir=~/.vim/undodir
+set undodir=~/.config/nvim/undodir
 "disable tex rendering
 let g:tex_conceal = ""
 "Display unprintable characters f12 - switches
@@ -53,13 +51,12 @@ autocmd Filetype python setlocal tw=88 colorcolumn=88
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
+"leader key
+let mapleader = "'"
 "buffer navigation
 nnoremap <space> <C-W><C-W>
 nnoremap <tab> :bn<CR>
 nnoremap <S-tab> :bp<CR>
-
-"polyglot
-let g:polyglot_disabled = ['latex']
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -72,7 +69,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'dense-analysis/ale'
-Plug 'scrooloose/nerdtree'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
@@ -85,7 +82,8 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'hzchirs/vim-material'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'sheerun/vim-polyglot'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " filetypes
 Plug 'lervag/vimtex'
 Plug 'rust-lang/rust.vim'
@@ -192,11 +190,9 @@ let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 
-"NERDTree config
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen = 1
+" nvim tree
+nnoremap <C-n> :NvimTreeToggle<CR>
+let g:nvim_tree_auto_close = 1
 
 " CtrlSF
 nmap <leader>a :CtrlSF -R ""<Left>
@@ -232,9 +228,12 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 let g:ale_sign_error=''
 let g:ale_sign_warning=''
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 hi link ALEErrorSign    Error
 hi link ALEWarningSign  Warning
 
 "fzf
 noremap <leader>f :Files<CR>
+
+" treesitter
+lua require('treesitter')
