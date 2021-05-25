@@ -192,7 +192,8 @@ let g:airline_right_alt_sep = ''
 
 " nvim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
-let g:nvim_tree_auto_close = 1
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_auto_open = 1
 
 " CtrlSF
 nmap <leader>a :CtrlSF -R ""<Left>
@@ -215,7 +216,7 @@ autocmd FileType markdown let g:indentLine_enabled=0
 "ale
 let g:ale_linters = {
 \   'cpp': ['cppcheck', 'clangtidy'],
-\   'python': ['flake8', 'mypy'],
+\   'python': ['pylint', 'mypy'],
 \}
 let g:ale_fixers= {
 \   'cpp': ['clang-format', 'clangtidy'],
@@ -228,7 +229,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
 let g:ale_sign_error=''
 let g:ale_sign_warning=''
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 hi link ALEErrorSign    Error
 hi link ALEWarningSign  Warning
 
