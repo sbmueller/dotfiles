@@ -38,7 +38,7 @@ set list
 set conceallevel=0
 "Unprintable chars mapping
 set listchars=tab:•\ ,trail:•,extends:»,precedes:«
-
+"Enable autocompletion
 set completeopt=menuone,noselect
 
 "filetype specific settings
@@ -67,21 +67,25 @@ call plug#begin(stdpath('data') . '/plugged')
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-"LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-Plug 'ray-x/lsp_signature.nvim'
+" General
+Plug 'nvim-lua/popup.nvim' "Lua popups
+Plug 'nvim-lua/plenary.nvim' "Lua library
+Plug 'nvim-telescope/telescope.nvim' "Fuzzy file search
+Plug 'lewis6991/gitsigns.nvim' "Git
+Plug 'vim-airline/vim-airline' "Status bar
+" LSP
+Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
+Plug 'glepnir/lspsaga.nvim'
+Plug 'hrsh7th/nvim-compe'    "Autocompletion
+Plug 'ray-x/lsp_signature.nvim' "Function signatures
 
-Plug 'vim-airline/vim-airline'
 Plug 'dense-analysis/ale'
+"Plug 'mfussenegger/nvim-lint'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 " themes / colors
 Plug 'hzchirs/vim-material'
@@ -115,7 +119,6 @@ let g:airline_right_alt_sep = ''
 " nvim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
 let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_auto_open = 1
 
 " CtrlSF
 nmap <leader>a :CtrlSF -R ""<Left>
@@ -144,6 +147,7 @@ let g:ale_fixers= {
 \   'cpp': ['clang-format', 'clangtidy'],
 \   'python': ['black'],
 \   'rust': ['rustfmt'],
+\   'lua': ['lua-format'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_cpp_clangtidy_checks = ['*']
@@ -155,11 +159,25 @@ let g:ale_fix_on_save = 0
 hi link ALEErrorSign    Error
 hi link ALEWarningSign  Warning
 
-"fzf
-noremap <leader>f :Files<CR>
+" Telescope
+nnoremap <leader>f <cmd>Telescope find_files<cr>
 
-" treesitter
+" Nvim-lint
+"au BufWritePost <buffer> <cmd>lua require('lint').try_lint()
+
+"Lspsaga
+nnoremap <silent> gh :Lspsaga lsp_finder<CR>
+nnoremap <silent><leader>ca :Lspsaga code_action<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent> gs :Lspsaga signature_help<CR>
+nnoremap <silent><leader>rn :Lspsaga rename<CR>
+
+" Load lua configs
 lua require('treesitter')
 lua require('nvim-lspconfig')
 lua require('nvim-compe')
 lua require('lsp-signature')
+lua require('nvim-gitsigns')
+lua require('nvim-telescope')
+"lua require('nvim-lint')
+lua require('nvim-lspsaga')
