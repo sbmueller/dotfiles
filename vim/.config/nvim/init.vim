@@ -4,6 +4,7 @@ set termencoding=utf-8
 set backspace=2
 " show line number
 set number
+set relativenumber
 "sytnax highlightning
 syntax on
 "global indent settings (4 spaces)
@@ -189,7 +190,7 @@ nnoremap <C-n> :NvimTreeToggle<CR>
 let g:nvim_tree_quit_on_open = 1
 
 "Nvim-lint
-au BufWritePost,BufReadPre,FileReadPre <buffer> lua require('lint').try_lint()
+au FilterReadPre,StdinReadPre,BufWritePost,BufReadPre,FileReadPre <buffer> lua require('lint').try_lint()
 
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
