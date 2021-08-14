@@ -30,6 +30,7 @@ set hidden
 "folding using TreeSitter
 set foldmethod=indent
 "set foldexpr=nvim_treesitter#foldexpr()
+set foldlevel=99
 "persistent undo
 set undofile
 set undodir=~/.vim/undodir
@@ -189,9 +190,6 @@ let g:indentLine_setConceal = 0
 nnoremap <C-n> :NvimTreeToggle<CR>
 let g:nvim_tree_quit_on_open = 1
 
-"Nvim-lint
-au FilterReadPre,StdinReadPre,BufWritePost,BufReadPre,FileReadPre <buffer> lua require('lint').try_lint()
-
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 
@@ -214,7 +212,13 @@ let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
-au BufWritePre * Neoformat
+
+"Autocommands
+augroup fixers
+    au!
+    au InsertLeave,BufWritePost,BufWinEnter * lua require('lint').try_lint()
+    au BufWritePre * Neoformat
+augroup END
 
 "Compe
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
