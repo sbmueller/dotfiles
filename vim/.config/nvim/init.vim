@@ -101,6 +101,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dyng/ctrlsf.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'lewis6991/spellsitter.nvim'
 " themes / colors
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -216,7 +217,7 @@ let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
 "Autocommands
 augroup fixers
     au!
-    au InsertLeave,BufWritePost,BufWinEnter * lua require('lint').try_lint()
+    au InsertLeave,BufWritePost,BufWinEnter <buffer> lua require('lint').try_lint()
     au BufWritePre * Neoformat
 augroup END
 
@@ -232,3 +233,4 @@ lua require('nvim-gitsigns')
 lua require('nvim-telescope')
 lua require('nvim-lint')
 lua require('nvim-lspsaga')
+lua require('nvim-spellsitter')
