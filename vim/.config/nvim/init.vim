@@ -5,8 +5,6 @@ set backspace=2
 " show line number
 set number
 set relativenumber
-"sytnax highlightning
-syntax on
 "global indent settings (4 spaces)
 set shiftwidth=4
 set tabstop=4
@@ -28,8 +26,8 @@ set background=dark
 "allow hidden buffers
 set hidden
 "folding using TreeSitter
-set foldmethod=indent
-"set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set foldlevel=99
 "persistent undo
 set undofile
@@ -49,6 +47,8 @@ let g:termdebug_wide=1
 let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 "Enable autocompletion
 set completeopt=menuone,noselect
+"sytnax highlightning
+syntax on
 
 "Misc key mappings
 noremap <F9> :write <bar> edit <bar> TSBufEnable highlight<CR>
@@ -85,7 +85,6 @@ Plug 'lewis6991/gitsigns.nvim' "Git
 Plug 'vim-airline/vim-airline' "Status bar
 " LSP
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
-Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'    "Autocompletion
 Plug 'ray-x/lsp_signature.nvim' "Function signatures
 " Make sure you use single quotes
@@ -232,5 +231,5 @@ lua require('lsp-signature')
 lua require('nvim-gitsigns')
 lua require('nvim-telescope')
 lua require('nvim-lint')
-lua require('nvim-lspsaga')
 lua require('nvim-spellsitter')
+lua require('nvimtree')
