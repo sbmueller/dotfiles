@@ -85,6 +85,7 @@ Plug 'lewis6991/gitsigns.nvim' "Git
 Plug 'vim-airline/vim-airline' "Status bar
 " LSP
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
+Plug 'tami5/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'    "Autocompletion
 Plug 'ray-x/lsp_signature.nvim' "Function signatures
 " Make sure you use single quotes
@@ -197,7 +198,7 @@ nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent><leader>h :Lspsaga code_action<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
-nnoremap <silent> gs :Lspsaga signature_help<CR>
+nnoremap <silent><C-k> :Lspsaga signature_help<CR>
 nnoremap <silent><leader>rn :Lspsaga rename<CR>
 nnoremap <silent><leader>d :Lspsaga show_line_diagnostics<CR>
 
@@ -233,3 +234,4 @@ lua require('nvim-telescope')
 lua require('nvim-lint')
 lua require('nvim-spellsitter')
 lua require('nvimtree')
+lua require('nvim-lspsaga')
