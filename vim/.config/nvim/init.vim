@@ -85,29 +85,26 @@ Plug 'lewis6991/gitsigns.nvim' "Git
 Plug 'vim-airline/vim-airline' "Status bar
 " LSP
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
-Plug 'tami5/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim' "additional LSP features
 Plug 'hrsh7th/nvim-compe'    "Autocompletion
 Plug 'ray-x/lsp_signature.nvim' "Function signatures
-" Make sure you use single quotes
-Plug 'vim-airline/vim-airline'
-"Plug 'dense-analysis/ale'
-Plug 'mfussenegger/nvim-lint'
-Plug 'sbdchd/neoformat'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine'
+" Productivity
+Plug 'mfussenegger/nvim-lint' "Linter
+Plug 'sbdchd/neoformat' "Formatter
+Plug 'kyazdani42/nvim-tree.lua' "File browser
+Plug 'scrooloose/nerdcommenter' "Comment hotkeys
+Plug 'Yggdroot/indentLine' "Indent rulers
 Plug 'qpkorr/vim-bufkill'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'dyng/ctrlsf.vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'lewis6991/spellsitter.nvim'
+Plug 'SirVer/ultisnips' "Text/code snippets functionality
+Plug 'honza/vim-snippets' "Repository containing snippet files
+Plug 'dyng/ctrlsf.vim' "Grep replacement
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding
+Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter
 " themes / colors
-Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'challenger-deep-theme/vim'
-Plug 'folke/tokyonight.nvim'
-"Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ryanoasis/vim-devicons' "Cool icons
+Plug 'kyazdani42/nvim-web-devicons' "More cool icons
+Plug 'challenger-deep-theme/vim' "Theme
+Plug 'folke/tokyonight.nvim' "Alternative theme
 " filetypes
 "Plug 'wellle/context.vim'
 "Plug 'romgrk/nvim-treesitter-context'
