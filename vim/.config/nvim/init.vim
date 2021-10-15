@@ -85,7 +85,9 @@ Plug 'lewis6991/gitsigns.nvim' "Git
 Plug 'vim-airline/vim-airline' "Status bar
 " LSP
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
-Plug 'tami5/lspsaga.nvim' "additional LSP features
+Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
+Plug 'ray-x/navigator.lua'
+"Plug 'tami5/lspsaga.nvim' "additional LSP features
 Plug 'hrsh7th/nvim-compe'    "Autocompletion
 Plug 'ray-x/lsp_signature.nvim' "Function signatures
 " Productivity
@@ -99,6 +101,7 @@ Plug 'SirVer/ultisnips' "Text/code snippets functionality
 Plug 'honza/vim-snippets' "Repository containing snippet files
 Plug 'dyng/ctrlsf.vim' "Grep replacement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding
+Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc
 Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter
 " themes / colors
 Plug 'ryanoasis/vim-devicons' "Cool icons
@@ -192,12 +195,12 @@ let g:nvim_tree_quit_on_open = 1
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 
 "Lspsaga
-nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>h :Lspsaga code_action<CR>
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-nnoremap <silent><C-k> :Lspsaga signature_help<CR>
-nnoremap <silent><leader>rn :Lspsaga rename<CR>
-nnoremap <silent><leader>d :Lspsaga show_line_diagnostics<CR>
+"nnoremap <silent> gh :Lspsaga lsp_finder<CR>
+"nnoremap <silent><leader>h :Lspsaga code_action<CR>
+"nnoremap <silent>K :Lspsaga hover_doc<CR>
+"nnoremap <silent><C-k> :Lspsaga signature_help<CR>
+"nnoremap <silent><leader>rn :Lspsaga rename<CR>
+"nnoremap <silent><leader>d :Lspsaga show_line_diagnostics<CR>
 
 "Neoformat
 let g:neoformat_cpp_clangformat = {
@@ -231,4 +234,5 @@ lua require('nvim-telescope')
 lua require('nvim-lint')
 lua require('nvim-spellsitter')
 lua require('nvimtree')
-lua require('nvim-lspsaga')
+"lua require('nvim-lspsaga')
+lua require('nvim-navigator')
