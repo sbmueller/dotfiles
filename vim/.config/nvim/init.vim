@@ -87,7 +87,6 @@ Plug 'vim-airline/vim-airline' "Status bar
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
 Plug 'ray-x/navigator.lua'
-"Plug 'tami5/lspsaga.nvim' "additional LSP features
 Plug 'hrsh7th/nvim-compe'    "Autocompletion
 Plug 'ray-x/lsp_signature.nvim' "Function signatures
 " Productivity
@@ -108,8 +107,8 @@ Plug 'ryanoasis/vim-devicons' "Cool icons
 Plug 'kyazdani42/nvim-web-devicons' "More cool icons
 Plug 'challenger-deep-theme/vim' "Theme
 Plug 'folke/tokyonight.nvim' "Alternative theme
+
 " filetypes
-"Plug 'wellle/context.vim'
 "Plug 'romgrk/nvim-treesitter-context'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
@@ -194,14 +193,6 @@ let g:nvim_tree_quit_on_open = 1
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 
-"Lspsaga
-"nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-"nnoremap <silent><leader>h :Lspsaga code_action<CR>
-"nnoremap <silent>K :Lspsaga hover_doc<CR>
-"nnoremap <silent><C-k> :Lspsaga signature_help<CR>
-"nnoremap <silent><leader>rn :Lspsaga rename<CR>
-"nnoremap <silent><leader>d :Lspsaga show_line_diagnostics<CR>
-
 "Neoformat
 let g:neoformat_cpp_clangformat = {
     \ 'exe': 'clang-format-10',
@@ -226,7 +217,6 @@ inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 " Load lua configs
 lua require('treesitter')
-lua require('nvim-lspconfig')
 lua require('nvim-compe')
 lua require('lsp-signature')
 lua require('nvim-gitsigns')
@@ -234,5 +224,4 @@ lua require('nvim-telescope')
 lua require('nvim-lint')
 lua require('nvim-spellsitter')
 lua require('nvimtree')
-"lua require('nvim-lspsaga')
 lua require('nvim-navigator')

@@ -1,6 +1,5 @@
 require'navigator'.setup({
-
-  default_mapping = true,  -- set to false if you will remap every key
+  default_mapping = false,  -- set to false if you will remap every key
   keymaps = {
   {key = "gr", func = "references()"},
   {mode = "i", key = "<M-k>", func = "signature_help()"},
@@ -36,5 +35,7 @@ require'navigator'.setup({
   --{key = '<Space>ff', func = 'range_formatting()', mode='v'},
   --{key = '<Space>wl', func = 'print(vim.inspect(vim.lsp.buf.list_workspace_folders()))'},
   --{key = "<Space>la", mode = "n", func = "require('navigator.codelens').run_action()"},},
-  lsp = {format_on_save = false,}
+  },
+  lsp = {format_on_save = false,},
+  transparency = 50,
 })
