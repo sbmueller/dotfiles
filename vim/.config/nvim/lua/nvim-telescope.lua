@@ -16,7 +16,7 @@ require('telescope').setup {
             vertical = {mirror = false}
         },
         file_sorter = require'telescope.sorters'.get_fuzzy_file,
-        file_ignore_patterns = { "build/" },
+        file_ignore_patterns = { "build/", "sca/" },
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         winblend = 0,
         border = {},

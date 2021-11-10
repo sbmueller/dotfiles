@@ -41,8 +41,7 @@ set list
 "Unprintable chars mapping
 set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 "debug settings
-packadd termdebug
-let g:termdebug_wide=1
+"packadd! vimspector
 "set python privder
 let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 "Enable autocompletion
@@ -51,7 +50,6 @@ set completeopt=menuone,noselect
 syntax on
 
 "Misc key mappings
-noremap <F9> :write <bar> edit <bar> TSBufEnable highlight<CR>
 let mapleader = "'"
 "buffer navigation
 nnoremap <space> <C-W><C-W>
@@ -78,45 +76,46 @@ autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 call plug#begin(stdpath('data') . '/plugged')
 
 " General
-Plug 'nvim-lua/popup.nvim' "Lua popups
-Plug 'nvim-lua/plenary.nvim' "Lua library
-Plug 'nvim-telescope/telescope.nvim' "Fuzzy file search
-Plug 'lewis6991/gitsigns.nvim' "Git
-Plug 'vim-airline/vim-airline' "Status bar
+Plug 'nvim-lua/popup.nvim' "Lua popups (lua)
+Plug 'nvim-lua/plenary.nvim' "Lua library (lua)
+Plug 'nvim-telescope/telescope.nvim' "Fuzzy file search (lua)
+Plug 'lewis6991/gitsigns.nvim' "Git (lua)
+Plug 'nvim-lualine/lualine.nvim' "Status bar (lua)
+Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
 " LSP
-Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol
-Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
-Plug 'ray-x/navigator.lua'
-Plug 'hrsh7th/nvim-compe'    "Autocompletion
-Plug 'ray-x/lsp_signature.nvim' "Function signatures
-" Productivity
-Plug 'mfussenegger/nvim-lint' "Linter
-Plug 'sbdchd/neoformat' "Formatter
-Plug 'kyazdani42/nvim-tree.lua' "File browser
-Plug 'scrooloose/nerdcommenter' "Comment hotkeys
-Plug 'Yggdroot/indentLine' "Indent rulers
-Plug 'qpkorr/vim-bufkill'
-Plug 'SirVer/ultisnips' "Text/code snippets functionality
+Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol (lua)
+Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
+Plug 'ray-x/navigator.lua' " Extensive IDE features (lua)
+Plug 'hrsh7th/nvim-compe'    "Autocompletion (lua)
+Plug 'ray-x/lsp_signature.nvim' "Function signatures (lua)
+" IDE features
+Plug 'mfussenegger/nvim-lint' "Linter (lua)
+Plug 'sbdchd/neoformat' "Formatter (lua)
+Plug 'kyazdani42/nvim-tree.lua' "File browser (lua)
+Plug 'scrooloose/nerdcommenter' "Comment hotkeys (vimscript)
+"Plug 'Yggdroot/indentLine' "Indent rulers
+Plug 'qpkorr/vim-bufkill' "maintain buffer layout (vimscript)
+Plug 'SirVer/ultisnips' "Text/code snippets functionality (vimscript)
 Plug 'honza/vim-snippets' "Repository containing snippet files
-Plug 'dyng/ctrlsf.vim' "Grep replacement
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding
-Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc
-Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter
+Plug 'dyng/ctrlsf.vim' "Grep replacement (vimscript)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding (lua)
+Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc (lua)
+Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter (lua)
 " themes / colors
 Plug 'ryanoasis/vim-devicons' "Cool icons
 Plug 'kyazdani42/nvim-web-devicons' "More cool icons
-Plug 'challenger-deep-theme/vim' "Theme
 Plug 'folke/tokyonight.nvim' "Alternative theme
 
+" Debug
+Plug 'puremourning/vimspector' " debugger (vimscript)
+
 " filetypes
-"Plug 'romgrk/nvim-treesitter-context'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} "markdown preview (lua)
 
 " Initialize plugin system
 call plug#end()
 
 "color theme
-"colo challenger_deep
 colo tokyonight
 
 " CtrlSF
@@ -129,16 +128,6 @@ let g:ctrlsf_extra_backend_args = {
             \ 'ag': '-U --ignore-dir build'
             \ }
 
-"Airline config
-let g:airline_powerline_fonts = 1
-let g:airline_theme='challenger_deep'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-
 "Telescope
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 
@@ -149,41 +138,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:snips_author = "Sebastian Mueller"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
-"ale
-let g:ale_linters = {
-            \   'cpp': ['clangtidy', 'cppcheck'],
-            \   'python': ['pylint', 'mypy', 'pydocstyle'],
-            \}
-let g:ale_fixers= {
-            \   'cpp': ['clang-format'],
-            \   'python': ['black'],
-            \   'xml': [],
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \}
-let g:airline#extensions#ale#enabled = 1
-let g:ale_type_map = {'flake8': {'ES': 'WS', 'E': 'W'}}
-let g:ale_cpp_clangcheck_executable = "clang-check-12"
-let g:ale_cpp_clangtidy_executable = "clang-tidy-12"
-let g:ale_c_clangformat_executable = "clang-format-10"
-let g:ale_c_clangformat_options = "-style=file"
-let g:ale_python_black_options = "--config ~/.config/pyproject.toml"
-let g:ale_fix_on_save = 1
-nnoremap <F7> :ALELint<CR>
-nnoremap <F8> :call ToggleFixOnSave()<cr>
-
-function! ToggleFixOnSave()
-    if g:ale_fix_on_save
-        let g:ale_fix_on_save = 0
-        echo "Disabled fix on save."
-    else
-        let g:ale_fix_on_save = 1
-        echo "Enabled fix on save."
-    endif
-endfunction
-
 "Replace
 nnoremap <leader>RN :%s/<C-r><C-w>//g<left><left>
 
+" indentline
 let g:indentLine_setConceal = 0
 
 " nvim tree
@@ -199,7 +157,7 @@ let g:neoformat_cpp_clangformat = {
     \ 'args': ['--style=file'],
     \ 'stdin': 1,
     \ }
-let g:neoformat_enabled_python = ['black']
+let g:neoformat_enabled_python = []"['black']
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
@@ -215,6 +173,9 @@ augroup END
 "Compe
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
+"Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+
 " Load lua configs
 lua require('treesitter')
 lua require('nvim-compe')
@@ -225,3 +186,5 @@ lua require('nvim-lint')
 lua require('nvim-spellsitter')
 lua require('nvimtree')
 lua require('nvim-navigator')
+lua require('nvim-bufferline')
+lua require('nvim-lualine')
