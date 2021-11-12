@@ -90,7 +90,7 @@ Plug 'hrsh7th/nvim-compe'    "Autocompletion (lua)
 Plug 'ray-x/lsp_signature.nvim' "Function signatures (lua)
 " IDE features
 Plug 'mfussenegger/nvim-lint' "Linter (lua)
-Plug 'sbdchd/neoformat' "Formatter (lua)
+Plug 'sbdchd/neoformat' "Formatter (vimscript), use formatter.nvim when async issues are resolved?
 Plug 'kyazdani42/nvim-tree.lua' "File browser (lua)
 Plug 'scrooloose/nerdcommenter' "Comment hotkeys (vimscript)
 Plug 'lukas-reineke/indent-blankline.nvim' "indent lines (lua)
