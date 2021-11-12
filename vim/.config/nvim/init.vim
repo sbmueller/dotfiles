@@ -168,49 +168,11 @@ let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
 
-" Toggle logic for neoformat - not every file should be formatted
-" automatically
-function! s:myNeoformat()
-    if !exists('b:my_neoformat_disable')
-        let b:my_neoformat_disable = 0
-    endif
-
-    if b:my_neoformat_disable
-        return
-    endif
-
-    if &readonly                         | return | endif
-    if ! &modifiable                     | return | endif
-
-    " Ignore error from undojoin: E790
-    try
-        undojoin
-    catch /^Vim\%((\a\+)\)\=:E790/ |
-    finally
-        Neoformat
-    endtry
-endfunction
-
-function! NeoformatToggle()
-    if !exists('b:my_neoformat_disable')
-        let b:my_neoformat_disable = 0
-    endif
-
-    if b:my_neoformat_disable
-        echomsg 'Neoformat: ENABLED'
-        let b:my_neoformat_disable = 0
-    else
-        echomsg 'Neoformat: DISABLED'
-        let b:my_neoformat_disable = 1
-    endif
-endfunction
-command NeoformatToggle call NeoformatToggle()
-
 "Autocommands
 augroup fixers
     au!
     au InsertLeave,BufWritePost,BufWinEnter <buffer> lua require('lint').try_lint()
-    au BufWritePre * call s:myNeoformat()
+    au BufWritePre * call MyNeoformat()
 augroup END
 
 noremap <F7> :NeoformatToggle<CR>
