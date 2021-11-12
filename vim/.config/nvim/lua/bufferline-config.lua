@@ -1,4 +1,4 @@
-require('bufferline').setup{
+require("bufferline").setup {
     options = {
         numbers = "buffer_id",
         max_name_length = 36,

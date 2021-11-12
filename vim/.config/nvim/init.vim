@@ -111,7 +111,8 @@ Plug 'folke/tokyonight.nvim' "Alternative theme
 Plug 'puremourning/vimspector' " debugger (vimscript)
 
 " filetypes
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} "markdown preview (lua)
+Plug 'lervag/vimtex' "LaTeX (vimscript)
+Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
 
 " Initialize plugin system
 call plug#end()
@@ -154,22 +155,66 @@ nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 
 "Neoformat
 let g:neoformat_cpp_clangformat = {
-    \ 'exe': 'clang-format-10',
+    \ 'exe': 'clang-format-12',
     \ 'args': ['--style=file'],
     \ 'stdin': 1,
     \ }
-let g:neoformat_enabled_python = []"['black']
+let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_cpp = ['clangformat']
+let g:neoformat_enabled_lua = ['luafmt']
+let g:neoformat_enabled_markdown = ['prettier']
+let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
+
+" Toggle logic for neoformat - not every file should be formatted
+" automatically
+function! s:myNeoformat()
+    if !exists('b:my_neoformat_disable')
+        let b:my_neoformat_disable = 0
+    endif
+
+    if b:my_neoformat_disable
+        return
+    endif
+
+    if &readonly                         | return | endif
+    if ! &modifiable                     | return | endif
+
+    " Ignore error from undojoin: E790
+    try
+        undojoin
+    catch /^Vim\%((\a\+)\)\=:E790/ |
+    finally
+        Neoformat
+    endtry
+endfunction
+
+function! NeoformatToggle()
+    if !exists('b:my_neoformat_disable')
+        let b:my_neoformat_disable = 0
+    endif
+
+    if b:my_neoformat_disable
+        echomsg 'Neoformat: ENABLED'
+        let b:my_neoformat_disable = 0
+    else
+        echomsg 'Neoformat: DISABLED'
+        let b:my_neoformat_disable = 1
+    endif
+endfunction
+command NeoformatToggle call NeoformatToggle()
 
 "Autocommands
 augroup fixers
     au!
     au InsertLeave,BufWritePost,BufWinEnter <buffer> lua require('lint').try_lint()
-    au BufWritePre * Neoformat
+    au BufWritePre * call s:myNeoformat()
 augroup END
+
+noremap <F7> :NeoformatToggle<CR>
+
 
 "Compe
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
