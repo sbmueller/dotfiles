@@ -11,3 +11,4 @@ alias vim=nvim
 alias ag='ag -U --ignore-dir=build'
 alias ggpush!='git push -f origin "$(git_current_branch)"'
 alias roson='source /opt/ros/kinetic/setup.zsh'
+alias py='conda activate py39'

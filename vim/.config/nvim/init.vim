@@ -82,6 +82,7 @@ Plug 'nvim-telescope/telescope.nvim' "Fuzzy file search (lua)
 Plug 'lewis6991/gitsigns.nvim' "Git (lua)
 Plug 'nvim-lualine/lualine.nvim' "Status bar (lua)
 Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
+Plug 'jbyuki/instant.nvim'
 " LSP
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
@@ -183,6 +184,9 @@ inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 "Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
+
+"Instant
+let g:instant_username = "Sebastian"
 
 " Load lua configs
 lua require('treesitter-config')
