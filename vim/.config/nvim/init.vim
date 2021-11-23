@@ -172,7 +172,7 @@ let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
 "Autocommands
 augroup fixers
     au!
-    au InsertLeave,BufWritePost,BufWinEnter <buffer> lua require('lint').try_lint()
+    au BufWritePost,BufWinEnter * lua require('lint').try_lint()
     au BufWritePre * call MyNeoformat()
 augroup END
 
