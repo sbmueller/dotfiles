@@ -63,6 +63,9 @@ autocmd Filetype markdown setlocal tw=79 colorcolumn=79
 autocmd Filetype rst setlocal tw=79 colorcolumn=79
 autocmd Filetype cmake setlocal tw=79 colorcolumn=79
 autocmd Filetype tex setlocal tw=80 colorcolumn=80
+let g:yaml_recommended_style = 0
+autocmd Filetype yaml setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
+autocmd Filetype json setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
 autocmd Filetype python setlocal tw=79 colorcolumn=79
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
@@ -165,6 +168,7 @@ let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_lua = ['luafmt']
 let g:neoformat_enabled_markdown = ['prettier']
 let g:neoformat_enabled_yaml = ['prettier']
+let g:neoformat_enabled_json = ['prettier']
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
