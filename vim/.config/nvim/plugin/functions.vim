@@ -1,11 +1,11 @@
 " Toggle logic for neoformat - not every file should be formatted
 " automatically
-function! MyNeoformat()
-    if !exists('b:my_neoformat_disable')
-        let b:my_neoformat_disable = 0
+function! Autoformat()
+    if !exists('b:autoformat_disable')
+        let b:autoformat_disable = 0
     endif
 
-    if b:my_neoformat_disable
+    if b:autoformat_disable
         return
     endif
 
@@ -17,21 +17,21 @@ function! MyNeoformat()
         undojoin
     catch /^Vim\%((\a\+)\)\=:E790/ |
     finally
-        Neoformat
+        FormatWrite
     endtry
 endfunction
 
-function! NeoformatToggle()
-    if !exists('b:my_neoformat_disable')
-        let b:my_neoformat_disable = 0
+function! AutoformatToggle()
+    if !exists('b:autoformat_disable')
+        let b:autoformat_disable = 0
     endif
 
-    if b:my_neoformat_disable
-        echomsg 'Neoformat: ENABLED'
-        let b:my_neoformat_disable = 0
+    if b:autoformat_disable
+        echomsg 'Autoformat: ENABLED'
+        let b:autoformat_disable = 0
     else
-        echomsg 'Neoformat: DISABLED'
-        let b:my_neoformat_disable = 1
+        echomsg 'Autoformat: DISABLED'
+        let b:autoformat_disable = 1
     endif
 endfunction
-command NeoformatToggle call NeoformatToggle()
+command AutoformatToggle call AutoformatToggle()

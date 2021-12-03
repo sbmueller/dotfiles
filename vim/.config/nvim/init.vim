@@ -66,7 +66,7 @@ autocmd Filetype tex setlocal tw=80 colorcolumn=80
 let g:yaml_recommended_style = 0
 autocmd Filetype yaml setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
 autocmd Filetype json setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
-autocmd Filetype python setlocal tw=79 colorcolumn=79
+autocmd Filetype python setlocal tw=999 colorcolumn=79
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
@@ -94,11 +94,10 @@ Plug 'hrsh7th/nvim-compe'    "Autocompletion (lua)
 Plug 'ray-x/lsp_signature.nvim' "Function signatures (lua)
 " IDE features
 Plug 'mfussenegger/nvim-lint' "Linter (lua)
-Plug 'sbdchd/neoformat' "Formatter (vimscript), use formatter.nvim when async issues are resolved?
+Plug 'mhartington/formatter.nvim' "Formatter (lua)
 Plug 'kyazdani42/nvim-tree.lua' "File browser (lua)
 Plug 'scrooloose/nerdcommenter' "Comment hotkeys (vimscript)
 Plug 'lukas-reineke/indent-blankline.nvim' "indent lines (lua)
-"Plug 'Yggdroot/indentLine' "Indent rulers
 Plug 'qpkorr/vim-bufkill' "maintain buffer layout (vimscript)
 Plug 'SirVer/ultisnips' "Text/code snippets functionality (vimscript)
 Plug 'honza/vim-snippets' "Repository containing snippet files
@@ -157,30 +156,20 @@ let g:nvim_tree_quit_on_open = 1
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 
-"Neoformat
-let g:neoformat_cpp_clangformat = {
-    \ 'exe': 'clang-format-12',
-    \ 'args': ['--style=file'],
-    \ 'stdin': 1,
-    \ }
-let g:neoformat_enabled_python = ['black']
-let g:neoformat_enabled_cpp = ['clangformat']
-let g:neoformat_enabled_lua = ['luafmt']
-let g:neoformat_enabled_markdown = ['prettier']
-let g:neoformat_enabled_yaml = ['prettier']
-let g:neoformat_enabled_json = ['prettier']
-let g:neoformat_basic_format_trim = 1
-let g:neoformat_run_all_formatters = 1
-let g:neoformat_verbose = 0 " only affects the verbosity of Neoformat
-
 "Autocommands
-augroup fixers
+augroup Fixers
     au!
     au BufWritePost,BufWinEnter * lua require('lint').try_lint()
-    au BufWritePre * call MyNeoformat()
+    au BufWritePost *.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs call Autoformat()
 augroup END
 
-noremap <F7> :NeoformatToggle<CR>
+augroup TrimTrailingWhiteSpace
+    au!
+    au BufWritePre * %s/\s\+$//e
+    au BufWritePre * %s/\n\+\%$//e
+augroup END
+
+noremap <F7> :AutoformatToggle<CR>
 
 
 "Compe
@@ -205,3 +194,4 @@ lua require('navigator-config')
 lua require('bufferline-config')
 lua require('lualine-config')
 lua require('indent-blankline-config')
+lua require('formatter-config')
