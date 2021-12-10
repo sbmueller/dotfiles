@@ -48,6 +48,8 @@ let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 set completeopt=menuone,noselect
 "sytnax highlightning
 syntax on
+"use spellfile in dotfiles
+set spellfile=~/dotfiles/zf/spell/en.utf-8.add
 
 "Misc key mappings
 let mapleader = "'"
@@ -66,7 +68,7 @@ autocmd Filetype tex setlocal tw=80 colorcolumn=80
 let g:yaml_recommended_style = 0
 autocmd Filetype yaml setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
 autocmd Filetype json setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
-autocmd Filetype python setlocal tw=999 colorcolumn=79
+autocmd Filetype python setlocal tw=0 colorcolumn=79
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
@@ -141,7 +143,8 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:snips_author = "Sebastian Mueller"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
+let g:UltiSnipsSnippetsDir = "~/dotfiles/zf/UltiSnips"
 
 "Replace
 nnoremap <leader>RN :%s/<C-r><C-w>//g<left><left>
