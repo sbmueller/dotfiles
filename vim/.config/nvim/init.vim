@@ -45,7 +45,8 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 "set python privder
 let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 "Enable autocompletion
-set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
+set ttimeoutlen=0
 "sytnax highlightning
 syntax on
 "use spellfile in dotfiles
@@ -92,8 +93,16 @@ Plug 'jbyuki/instant.nvim'
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
 Plug 'ray-x/navigator.lua' " Extensive IDE features (lua)
-Plug 'hrsh7th/nvim-compe'    "Autocompletion (lua)
 Plug 'ray-x/lsp_signature.nvim' "Function signatures (lua)
+"Autocompletion
+Plug 'onsails/lspkind-nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+
 " IDE features
 Plug 'mfussenegger/nvim-lint' "Linter (lua)
 Plug 'mhartington/formatter.nvim' "Formatter (lua)
@@ -101,8 +110,8 @@ Plug 'kyazdani42/nvim-tree.lua' "File browser (lua)
 Plug 'scrooloose/nerdcommenter' "Comment hotkeys (vimscript)
 Plug 'lukas-reineke/indent-blankline.nvim' "indent lines (lua)
 Plug 'qpkorr/vim-bufkill' "maintain buffer layout (vimscript)
-Plug 'SirVer/ultisnips' "Text/code snippets functionality (vimscript)
-Plug 'honza/vim-snippets' "Repository containing snippet files
+Plug 'hrsh7th/vim-vsnip' " Snippet functionality (vimscript)
+Plug 'rafamadriz/friendly-snippets' "Repository containing snippet files
 Plug 'dyng/ctrlsf.vim' "Grep replacement (vimscript)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding (lua)
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc (lua)
@@ -138,14 +147,6 @@ let g:ctrlsf_extra_backend_args = {
 "Telescope
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 
-"UltiSnips config
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:snips_author = "Sebastian Mueller"
-let g:UltiSnipsSnippetDirectories=['UltiSnips']
-let g:UltiSnipsSnippetsDir = "~/dotfiles/zf/UltiSnips"
-
 "Replace
 nnoremap <leader>RN :%s/<C-r><C-w>//g<left><left>
 
@@ -174,10 +175,6 @@ augroup END
 
 noremap <F7> :AutoformatToggle<CR>
 
-
-"Compe
-inoremap <silent><expr> <CR> compe#confirm('<CR>')
-
 "Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 
@@ -186,7 +183,7 @@ let g:instant_username = "Sebastian"
 
 " Load lua configs
 lua require('treesitter-config')
-lua require('compe-config')
+lua require('cmp-config')
 lua require('lsp-signature-config')
 lua require('gitsigns-config')
 lua require('telescope-config')
