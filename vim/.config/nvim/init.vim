@@ -126,7 +126,8 @@ Plug 'puremourning/vimspector' " debugger (vimscript)
 
 " filetypes
 Plug 'lervag/vimtex' "LaTeX (vimscript)
-Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
+"Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Initialize plugin system
 call plug#end()
