@@ -49,8 +49,13 @@ set completeopt=menu,menuone,noselect
 set ttimeoutlen=0
 "sytnax highlightning
 syntax on
+"fix width treatment of emojis
+set noemoji
 "use spellfile in dotfiles
+set spell
 set spellfile=~/dotfiles/zf/spell/en.utf-8.add
+"custom snippet directory
+let g:vsnip_snippet_dir = '~/dotfiles/zf/snippets'
 
 "Misc key mappings
 let mapleader = "'"

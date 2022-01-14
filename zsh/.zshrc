@@ -115,4 +115,4 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 eval $(thefuck --alias)
 
 # work related stuff
-source ~/dotfiles/zsh/zf.zsh/zf.zsh
+source ~/dotfiles/zf/zf.zsh
