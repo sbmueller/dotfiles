@@ -133,6 +133,7 @@ Plug 'puremourning/vimspector' " debugger (vimscript)
 Plug 'lervag/vimtex' "LaTeX (vimscript)
 "Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'chrisbra/csv.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -161,7 +162,6 @@ let g:indentLine_setConceal = 0
 
 " nvim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
-let g:nvim_tree_quit_on_open = 1
 
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
