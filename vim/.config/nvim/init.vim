@@ -4,7 +4,6 @@ set termencoding=utf-8
 set backspace=2
 " show line number
 set number
-set relativenumber
 "global indent settings (4 spaces)
 set shiftwidth=4
 set tabstop=4
