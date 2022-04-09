@@ -169,7 +169,7 @@ nnoremap <silent><leader>b :Gitsigns blame_line<CR>
 augroup Fixers
     au!
     au BufWritePost,BufWinEnter * lua require('lint').try_lint()
-    au BufWritePost *.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs call Autoformat()
+    au BufWritePost *.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs call Autoformat()
 augroup END
 
 augroup TrimTrailingWhiteSpace
