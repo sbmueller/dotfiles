@@ -88,10 +88,11 @@ font:
     #   - (Linux) monospace
     #   - (Windows) Consolas
     # family: FuraCode Nerd Font
-    family: BlexMono Nerd Font
+    #family: BlexMono Nerd Font
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Text
+    style: Medium
 
   # Bold font face
   bold:
@@ -99,7 +100,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: BlexMono Nerd Font
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -110,13 +111,13 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: BlexMono Nerd Font
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Text Italic
+    style: Medium Italic
 
   # Point size
-  size: 15.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -150,33 +151,63 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
+#colors:
+  ## Default colors
+  #primary:
+    #background: '0x1b182c'
+    #foreground: '0xcbe3e7'
+
+  ## Normal colors
+  #normal:
+    #black:   '0x100e23'
+    #red:     '0xff8080'
+    #green:   '0x95ffa4'
+    #yellow:  '0xffe9aa'
+    #blue:    '0x91ddff'
+    #magenta: '0xc991e1'
+    #cyan:    '0xaaffe4'
+    #white:   '0xcbe3e7'
+
+  ## Bright colors
+  #bright:
+    #black:   '0x565575'
+    #red:     '0xff5458'
+    #green:   '0x62d196'
+    #yellow:  '0xffb378'
+    #blue:    '0x65b2ff'
+    #magenta: '0x906cff'
+    #cyan:    '0x63f2f1'
+    #white:   '0xa6b3cc'
+#
+# TokyoNight Alacritty Colors
+
 colors:
   # Default colors
   primary:
-    background: '0x263239'
-    foreground: '0xeceff1'
+    background: '0x24283b'
+    foreground: '0xc0caf5'
 
   # Normal colors
   normal:
-    black:   '0x546e7a'
-    red:     '0xff5252'
-    green:   '0x69f0ae'
-    yellow:  '0xffd740'
-    blue:    '0x40c4ff'
-    magenta: '0xff4081'
-    cyan:    '0x64fcda'
-    white:   '0xffffff'
+    black:   '0x1d202f'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x5771A8'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
 
   # Bright colors
   bright:
-    black:   '0xb0bec5'
-    red:     '0xff8a80'
-    green:   '0xb9f6ca'
-    yellow:  '0xffe57f'
-    blue:    '0x80d8ff'
-    magenta: '0xff80ab'
-    cyan:    '0xa7fdeb'
-    white:   '0xffffff'
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x5771A8'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
 
 # Colors (Tomorrow Night Bright)
 #colors:
@@ -317,6 +348,28 @@ mouse:
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
+
+  hints:
+    # URL launcher
+    #
+    # This program is executed when clicking on a text which is recognized as a URL.
+    # The URL is always added to the command as the last parameter.
+    #
+    # When set to `None`, URL launching will be disabled completely.
+    #
+    # Default:
+    #   - (macOS) open
+    #   - (Linux) xdg-open
+    #   - (Windows) explorer
+    #launcher:
+    #  program: xdg-open
+    #  args: []
+
+    # URL modifiers
+    #
+    # These are the modifiers that need to be held down for opening URLs when clicking
+    # on them. The available modifiers are documented in the key binding section.
+    modifiers: None
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
