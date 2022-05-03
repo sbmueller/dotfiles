@@ -42,7 +42,7 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 "debug settings
 "packadd! vimspector
 "set python privder
-let g:python3_host_prog = '$HOME/miniconda3/bin/python'
+"let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 "Enable autocompletion
 set completeopt=menu,menuone,noselect
 set ttimeoutlen=0
@@ -161,6 +161,7 @@ let g:indentLine_setConceal = 0
 
 " nvim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>

@@ -21,6 +21,8 @@ window:
     columns: 0
     lines: 0
 
+  opacity: 1.0
+
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -89,7 +91,7 @@ font:
     #   - (Windows) Consolas
     # family: FuraCode Nerd Font
     #family: BlexMono Nerd Font
-    family: Iosevka Nerd Font
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Medium
@@ -100,7 +102,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Iosevka Nerd Font
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -111,13 +113,13 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Iosevka Nerd Font
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Medium Italic
 
   # Point size
-  size: 11.0
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -312,12 +314,6 @@ bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
 
 # Mouse bindings
 #
