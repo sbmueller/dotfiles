@@ -53,7 +53,10 @@ require "navigator".setup(
       }
     },
     icons = {
-      icons = false
+      diagnostic_head_severity_3 = "💩",
+      diagnostic_err = "💩",
+      diagnostic_warn = "🚽",
+      diagnostic_hint = [[💭]]
     },
     transparency = 50,
     treesitter_analysis = true, -- treesitter variable context
