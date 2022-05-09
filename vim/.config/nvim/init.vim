@@ -133,6 +133,7 @@ Plug 'lervag/vimtex' "LaTeX (vimscript)
 "Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'chrisbra/csv.vim'
+Plug 'nvim-neorg/neorg'
 
 " Initialize plugin system
 call plug#end()
@@ -205,3 +206,4 @@ lua require('bufferline-config')
 lua require('lualine-config')
 lua require('indent-blankline-config')
 lua require('formatter-config')
+lua require('neorg-config')
