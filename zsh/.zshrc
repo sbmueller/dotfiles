@@ -133,3 +133,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 export PATH="$PATH:$HOME/node_modules/.bin"
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bit bit

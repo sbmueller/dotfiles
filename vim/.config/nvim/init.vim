@@ -124,6 +124,7 @@ Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter (lua)
 Plug 'ryanoasis/vim-devicons' "Cool icons
 Plug 'kyazdani42/nvim-web-devicons' "More cool icons
 Plug 'folke/tokyonight.nvim' "Alternative theme
+Plug 'folke/zen-mode.nvim' "zen mode
 
 " Debug
 Plug 'puremourning/vimspector' " debugger (vimscript)
@@ -134,6 +135,7 @@ Plug 'lervag/vimtex' "LaTeX (vimscript)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'chrisbra/csv.vim'
 Plug 'nvim-neorg/neorg'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Initialize plugin system
 call plug#end()
@@ -162,7 +164,6 @@ let g:indentLine_setConceal = 0
 
 " nvim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
-autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
@@ -207,3 +208,5 @@ lua require('lualine-config')
 lua require('indent-blankline-config')
 lua require('formatter-config')
 lua require('neorg-config')
+lua require('zen-mode-config')
+lua require('colorizer-config')
