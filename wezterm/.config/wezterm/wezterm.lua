@@ -38,5 +38,12 @@ return {
     -- holding input pending the result of input composition, change the cursor
     -- to this color to give a visual cue about the compose state.
     -- compose_cursor = "orange",
+  },
+  -- maximum real estate
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0
   }
 }
