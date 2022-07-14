@@ -2,7 +2,7 @@ local wezterm = require "wezterm"
 return {
   term = "wezterm",
   font = wezterm.font("Iosevka Nerd Font"),
-  font_size = 13.0,
+  font_size = 11.0,
   hide_tab_bar_if_only_one_tab = true,
   -- TokyoNight Storm
   colors = {
