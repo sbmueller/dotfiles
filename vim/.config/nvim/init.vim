@@ -119,7 +119,9 @@ Plug 'rafamadriz/friendly-snippets' "Repository containing snippet files
 Plug 'dyng/ctrlsf.vim' "Grep replacement (vimscript)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding (lua)
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc (lua)
+Plug 'danymat/neogen'
 Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter (lua)
+
 " themes / colors
 Plug 'ryanoasis/vim-devicons' "Cool icons
 Plug 'kyazdani42/nvim-web-devicons' "More cool icons
@@ -210,3 +212,4 @@ lua require('formatter-config')
 lua require('neorg-config')
 lua require('zen-mode-config')
 lua require('colorizer-config')
+lua require('neogen-config')
