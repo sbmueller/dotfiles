@@ -55,6 +55,9 @@ require "navigator".setup(
     lsp = {
       format_on_save = false,
       disply_diagnostic_qf = false,
+      diagnostic = {
+        virtual_text = false
+      },
       clangd = {
         cmd = {
           "cclangd",

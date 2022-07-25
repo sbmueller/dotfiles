@@ -121,6 +121,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc (lua)
 Plug 'danymat/neogen'
 Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter (lua)
+Plug 'Maan2003/lsp_lines.nvim' "Diagnostics in virtual lines
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' "Cool icons
@@ -213,3 +214,4 @@ lua require('neorg-config')
 lua require('zen-mode-config')
 lua require('colorizer-config')
 lua require('neogen-config')
+lua require('lsp_lines-config')
