@@ -17,12 +17,7 @@ require "navigator".setup(
       --{key = "<Leader>ct", func = require("navigator.ctags").ctags, desc = "ctags"},
       {key = "K", func = vim.lsp.buf.hover, desc = "hover"},
       {key = "<Leader>h", mode = "n", func = require("navigator.codeAction").code_action, desc = "code_action"},
-      {
-        key = "<Space>ca",
-        mode = "v",
-        func = require("navigator.codeAction").range_code_action,
-        desc = "range_code_action"
-      },
+      -- { key = "<Space>ca", mode = "v", func = require("navigator.codeAction").range_code_action, desc = "range_code_action" },
       -- { key = '<Leader>re', func = 'rename()' },
       {key = "<Leader>rn", func = require("navigator.rename").rename, desc = "rename"},
       {key = "<Leader>gi", func = vim.lsp.buf.incoming_calls, desc = "incoming_calls"},
@@ -39,7 +34,7 @@ require "navigator".setup(
       {key = "[r", func = require("navigator.treesitter").goto_previous_usage, desc = "goto_previous_usage"},
       {key = "<C-LeftMouse>", func = vim.lsp.buf.definition, desc = "definition"},
       {key = "g<LeftMouse>", func = vim.lsp.buf.implementation, desc = "implementation"},
-      {key = "<Leader>k", func = require("navigator.dochighlight").hi_symbol, desc = "hi_symbol"},
+      {key = "<Leader>k", func = require("navigator.dochighlight").hi_symbol, desc = "hi_symbol"}
       --{key = "<Space>wa", func = require("navigator.workspace").add_workspace_folder, desc = "add_workspace_folder"},
       --{
       --key = "<Space>wr",
@@ -50,9 +45,10 @@ require "navigator".setup(
       --{key = "<Space>ff", func = vim.lsp.buf.range_formatting, mode = "v", desc = "range format"},
       --{key = "<Space>rf", func = require("navigator.formatting").range_format, mode = "n", desc = "range_fmt_v"},
       --{key = "<Space>wl", func = require("navigator.workspace").list_workspace_folders, desc = "list_workspace_folders"},
-      {key = "<Space>la", mode = "n", func = require("navigator.codelens").run_action, desc = "run code lens action"}
+      -- {key = "<Space>la", mode = "n", func = require("navigator.codelens").run_action, desc = "run code lens action"}
     },
     lsp = {
+      servers = {"cmake"},
       format_on_save = false,
       disply_diagnostic_qf = false,
       diagnostic = {

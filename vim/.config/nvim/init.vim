@@ -92,7 +92,6 @@ Plug 'nvim-telescope/telescope.nvim' "Fuzzy file search (lua)
 Plug 'lewis6991/gitsigns.nvim' "Git (lua)
 Plug 'nvim-lualine/lualine.nvim' "Status bar (lua)
 Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
-Plug 'jbyuki/instant.nvim'
 " LSP
 Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
@@ -113,13 +112,13 @@ Plug 'mhartington/formatter.nvim' "Formatter (lua)
 Plug 'kyazdani42/nvim-tree.lua' "File browser (lua)
 Plug 'scrooloose/nerdcommenter' "Comment hotkeys (vimscript)
 Plug 'lukas-reineke/indent-blankline.nvim' "indent lines (lua)
-Plug 'qpkorr/vim-bufkill' "maintain buffer layout (vimscript)
 Plug 'hrsh7th/vim-vsnip' " Snippet functionality (vimscript)
 Plug 'rafamadriz/friendly-snippets' "Repository containing snippet files
 Plug 'dyng/ctrlsf.vim' "Grep replacement (vimscript)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding (lua)
-Plug 'nvim-treesitter/nvim-treesitter-refactor' " this provides "go to def" etc (lua)
-Plug 'danymat/neogen'
+Plug 'nvim-treesitter/nvim-treesitter-refactor' "This provides go to def etc (lua)
+Plug 'nvim-treesitter/nvim-treesitter-context' "Current context in top line (lua)
+Plug 'danymat/neogen' "Documentation generator (lua)
 Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter (lua)
 Plug 'Maan2003/lsp_lines.nvim' "Diagnostics in virtual lines
 
@@ -128,6 +127,7 @@ Plug 'ryanoasis/vim-devicons' "Cool icons
 Plug 'kyazdani42/nvim-web-devicons' "More cool icons
 Plug 'folke/tokyonight.nvim' "Alternative theme
 Plug 'folke/zen-mode.nvim' "zen mode
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 
 " Debug
 Plug 'puremourning/vimspector' " debugger (vimscript)
@@ -137,14 +137,16 @@ Plug 'lervag/vimtex' "LaTeX (vimscript)
 "Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'chrisbra/csv.vim'
-Plug 'nvim-neorg/neorg'
 Plug 'norcalli/nvim-colorizer.lua'
 
 " Initialize plugin system
 call plug#end()
 
 "color theme
-colo tokyonight
+"colo tokyonight
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+
+colorscheme catppuccin
 
 " CtrlSF
 nmap <leader>A :CtrlSF -R ""<Left>
@@ -210,8 +212,9 @@ lua require('bufferline-config')
 lua require('lualine-config')
 lua require('indent-blankline-config')
 lua require('formatter-config')
-lua require('neorg-config')
 lua require('zen-mode-config')
 lua require('colorizer-config')
 lua require('neogen-config')
 lua require('lsp_lines-config')
+lua require('context-config')
+lua require('catppuccin-config')
