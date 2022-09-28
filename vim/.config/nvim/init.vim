@@ -88,15 +88,14 @@ call plug#begin(stdpath('data') . '/plugged')
 " General
 Plug 'nvim-lua/popup.nvim' "Lua popups (lua)
 Plug 'nvim-lua/plenary.nvim' "Lua library (lua)
-Plug 'nvim-telescope/telescope.nvim' "Fuzzy file search (lua)
 Plug 'lewis6991/gitsigns.nvim' "Git (lua)
 Plug 'nvim-lualine/lualine.nvim' "Status bar (lua)
 Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
 " LSP
-Plug 'neovim/nvim-lspconfig' "nvim Language Server Protocol (lua)
+Plug 'neovim/nvim-lspconfig' " Nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
 Plug 'ray-x/navigator.lua' " Extensive IDE features (lua)
-Plug 'ray-x/lsp_signature.nvim' "Function signatures (lua)
+Plug 'ray-x/lsp_signature.nvim' " Function signatures (lua)
 "Autocompletion
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -107,37 +106,34 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 
 " IDE features
-Plug 'mfussenegger/nvim-lint' "Linter (lua)
-Plug 'mhartington/formatter.nvim' "Formatter (lua)
-Plug 'kyazdani42/nvim-tree.lua' "File browser (lua)
-Plug 'scrooloose/nerdcommenter' "Comment hotkeys (vimscript)
-Plug 'lukas-reineke/indent-blankline.nvim' "indent lines (lua)
+Plug 'nvim-telescope/telescope.nvim' " Fuzzy file search (lua)
+Plug 'mfussenegger/nvim-lint' " Linter (lua)
+Plug 'mhartington/formatter.nvim' " Formatter (lua)
+Plug 'kyazdani42/nvim-tree.lua' " File browser (lua)
+Plug 'scrooloose/nerdcommenter' " Comment hotkeys (vimscript)
+Plug 'lukas-reineke/indent-blankline.nvim' " Show vertical indent lines (lua)
 Plug 'hrsh7th/vim-vsnip' " Snippet functionality (vimscript)
-Plug 'rafamadriz/friendly-snippets' "Repository containing snippet files
-Plug 'dyng/ctrlsf.vim' "Grep replacement (vimscript)
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting, indentation, folding (lua)
-Plug 'nvim-treesitter/nvim-treesitter-refactor' "This provides go to def etc (lua)
-Plug 'nvim-treesitter/nvim-treesitter-context' "Current context in top line (lua)
-Plug 'danymat/neogen' "Documentation generator (lua)
-Plug 'lewis6991/spellsitter.nvim' "Spelling check using treesitter (lua)
-Plug 'Maan2003/lsp_lines.nvim' "Diagnostics in virtual lines
+Plug 'rafamadriz/friendly-snippets' " Repository containing snippet files
+Plug 'dyng/ctrlsf.vim' " Grep replacement (vimscript)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Syntax highlighting, indentation, folding (lua)
+Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (lua)
+Plug 'nvim-treesitter/nvim-treesitter-context' " Current context in top line (lua)
+Plug 'danymat/neogen' " Documentation generator (lua)
+Plug 'lewis6991/spellsitter.nvim' " Spelling check using treesitter (lua)
+Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines TODO deprecated with nvim 0.8.0
 
 " themes / colors
-Plug 'ryanoasis/vim-devicons' "Cool icons
-Plug 'kyazdani42/nvim-web-devicons' "More cool icons
-Plug 'folke/tokyonight.nvim' "Alternative theme
-Plug 'folke/zen-mode.nvim' "zen mode
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-
-" Debug
-Plug 'puremourning/vimspector' " debugger (vimscript)
+Plug 'ryanoasis/vim-devicons' " Cool icons
+Plug 'kyazdani42/nvim-web-devicons' " More cool icons
+Plug 'folke/zen-mode.nvim' " Distraction free mode (lua)
+Plug 'catppuccin/nvim', {'as': 'catppuccin'} " Color theme (lua)
 
 " filetypes
-Plug 'lervag/vimtex' "LaTeX (vimscript)
-"Plug 'ellisonleao/glow.nvim' "Markdown Preview (lua)
+Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' } " Organizer Filetypes TODO remove tag when updating to nvim 0.8.0
+Plug 'lervag/vimtex' " LaTeX (vimscript)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'chrisbra/csv.vim'
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'norcalli/nvim-colorizer.lua' " Display color codes as colors (lua)
 
 " Initialize plugin system
 call plug#end()
@@ -188,12 +184,6 @@ augroup END
 
 noremap <F7> :AutoformatToggle<CR>
 
-"Vimspector
-let g:vimspector_enable_mappings = 'HUMAN'
-
-"Instant
-let g:instant_username = "Sebastian"
-
 "vsnip
 imap <expr> <C-j>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-j>'
 smap <expr> <C-j>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-j>'
@@ -218,3 +208,4 @@ lua require('neogen-config')
 lua require('lsp_lines-config')
 lua require('context-config')
 lua require('catppuccin-config')
+lua require('neorg-config')
