@@ -46,8 +46,6 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:«
 "Enable autocompletion
 set completeopt=menu,menuone,noselect
 set ttimeoutlen=0
-"sytnax highlightning
-syntax on
 "fix width treatment of emojis
 set noemoji
 "use spellfile in dotfiles
@@ -64,16 +62,17 @@ nnoremap <tab> :bn<CR>
 nnoremap <S-tab> :bp<CR>
 
 "filetype specific settings
+let g:yaml_recommended_style = 0
 autocmd Filetype cpp setlocal ts=4 sw=4 tw=140 expandtab colorcolumn=140
 autocmd Filetype c setlocal ts=4 sw=4 tw=140 expandtab colorcolumn=140
 autocmd Filetype markdown setlocal tw=79 colorcolumn=79
 autocmd Filetype rst setlocal tw=79 colorcolumn=79
 autocmd Filetype cmake setlocal tw=79 colorcolumn=79
 autocmd Filetype tex setlocal tw=80 colorcolumn=80
-let g:yaml_recommended_style = 0
 autocmd Filetype yaml setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
 autocmd Filetype json setlocal ts=4 sw=4 tw=80 expandtab colorcolumn=80
 autocmd Filetype python setlocal tw=0 colorcolumn=79
+autocmd Filetype norg setlocal tw=80 sw=2 colorcolumn=80
 "git commit messages always at beginning
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
@@ -119,8 +118,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Syntax highlightin
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (lua)
 Plug 'nvim-treesitter/nvim-treesitter-context' " Current context in top line (lua)
 Plug 'danymat/neogen' " Documentation generator (lua)
-Plug 'lewis6991/spellsitter.nvim' " Spelling check using treesitter (lua)
-Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines TODO deprecated with nvim 0.8.0
+Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -129,7 +127,7 @@ Plug 'folke/zen-mode.nvim' " Distraction free mode (lua)
 Plug 'catppuccin/nvim', {'as': 'catppuccin'} " Color theme (lua)
 
 " filetypes
-Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' } " Organizer Filetypes TODO remove tag when updating to nvim 0.8.0
+Plug 'nvim-neorg/neorg' " norg filetypes
 Plug 'lervag/vimtex' " LaTeX (vimscript)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'chrisbra/csv.vim'
@@ -137,6 +135,9 @@ Plug 'norcalli/nvim-colorizer.lua' " Display color codes as colors (lua)
 
 " Initialize plugin system
 call plug#end()
+
+"sytnax highlightning
+syntax on
 
 "color theme
 "colo tokyonight
@@ -195,7 +196,6 @@ lua require('lsp-signature-config')
 lua require('gitsigns-config')
 lua require('telescope-config')
 lua require('lint-config')
-lua require('spellsitter-config')
 lua require('nvimtree-config')
 lua require('navigator-config')
 lua require('bufferline-config')

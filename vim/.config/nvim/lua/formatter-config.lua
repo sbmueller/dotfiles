@@ -46,7 +46,7 @@ require("formatter").setup(
         function()
           return {
             exe = "rustfmt",
-            args = {"--emit=stdout"},
+            args = {"--emit stdout --edition 2021"},
             stdin = true
           }
         end
