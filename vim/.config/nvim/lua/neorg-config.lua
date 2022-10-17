@@ -24,6 +24,8 @@ require("neorg").setup {
     },
     ["core.presenter"] = {
       config = {zen_mode = "zen-mode"}
-    }
+    },
+    ["core.export"] = {},
+    ["core.export.markdown"] = {}
   }
 }

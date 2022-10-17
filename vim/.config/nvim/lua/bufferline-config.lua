@@ -1,11 +1,19 @@
 require("bufferline").setup {
-    options = {
-        numbers = "buffer_id",
-        max_name_length = 36,
-        max_prefix_length = 16,
-        tab_size = 22,
-        diagnostics = "nvim_lsp",
-        show_buffer_close_icons = false,
-        show_close_icon = false
+  options = {
+    numbers = "buffer_id",
+    max_name_length = 36,
+    max_prefix_length = 16,
+    tab_size = 22,
+    diagnostics = "nvim_lsp",
+    show_buffer_close_icons = false,
+    show_close_icon = false,
+    indicator = {
+      style = "underline"
     }
+  },
+  highlights = {
+    buffer_selected = {
+      italic = true
+    }
+  }
 }

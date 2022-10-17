@@ -57,9 +57,9 @@ let g:vsnip_snippet_dir = '~/dotfiles/zf/snippets'
 "Misc key mappings
 let mapleader = "'"
 "buffer navigation
-nnoremap <space> <C-W><C-W>
-nnoremap <tab> :bn<CR>
-nnoremap <S-tab> :bp<CR>
+nnoremap <silent><space> <C-W><C-W>
+nnoremap <silent><tab> :bn<CR>
+nnoremap <silent><S-tab> :bp<CR>
 
 "filetype specific settings
 let g:yaml_recommended_style = 0
@@ -119,6 +119,10 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (l
 Plug 'nvim-treesitter/nvim-treesitter-context' " Current context in top line (lua)
 Plug 'danymat/neogen' " Documentation generator (lua)
 Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines
+Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'folke/noice.nvim'
+Plug 'ggandor/leap.nvim' " cursor movement system
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -165,7 +169,7 @@ nnoremap <leader>RN :%s/<C-r><C-w>//g<left><left>
 let g:indentLine_setConceal = 0
 
 " nvim tree
-nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <silent><C-n> :NvimTreeToggle<CR>
 
 "Gitsigns
 nnoremap <silent><leader>b :Gitsigns blame_line<CR>
@@ -209,3 +213,5 @@ lua require('lsp_lines-config')
 lua require('context-config')
 lua require('catppuccin-config')
 lua require('neorg-config')
+lua require("noice").setup()
+lua require('leap').add_default_mappings()
