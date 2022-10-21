@@ -48,6 +48,9 @@ set completeopt=menu,menuone,noselect
 set ttimeoutlen=0
 "fix width treatment of emojis
 set noemoji
+" ignore case in search when written in lowercase
+set ignorecase
+set smartcase
 "use spellfile in dotfiles
 set spell
 set spellfile=~/dotfiles/zf/spell/en.utf-8.add
@@ -121,8 +124,9 @@ Plug 'danymat/neogen' " Documentation generator (lua)
 Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines
 Plug 'MunifTanjim/nui.nvim'
 Plug 'rcarriga/nvim-notify'
-Plug 'folke/noice.nvim'
+Plug 'folke/noice.nvim' " Nice GUI enhancements
 Plug 'ggandor/leap.nvim' " cursor movement system
+Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -215,3 +219,4 @@ lua require('catppuccin-config')
 lua require('neorg-config')
 lua require("noice").setup()
 lua require('leap').add_default_mappings()
+lua require('lsp-status-config')
