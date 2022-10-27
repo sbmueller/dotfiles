@@ -3,6 +3,7 @@ set termencoding=utf-8
 "set backspace to work like in other editors
 set backspace=2
 " show line number
+set relativenumber
 set number
 "global indent settings (4 spaces)
 set shiftwidth=4
