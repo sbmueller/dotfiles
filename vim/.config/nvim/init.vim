@@ -117,7 +117,6 @@ Plug 'scrooloose/nerdcommenter' " Comment hotkeys (vimscript)
 Plug 'lukas-reineke/indent-blankline.nvim' " Show vertical indent lines (lua)
 Plug 'hrsh7th/vim-vsnip' " Snippet functionality (vimscript)
 Plug 'rafamadriz/friendly-snippets' " Repository containing snippet files
-Plug 'dyng/ctrlsf.vim' " Grep replacement (vimscript)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Syntax highlighting, indentation, folding (lua)
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (lua)
 Plug 'nvim-treesitter/nvim-treesitter-context' " Current context in top line (lua)
@@ -151,21 +150,11 @@ syntax on
 "color theme
 "colo tokyonight
 let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
-
 colorscheme catppuccin
 
-" CtrlSF
-nmap <leader>A :CtrlSF -R ""<Left>
-nmap <leader>a <Plug>CtrlSFCwordPath<CR>
-let g:ctrlsf_ackprg = '/usr/bin/ag'
-let g:ctrlsf_winsize = '33%'
-let g:ctrlsf_auto_close = 0
-let g:ctrlsf_extra_backend_args = {
-            \ 'ag': '-U --ignore-dir build'
-            \ }
-
 "Telescope
-nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <silent><leader>f <cmd>Telescope find_files<cr>
+nnoremap <silent><leader>g <cmd>Telescope live_grep<cr>
 
 "Replace
 nnoremap <leader>RN :%s/<C-r><C-w>//g<left><left>
