@@ -5,7 +5,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 case `uname` in
     Darwin)
-        ZSH_THEME=spaceship
+        # ZSH_THEME=spaceship
+        eval "$(starship init zsh)"
     ;;
     Linux)
         ZSH_THEME=powerlevel10k/powerlevel10k
