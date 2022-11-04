@@ -40,10 +40,6 @@ set conceallevel=0
 set list
 "Unprintable chars mapping
 set listchars=tab:•\ ,trail:•,extends:»,precedes:«
-"debug settings
-"packadd! vimspector
-"set python privder
-"let g:python3_host_prog = '$HOME/miniconda3/bin/python'
 "Enable autocompletion
 set completeopt=menu,menuone,noselect
 set ttimeoutlen=0
@@ -54,9 +50,6 @@ set ignorecase
 set smartcase
 "use spellfile in dotfiles
 set spell
-set spellfile=~/dotfiles/zf/spell/en.utf-8.add
-"custom snippet directory
-let g:vsnip_snippet_dir = '~/dotfiles/zf/snippets'
 
 "Misc key mappings
 let mapleader = "'"
@@ -98,7 +91,6 @@ Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
 Plug 'neovim/nvim-lspconfig' " Nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
 Plug 'ray-x/navigator.lua' " Extensive IDE features (lua)
-Plug 'ray-x/lsp_signature.nvim' " Function signatures (lua)
 "Autocompletion
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -106,27 +98,27 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " IDE features
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy file search (lua)
 Plug 'mfussenegger/nvim-lint' " Linter (lua)
 Plug 'mhartington/formatter.nvim' " Formatter (lua)
 Plug 'kyazdani42/nvim-tree.lua' " File browser (lua)
-Plug 'scrooloose/nerdcommenter' " Comment hotkeys (vimscript)
+Plug 'numToStr/Comment.nvim' " Comment hotkeys (lua)
 Plug 'lukas-reineke/indent-blankline.nvim' " Show vertical indent lines (lua)
-Plug 'hrsh7th/vim-vsnip' " Snippet functionality (vimscript)
+Plug 'L3MON4D3/LuaSnip' " Snippet functionality (lua)
 Plug 'rafamadriz/friendly-snippets' " Repository containing snippet files
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Syntax highlighting, indentation, folding (lua)
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (lua)
 Plug 'nvim-treesitter/nvim-treesitter-context' " Current context in top line (lua)
 Plug 'danymat/neogen' " Documentation generator (lua)
-Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines
+Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines (lua)
 Plug 'MunifTanjim/nui.nvim'
 Plug 'rcarriga/nvim-notify'
-Plug 'folke/noice.nvim' " Nice GUI enhancements
-Plug 'ggandor/leap.nvim' " cursor movement system
-Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator
+Plug 'folke/noice.nvim' " Nice GUI enhancements (lua)
+Plug 'ggandor/leap.nvim' " cursor movement system (lua)
+Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator (lua)
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -181,16 +173,21 @@ augroup TrimTrailingWhiteSpace
     au BufWritePre * %s/\n\+\%$//e
 augroup END
 
-noremap <F7> :AutoformatToggle<CR>
+noremap <silent><F7> :AutoformatToggle<CR>
 
-"vsnip
-imap <expr> <C-j>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-j>'
-smap <expr> <C-j>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-j>'
+" Luasnip
+lua require("luasnip.loaders.from_vscode").lazy_load() -- Snippets in path
+
+" Linux specifics
+let s:uname = system("uname -s")
+if s:uname == "Linux"
+    set spellfile=~/dotfiles/zf/spell/en.utf-8.add
+    lua require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/dotfiles/zf" } }) -- Custom ZF snippets
+endif
 
 " Load lua configs
 lua require('treesitter-config')
 lua require('cmp-config')
-lua require('lsp-signature-config')
 lua require('gitsigns-config')
 lua require('telescope-config')
 lua require('lint-config')
@@ -207,6 +204,7 @@ lua require('lsp_lines-config')
 lua require('context-config')
 lua require('catppuccin-config')
 lua require('neorg-config')
-lua require("noice").setup()
+lua require('noice-config')
 lua require('leap').add_default_mappings()
 lua require('lsp-status-config')
+lua require('Comment').setup()

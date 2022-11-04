@@ -48,6 +48,7 @@ require "navigator".setup(
       -- {key = "<Space>la", mode = "n", func = require("navigator.codelens").run_action, desc = "run code lens action"}
     },
     lsp = {
+      hover = false,
       servers = {"cmake"},
       format_on_save = false,
       disply_diagnostic_qf = false,
