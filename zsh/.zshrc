@@ -3,14 +3,18 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+case `uname` in
+    Darwin)
+        ZSH_THEME=spaceship
+    ;;
+    Linux)
+        ZSH_THEME=powerlevel10k/powerlevel10k
+esac
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME=powerlevel10k/powerlevel10k
-#ZSH_THEME=spaceship
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -115,23 +119,27 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 eval $(thefuck --alias)
 
 # work related stuff
-source ~/dotfiles/zf/zf.zsh
+case `uname` in
+    Linux)
+        source ~/dotfiles/zf/zf.zsh
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
-fi
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
+        else
+            if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+                . "$HOME/miniconda3/etc/profile.d/conda.sh"
+            else
+                export PATH="$HOME/miniconda3/bin:$PATH"
+            fi
+        fi
 
-unset __conda_setup
-# <<< conda initialize <<<
-export PATH="$PATH:$HOME/node_modules/.bin"
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bit bit
+        unset __conda_setup
+        # <<< conda initialize <<<
+        export PATH="$PATH:$HOME/node_modules/.bin"
+        autoload -U +X bashcompinit && bashcompinit
+        complete -o nospace -C /usr/local/bin/bit bit
+    ;;
+esac
