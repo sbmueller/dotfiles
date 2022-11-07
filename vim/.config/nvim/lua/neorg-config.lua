@@ -13,9 +13,6 @@ require("neorg").setup {
     ["core.norg.concealer"] = {
       config = {icon_preset = "varied"}
     },
-    ["core.gtd.base"] = {
-      config = {workspace = "notes"}
-    },
     ["core.norg.journal"] = {
       config = {journal_folder = "~/notes/journal"}
     },
