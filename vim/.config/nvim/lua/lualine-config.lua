@@ -15,7 +15,7 @@ require "lualine".setup {
       "encoding",
       "fileformat",
       "filetype",
-      {"diagnostics", sources = {"nvim_diagnostic"}},
+      -- {"diagnostics", sources = {"nvim_diagnostic"}},
       "require'lsp-status'.status()"
     },
     lualine_y = {"progress"},
