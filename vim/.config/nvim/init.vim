@@ -125,6 +125,7 @@ Plug 'ryanoasis/vim-devicons' " Cool icons
 Plug 'kyazdani42/nvim-web-devicons' " More cool icons
 Plug 'folke/zen-mode.nvim' " Distraction free mode (lua)
 Plug 'catppuccin/nvim', {'as': 'catppuccin'} " Color theme (lua)
+Plug 'folke/paint.nvim' " Special highlights on keywords (lua)
 
 " filetypes
 Plug 'nvim-neorg/neorg' " norg filetypes
@@ -179,7 +180,7 @@ noremap <silent><F7> :AutoformatToggle<CR>
 lua require("luasnip.loaders.from_vscode").lazy_load() -- Snippets in path
 
 " Linux specifics
-let s:uname = system("uname -s")
+let s:uname = substitute(system('uname -s'), '\n', '', '')
 if s:uname == "Linux"
     set spellfile=~/dotfiles/zf/spell/en.utf-8.add
     lua require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/dotfiles/zf" } }) -- Custom ZF snippets
@@ -208,3 +209,4 @@ lua require('noice-config')
 lua require('leap').add_default_mappings()
 lua require('lsp-status-config')
 lua require('Comment').setup()
+lua require('paint-config')
