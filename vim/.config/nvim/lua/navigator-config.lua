@@ -57,16 +57,21 @@ require "navigator".setup(
       },
       clangd = {
         cmd = {
-          "cclangd",
-          "dev"
+          "clangd",
+          "--clang-tidy",
+          "--background-index",
+          "--all-scopes-completion",
+          "--header-insertion=iwyu",
+          "--suggest-missing-includes",
+          "--completion-style=detailed"
         }
       }
     },
     icons = {
       diagnostic_info = [[💭]],
-      diagnostic_hint = [[🤓]],
+      diagnostic_hint = [[✨]],
       diagnostic_warn = "⚠️",
-      diagnostic_err = "💩"
+      diagnostic_err = "👹"
     },
     transparency = 50,
     treesitter_analysis = true, -- treesitter variable context
