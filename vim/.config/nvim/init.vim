@@ -119,6 +119,7 @@ Plug 'rcarriga/nvim-notify'
 Plug 'folke/noice.nvim' " Nice GUI enhancements (lua)
 Plug 'ggandor/leap.nvim' " cursor movement system (lua)
 Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator (lua)
+Plug 'Bryley/neoai.nvim' " ChatGPT
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -198,6 +199,9 @@ if s:uname == "Linux"
     lua require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/dotfiles/zf" } }) -- Custom ZF snippets
 endif
 
+" NeoAI
+lua vim.treesitter.language.register("markdown", "neoai-output")
+
 " Load lua configs
 lua require('treesitter-config')
 lua require('cmp-config')
@@ -222,3 +226,4 @@ lua require('leap').add_default_mappings()
 lua require('lsp-status-config')
 lua require('Comment').setup()
 lua require('paint-config')
+lua require('neoai-config')
