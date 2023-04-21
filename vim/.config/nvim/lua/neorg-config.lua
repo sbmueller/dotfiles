@@ -1,7 +1,7 @@
 require("neorg").setup {
   load = {
     ["core.defaults"] = {},
-    ["core.norg.dirman"] = {
+    ["core.dirman"] = {
       config = {
         workspaces = {
           notes = "~/notes" -- Format: <name_of_workspace> = <path_to_workspace_root>
@@ -10,13 +10,13 @@ require("neorg").setup {
         index = "index.norg" -- The name of the main (root) .norg file
       }
     },
-    ["core.norg.concealer"] = {
+    ["core.concealer"] = {
       config = {icon_preset = "varied"}
     },
-    ["core.norg.journal"] = {
+    ["core.journal"] = {
       config = {journal_folder = "~/notes/journal"}
     },
-    ["core.norg.completion"] = {
+    ["core.completion"] = {
       config = {engine = "nvim-cmp"}
     },
     ["core.presenter"] = {
