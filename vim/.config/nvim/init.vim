@@ -87,21 +87,23 @@ Plug 'nvim-lua/plenary.nvim' "Lua library (lua)
 Plug 'lewis6991/gitsigns.nvim' "Git (lua)
 Plug 'nvim-lualine/lualine.nvim' "Status bar (lua)
 Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
+Plug 'MunifTanjim/nui.nvim' " UI library (lua)
+Plug 'rcarriga/nvim-notify' " Notification messages library (lua)
 " LSP
 Plug 'neovim/nvim-lspconfig' " Nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
 Plug 'ray-x/navigator.lua' " Extensive IDE features (lua)
 "Autocompletion
-Plug 'onsails/lspkind-nvim'
+Plug 'onsails/lspkind-nvim' " Pictograms for LSP (lua)
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'saadparwaiz1/cmp_luasnip' " LuaSnip in autocompletion (lua)
 
 " IDE features
-Plug 'nvim-telescope/telescope.nvim' " Fuzzy file search (lua)
+Plug 'nvim-telescope/telescope.nvim' " Fuzzy file search and more (lua)
 Plug 'mfussenegger/nvim-lint' " Linter (lua)
 Plug 'mhartington/formatter.nvim' " Formatter (lua)
 Plug 'kyazdani42/nvim-tree.lua' " File browser (lua)
@@ -114,12 +116,11 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (l
 Plug 'nvim-treesitter/nvim-treesitter-context' " Current context in top line (lua)
 Plug 'danymat/neogen' " Documentation generator (lua)
 Plug 'Maan2003/lsp_lines.nvim' " Diagnostics in virtual lines (lua)
-Plug 'MunifTanjim/nui.nvim'
-Plug 'rcarriga/nvim-notify'
 Plug 'folke/noice.nvim' " Nice GUI enhancements (lua)
 Plug 'ggandor/leap.nvim' " cursor movement system (lua)
 Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator (lua)
-Plug 'Bryley/neoai.nvim' " ChatGPT
+Plug 'Bryley/neoai.nvim' " ChatGPT (lua)
+Plug 'folke/trouble.nvim' " Diagnostic issues view (lua)
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -201,6 +202,12 @@ endif
 
 " NeoAI
 lua vim.treesitter.language.register("markdown", "neoai-output")
+map <silent> <leader><space> :NeoAI<cr>
+xnoremap <silent> <leader><space> :'<,'>NeoAIContext<cr>
+vnoremap <silent> <leader><space> :'<,'>NeoAIContext<cr>
+
+" Trouble
+nnoremap <silent><leader>t <cmd>TroubleToggle<cr>
 
 " Load lua configs
 lua require('treesitter-config')
@@ -227,3 +234,4 @@ lua require('lsp-status-config')
 lua require('Comment').setup()
 lua require('paint-config')
 lua require('neoai-config')
+lua require("trouble").setup()
