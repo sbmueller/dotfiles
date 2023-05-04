@@ -102,6 +102,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip' " LuaSnip in autocompletion (lua)
 
+
 " IDE features
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy file search and more (lua)
 Plug 'mfussenegger/nvim-lint' " Linter (lua)
@@ -109,7 +110,7 @@ Plug 'mhartington/formatter.nvim' " Formatter (lua)
 Plug 'kyazdani42/nvim-tree.lua' " File browser (lua)
 Plug 'numToStr/Comment.nvim' " Comment hotkeys (lua)
 Plug 'lukas-reineke/indent-blankline.nvim' " Show vertical indent lines (lua)
-Plug 'L3MON4D3/LuaSnip' " Snippet functionality (lua)
+Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'} " Snippet functionality (lua)
 Plug 'rafamadriz/friendly-snippets' " Repository containing snippet files
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Syntax highlighting, indentation, folding (lua)
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " This provides go to def etc (lua)
@@ -209,6 +210,9 @@ vnoremap <silent> <leader><space> :'<,'>NeoAIContext<cr>
 " Trouble
 nnoremap <silent><leader>t <cmd>TroubleToggle<cr>
 
+" Zen mode
+nnoremap <silent><leader>z <cmd>ZenMode<cr>
+
 " Load lua configs
 lua require('treesitter-config')
 lua require('cmp-config')
@@ -234,4 +238,4 @@ lua require('lsp-status-config')
 lua require('Comment').setup()
 lua require('paint-config')
 lua require('neoai-config')
-lua require("trouble").setup()
+lua require('trouble').setup()
