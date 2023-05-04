@@ -1,5 +1,8 @@
 require("zen-mode").setup {
   window = {
-    width = 140
+    width = 145
+  },
+  plugins = {
+    tmux = {enabled = true}
   }
 }
