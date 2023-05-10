@@ -104,6 +104,7 @@ Plug 'saadparwaiz1/cmp_luasnip' " LuaSnip in autocompletion (lua)
 
 
 " IDE features
+Plug 'mfussenegger/nvim-dap' " Debug adapter (lua)
 Plug 'nvim-telescope/telescope.nvim' " Fuzzy file search and more (lua)
 Plug 'mfussenegger/nvim-lint' " Linter (lua)
 Plug 'mhartington/formatter.nvim' " Formatter (lua)
@@ -239,3 +240,4 @@ lua require('Comment').setup()
 lua require('paint-config')
 lua require('neoai-config')
 lua require('trouble').setup()
+lua require('dap-config')
