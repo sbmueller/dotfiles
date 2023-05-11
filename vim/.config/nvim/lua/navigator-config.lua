@@ -51,6 +51,7 @@ require "navigator".setup(
       hover = false,
       servers = {"cmake"},
       format_on_save = false,
+      document_highlight = false,
       display_diagnostic_qf = false,
       diagnostic = {
         virtual_text = false
