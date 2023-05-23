@@ -19,9 +19,12 @@ dap.configurations.cpp = {
   }
 }
 
+require("dap.ext.vscode").load_launchjs(nil, {lldb = {"cpp", "c"}})
+
 vim.keymap.set("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", {silent = true})
 vim.keymap.set("n", "<Leader>dc", "<cmd>lua require'dap'.continue()<CR>", {silent = true})
 vim.keymap.set("n", "<Leader>dh", "<cmd>lua require('dap.ui.widgets').hover()<CR>", {silent = true})
 vim.keymap.set("n", "<Leader>ds", "<cmd>lua require('dap').step_over()<CR>", {silent = true})
 vim.keymap.set("n", "<Leader>di", "<cmd>lua require('dap').step_into()<CR>", {silent = true})
+vim.keymap.set("n", "<Leader>do", "<cmd>lua require('dap').step_out()<CR>", {silent = true})
 vim.keymap.set("n", "<Leader>dw", "<cmd>lua require('dapui').toggle()<CR>", {silent = true})
