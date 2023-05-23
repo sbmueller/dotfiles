@@ -148,7 +148,7 @@ syntax on
 
 "color theme
 "colo tokyonight
-let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
 colorscheme catppuccin
 
 "Telescope
