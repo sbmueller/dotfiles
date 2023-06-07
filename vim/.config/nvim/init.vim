@@ -125,6 +125,7 @@ Plug 'ggandor/leap.nvim' " cursor movement system (lua)
 Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator (lua)
 Plug 'Bryley/neoai.nvim' " ChatGPT (lua)
 Plug 'folke/trouble.nvim' " Diagnostic issues view (lua)
+Plug 'p00f/godbolt.nvim' " Compiler explorer (lua)
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -245,3 +246,4 @@ lua require('trouble').setup()
 lua require('dap-config')
 lua require('nvim-dap-virtual-text').setup()
 lua require('dapui').setup()
+lua require('godbolt-config')
