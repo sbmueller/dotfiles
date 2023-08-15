@@ -21,6 +21,8 @@ obsidian.setup(
       -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
       prepend_note_id = true
     },
+    -- Optional, set to true if you don't want obsidian.nvim to manage frontmatter.
+    disable_frontmatter = true,
     -- Optional, key mappings.
     mappings = {
       -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
