@@ -131,6 +131,7 @@ Plug 'nvim-lua/lsp-status.nvim' " LSP status indicator (lua)
 Plug 'Bryley/neoai.nvim' " ChatGPT (lua)
 Plug 'folke/trouble.nvim' " Diagnostic issues view (lua)
 Plug 'p00f/godbolt.nvim' " Compiler explorer (lua)
+Plug 'simrat39/symbols-outline.nvim' " Symbol overview
 
 " themes / colors
 Plug 'ryanoasis/vim-devicons' " Cool icons
@@ -222,6 +223,9 @@ nnoremap <silent><leader>t <cmd>TroubleToggle<cr>
 " Zen mode
 nnoremap <silent><leader>z <cmd>ZenMode<cr>
 
+" Symbols Outline
+nnoremap <silent><leader>s <cmd>SymbolsOutline<cr>
+
 " Load lua configs
 lua require('treesitter-config')
 lua require('cmp-config')
@@ -253,3 +257,4 @@ lua require('dapui').setup()
 lua require('godbolt-config')
 lua require('minintro').setup()
 lua require('obsidian-config')
+lua require('symbols-outline').setup()
