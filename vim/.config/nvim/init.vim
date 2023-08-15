@@ -93,6 +93,7 @@ Plug 'nvim-lualine/lualine.nvim' "Status bar (lua)
 Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
 Plug 'MunifTanjim/nui.nvim' " UI library (lua)
 Plug 'rcarriga/nvim-notify' " Notification messages library (lua)
+Plug 'eoh-bse/minintro.nvim' " Intro screen (lua)
 " LSP
 Plug 'neovim/nvim-lspconfig' " Nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
@@ -139,7 +140,7 @@ Plug 'catppuccin/nvim', {'as': 'catppuccin'} " Color theme (lua)
 Plug 'folke/paint.nvim' " Special highlights on keywords (lua)
 
 " filetypes
-Plug 'nvim-neorg/neorg' " norg filetypes
+Plug 'epwalsh/obsidian.nvim'
 Plug 'lervag/vimtex' " LaTeX (vimscript)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'chrisbra/csv.vim'
@@ -239,7 +240,6 @@ lua require('neogen-config')
 lua require('lsp_lines-config')
 lua require('context-config')
 lua require('catppuccin-config')
-lua require('neorg-config')
 lua require('noice-config')
 lua require('leap').add_default_mappings()
 lua require('lsp-status-config')
@@ -251,3 +251,5 @@ lua require('dap-config')
 lua require('nvim-dap-virtual-text').setup()
 lua require('dapui').setup()
 lua require('godbolt-config')
+lua require('minintro').setup()
+lua require('obsidian-config')
