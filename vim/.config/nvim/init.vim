@@ -50,9 +50,13 @@ set ignorecase
 set smartcase
 "use spellfile in dotfiles
 set spell
+" Minimum distance in rows between cursor and screen edge
+set scrolloff=5
 
 "Misc key mappings
 let mapleader = "'"
+nnoremap n nzz
+nnoremap N Nzz
 "buffer navigation
 nnoremap <silent><space> <C-W><C-W>
 nnoremap <silent><tab> :bn<CR>
