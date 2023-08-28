@@ -1,3 +1,10 @@
+local lsp_status = require("lsp-status")
+lsp_status.config {
+  current_function = false,
+  show_filename = false
+}
+lsp_status.register_progress()
+
 require "navigator".setup(
   {
     default_mapping = false, -- set to false if you will remap every key
@@ -49,12 +56,11 @@ require "navigator".setup(
     },
     lsp = {
       hover = false,
-      servers = {"cmake"},
-      format_on_save = false,
+      format_on_save = false, -- done by other plugin
       document_highlight = false,
       display_diagnostic_qf = false,
       diagnostic = {
-        virtual_text = false
+        virtual_text = false -- disabled because of lsp_lines
       },
       clangd = {
         cmd = {
@@ -65,7 +71,33 @@ require "navigator".setup(
           "--header-insertion=iwyu",
           "--suggest-missing-includes",
           "--completion-style=detailed"
+        },
+        handlers = lsp_status.extensions.clangd.setup(),
+        init_options = {
+          clangdFileStatus = true
+        },
+        on_attach = lsp_status.on_attach,
+        capabilities = lsp_status.capabilities
+      },
+      --disable_lsp = {"pyright"},
+      pyright = {
+        on_attach = lsp_status.on_attach,
+        capabilities = lsp_status.capabilities,
+        flags = {allow_incremental_sync = true, debounce_text_changes = 500},
+        settings = {
+          python = {
+            formatting = {provider = "black"},
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace"
+            }
+          }
         }
+      },
+      rust_analyzer = {
+        on_attach = lsp_status.on_attach,
+        capabilities = lsp_status.capabilities
       }
     },
     icons = {
