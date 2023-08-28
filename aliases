@@ -14,4 +14,4 @@ alias roson='source /opt/ros/kinetic/setup.zsh'
 alias py='conda activate py39'
 alias v=vim
 alias rs='rsync -ah --progress=2'
-alias notes='nvim -c "cd ~/notes"'
+alias notes='nvim -c "cd ~/notes | Telescope find_files"'
