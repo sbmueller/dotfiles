@@ -55,6 +55,7 @@ require "navigator".setup(
       -- {key = "<Space>la", mode = "n", func = require("navigator.codelens").run_action, desc = "run code lens action"}
     },
     lsp = {
+      servers = {"cmake"},
       hover = false,
       format_on_save = false, -- done by other plugin
       document_highlight = false,
