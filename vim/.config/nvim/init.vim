@@ -94,6 +94,8 @@ Plug 'akinsho/bufferline.nvim' "Extended bufferline (lua)
 Plug 'MunifTanjim/nui.nvim' " UI library (lua)
 Plug 'rcarriga/nvim-notify' " Notification messages library (lua)
 Plug 'glepnir/dashboard-nvim' " Start screen (lua)
+Plug 'folke/which-key.nvim' " Key binding visualization (lua)
+
 " LSP
 Plug 'neovim/nvim-lspconfig' " Nvim Language Server Protocol (lua)
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } "(lua)
@@ -257,3 +259,4 @@ lua require('godbolt-config')
 lua require('obsidian-config')
 lua require('symbols-outline').setup()
 lua require('dashboard-config')
+lua require('which-key').setup()
