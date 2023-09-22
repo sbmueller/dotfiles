@@ -16,3 +16,4 @@ alias v=vim
 alias rs='rsync -ah --progress=2'
 alias notes='nvim -c "cd ~/notes | Telescope find_files"'
 alias cgc="cz commit"
+alias cb="conan build . -bf build"
