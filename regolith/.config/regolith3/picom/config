@@ -1,0 +1,7 @@
+backend = "glx"
+
+shadow = true;
+
+# round corners
+corner-radius = 10;
+round-borders = 1;

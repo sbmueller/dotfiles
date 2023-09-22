@@ -1,0 +1,15 @@
+wm.workspace.01.name: 1: 👔 Office
+wm.workspace.02.name: 2: 💻 Term
+wm.workspace.03.name: 3: 🌐 Web
+wm.workspace.09.name: 9: 🚽 Misc
+wm.gaps.inner.size: 5
+i3xrocks.date.format2: %d. %b %H:%M:%S
+
+!regolith.look.path: /usr/share/regolith-look/nord
+regolith.wallpaper.file:
+regolith.wallpaper.color.primary:
+
+gtk.font_name:
+gtk.document_font_name:
+gtk.monospace_font_name:
+regolith.look.path: /usr/share/regolith-look/catppuccin
