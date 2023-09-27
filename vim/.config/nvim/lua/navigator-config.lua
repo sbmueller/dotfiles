@@ -71,7 +71,8 @@ require "navigator".setup(
           "--all-scopes-completion",
           "--header-insertion=iwyu",
           "--suggest-missing-includes",
-          "--completion-style=detailed"
+          "--completion-style=detailed",
+          "--inlay-hints=true"
         },
         handlers = lsp_status.extensions.clangd.setup(),
         init_options = {
