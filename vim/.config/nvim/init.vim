@@ -139,7 +139,7 @@ Plug 'simrat39/symbols-outline.nvim' " Symbol overview
 Plug 'ryanoasis/vim-devicons' " Cool icons
 Plug 'kyazdani42/nvim-web-devicons' " More cool icons
 Plug 'folke/zen-mode.nvim' " Distraction free mode (lua)
-Plug 'catppuccin/nvim', {'as': 'catppuccin'} " Color theme (lua)
+Plug 'folke/tokyonight.nvim',
 Plug 'folke/paint.nvim' " Special highlights on keywords (lua)
 
 " filetypes
@@ -156,9 +156,7 @@ call plug#end()
 syntax on
 
 "color theme
-"colo tokyonight
-let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
-colorscheme catppuccin
+colorscheme tokyonight-moon
 
 "Telescope
 nnoremap <silent><leader>f <cmd>Telescope find_files<cr>
@@ -245,7 +243,6 @@ lua require('colorizer-config')
 lua require('neogen-config')
 lua require('lsp_lines-config')
 lua require('context-config')
-lua require('catppuccin-config')
 lua require('noice-config')
 lua require('leap').add_default_mappings()
 lua require('Comment').setup()
