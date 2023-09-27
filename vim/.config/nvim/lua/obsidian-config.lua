@@ -24,10 +24,7 @@ obsidian.setup(
     -- Optional, set to true if you don't want obsidian.nvim to manage frontmatter.
     disable_frontmatter = true,
     -- Optional, key mappings.
-    mappings = {
-      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-      ["gf"] = require("obsidian.mapping").gf_passthrough()
-    },
+    mappings = {},
     -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
     -- URL it will be ignored but you can customize this behavior here.
     follow_url_func = function(url)
