@@ -16,7 +16,10 @@ return {
           require("telescope.builtin").live_grep {default_text = vim.fn.expand("<cword>")}
         end,
         desc = "Fuzzy Grep String"
-      }
+      },
+      {"gr", function()
+          require("telescope.builtin").lsp_references()
+        end, desc = "Symbol References"}
     },
     opts = {
       defaults = {
