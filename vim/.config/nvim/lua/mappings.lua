@@ -9,7 +9,7 @@ wk.register(
     ["<space>"] = {"<C-W><C-W>", "Next Window"},
     ["<tab>"] = {"<cmd>bn<cr>", "Next Buffer"},
     ["<S-tab>"] = {"<cmd>bp<cr>", "Previous Buffer"},
-    ["<leader>RN"] = {"<cmd>%s/<C-r><C-w>//g<left><left>", "Replace word globally"}
+    ["<leader>RN"] = {[[:%s/<C-r><C-w>//g<Left><Left>]], "Replace word globally"}
   }
 )
 

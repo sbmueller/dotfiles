@@ -17,9 +17,27 @@ return {
         end,
         desc = "Fuzzy Grep String"
       },
-      {"gr", function()
+      {
+        "gr",
+        function()
           require("telescope.builtin").lsp_references()
-        end, desc = "Symbol References"}
+        end,
+        desc = "Symbol References"
+      },
+      {
+        "gd",
+        function()
+          require("telescope.builtin").lsp_definitions()
+        end,
+        desc = "Goto Definitions"
+      },
+      {
+        "gi",
+        function()
+          require("telescope.builtin").lsp_implementations()
+        end,
+        desc = "Goto Implementations"
+      }
     },
     opts = {
       defaults = {

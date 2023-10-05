@@ -7,13 +7,13 @@ return {
       {"<leader>d", vim.diagnostic.open_float, desc = "Line Diagnostics"},
       {"<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics"},
       {"gD", vim.lsp.buf.declaration, desc = "Goto Declaration"},
-      {"gd", vim.lsp.buf.definition, desc = "Goto Definition"},
       {"K", vim.lsp.buf.hover, desc = "Hover Documentation"},
       {"<C-k>", vim.lsp.buf.signature_help, desc = "Signature Help"},
-      {"gi", vim.lsp.buf.implementation, desc = "Goto Implementation"},
       {"<leader>rn", vim.lsp.buf.rename, desc = "Rename Symbol"},
       {"<leader>h", vim.lsp.buf.code_action, desc = "LSP Code Action"}
       -- gr: Show References is handled by Telescope
+      -- gi: Show Implementations is handled by Telescope
+      -- gd: Show Definitions is handled by Telescope
     },
     config = function()
       local lspconfig = require("lspconfig")

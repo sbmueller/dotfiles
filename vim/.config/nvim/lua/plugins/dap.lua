@@ -13,7 +13,9 @@ return {
       {"<Leader>ds", "<cmd>lua require('dap').step_over()<CR>", desc = "Debug Step Over"},
       {"<Leader>di", "<cmd>lua require('dap').step_into()<CR>", desc = "Debug Step Into"},
       {"<Leader>do", "<cmd>lua require('dap').step_out()<CR>", desc = "Debug Step Out"},
-      {"<Leader>dw", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle Debug UI"}
+      {"<Leader>dw", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle Debug UI"},
+      {"<Leader>dw", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle Debug UI"},
+      {"<Leader>de", "<cmd>lua require('dapui').eval()<CR>", desc = "Evaluate Expression under Cursor"}
     },
     config = function()
       local dap = require("dap")
