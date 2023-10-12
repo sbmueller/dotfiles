@@ -4,7 +4,11 @@ return {
     ft = {"cpp", "c", "python", "json", "yaml", "lua"},
     config = function()
       require("ibl").setup {
-        exclude = {filetypes = {"dashboard"}}
+        exclude = {filetypes = {"dashboard"}},
+        scope = {
+          show_start = false,
+          show_end = false
+        }
       }
     end
   }
