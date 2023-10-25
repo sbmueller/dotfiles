@@ -42,7 +42,7 @@ end
 
 augroup("Fixers", {clear = true})
 autocmd(
-  "BufWritePost,BufWinEnter",
+  {"BufWritePost", "BufWinEnter"},
   {
     group = "Fixers",
     pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py",
