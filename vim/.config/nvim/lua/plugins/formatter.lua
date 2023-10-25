@@ -103,7 +103,8 @@ return {
               exe = "latexindent",
               args = {
                 "-g",
-                "/dev/null"
+                "/dev/null",
+                '-y="defaultIndent:\'  \'"'
               },
               stdin = true
             }
