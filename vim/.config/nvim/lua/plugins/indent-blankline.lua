@@ -1,7 +1,7 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    ft = {"cpp", "c", "python", "json", "yaml", "lua"},
+    ft = {"cpp", "c", "python", "json", "yaml", "lua", "tex"},
     config = function()
       require("ibl").setup {
         exclude = {filetypes = {"dashboard"}},
