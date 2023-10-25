@@ -20,7 +20,7 @@ function Autoformat()
   -- Ignore error from undojoin: E790
   local status, result = pcall(vim.cmd, "undojoin")
   if not status then
-    -- do nothing
+    vim.cmd("FormatWrite")
   else
     vim.cmd("FormatWrite")
   end
@@ -53,7 +53,7 @@ autocmd(
   "BufWritePost",
   {
     group = "Fixers",
-    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs",
+    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs,*.tex",
     command = "lua Autoformat()"
   }
 )
