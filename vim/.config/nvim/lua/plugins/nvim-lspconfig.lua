@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {"nvim-lua/lsp-status.nvim"},
-    ft = {"python", "cpp", "c", "rust", "cmake"},
+    ft = {"python", "cpp", "c", "rust", "cmake", "tex"},
     keys = {
       {"<leader>d", vim.diagnostic.open_float, desc = "Line Diagnostics"},
       {"<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics"},
@@ -52,6 +52,8 @@ return {
         on_attach = lsp_status.on_attach,
         capabilities = lsp_status.capabilities
       }
+
+      lspconfig.texlab.setup {}
       -- Severity Signs
       local signs = {Error = " ", Warn = " ", Hint = " ", Info = " "}
       for type, icon in pairs(signs) do
