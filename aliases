@@ -18,3 +18,6 @@ alias notes='nvim -c "cd ~/notes | Telescope find_files"'
 alias cgc="cz commit"
 alias cb="conan build . -bf build"
 alias ci="conan install . -if build"
+#git stuff
+alias gbl="git blame -w -C -C -C"
+alias 'ggpush!'='git push --force-with-lease origin "$(git_current_branch)"'
