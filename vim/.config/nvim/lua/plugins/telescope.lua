@@ -41,7 +41,8 @@ return {
     },
     opts = {
       defaults = {
-        file_ignore_patterns = {"build/", "sca/", "target/"}
+        file_ignore_patterns = {"build/", "sca/", "target/"},
+        winblend = 50
       }
     }
   }
