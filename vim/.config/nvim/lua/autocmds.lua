@@ -75,3 +75,12 @@ autocmd(
     command = "%s/\n\\+\\%$//e"
   }
 )
+augroup("Terminal", {clear = true})
+autocmd(
+  "TermOpen",
+  {
+    group = "Terminal",
+    pattern = "*",
+    command = "setlocal nospell"
+  }
+)
