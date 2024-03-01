@@ -23,7 +23,7 @@ wk.register(
 --Terminal Mappings
 wk.register(
   {
-    ["<Esc>"] = {"<C-\\><C-n>", "Leave Terminal Mode", noremap = true, mode = "t"},
-    ["<leader>t"] = {":vsplit term://zsh<CR>", "Open Terminal", noremap = true, mode = "n"}
+    ["<Esc>"] = {"<C-\\><C-n>", "Leave Terminal Mode", noremap = true, mode = "t"}
+    --["<leader>t"] = {":vsplit term://zsh<CR>", "Open Terminal", noremap = true, mode = "n"}
   }
 )

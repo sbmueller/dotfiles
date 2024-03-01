@@ -37,6 +37,13 @@ return {
           require("telescope.builtin").lsp_implementations()
         end,
         desc = "Goto Implementations"
+      },
+      {
+        "<leader>t",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "Fuzzy Find Buffers"
       }
     },
     opts = {
