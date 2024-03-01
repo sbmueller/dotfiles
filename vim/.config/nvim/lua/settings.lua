@@ -3,6 +3,7 @@
 --set backspace to work like in other editors
 vim.opt.backspace = "indent,eol,start"
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 --global indent settings (4 spaces)
 vim.opt.shiftwidth = 4
