@@ -1,10 +1,16 @@
 return {
   {
     "gorbit99/codewindow.nvim",
-    config = function()
-      local codewindow = require("codewindow")
-      codewindow.setup()
-      codewindow.apply_default_keybinds()
-    end
+    lazy = true,
+    keys = {
+      {
+        "<leader>m",
+        function()
+          require("codewindow").toggle_minimap()
+        end,
+        desc = "Toggle Minimap"
+      }
+    },
+    config = true
   }
 }
