@@ -1,8 +1,5 @@
 -- File for autocommands that are executed upon certain events
 
-local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
-
 --Helper Functions
 function Autoformat()
   if vim.b.autoformat_disable == nil then
@@ -40,16 +37,21 @@ function AutoformatToggle()
   end
 end
 
-augroup("Fixers", {clear = true})
-autocmd(
+-- Linting
+vim.api.nvim_create_augroup("Fixers", {clear = true})
+vim.api.nvim_create_autocmd(
   {"BufWritePost", "BufWinEnter"},
   {
     group = "Fixers",
-    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py",
-    command = "lua require('lint').try_lint()"
+    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.yaml,*.yml",
+    callback = function()
+      local lint = require("lint")
+      lint.try_lint() -- ft specific linters
+    end
   }
 )
-autocmd(
+-- Autoformat
+vim.api.nvim_create_autocmd(
   "BufWritePost",
   {
     group = "Fixers",
@@ -57,9 +59,8 @@ autocmd(
     command = "lua Autoformat()"
   }
 )
-
-augroup("TrimTrailingWhiteSpace", {clear = true})
-autocmd(
+vim.api.nvim_create_augroup("TrimTrailingWhiteSpace", {clear = true})
+vim.api.nvim_create_autocmd(
   "BufWritePre",
   {
     group = "TrimTrailingWhiteSpace",
@@ -67,7 +68,7 @@ autocmd(
     command = "%s/\\s\\+$//e"
   }
 )
-autocmd(
+vim.api.nvim_create_autocmd(
   "BufWritePre",
   {
     group = "TrimTrailingWhiteSpace",
@@ -75,8 +76,9 @@ autocmd(
     command = "%s/\n\\+\\%$//e"
   }
 )
-augroup("Terminal", {clear = true})
-autocmd(
+-- Disable spellcheck in terminal buffers
+vim.api.nvim_create_augroup("Terminal", {clear = true})
+vim.api.nvim_create_autocmd(
   "TermOpen",
   {
     group = "Terminal",

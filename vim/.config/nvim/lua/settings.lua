@@ -1,5 +1,8 @@
 -- File for general vim settings
 
+--support local config files
+vim.opt.exrc = true
+
 --set backspace to work like in other editors
 vim.opt.backspace = "indent,eol,start"
 vim.opt.number = true
