@@ -36,7 +36,7 @@ vim.opt.foldenable = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 --Disable hiding of format characters
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 1
 --Display unprintable characters f12 - switches
 vim.opt.list = true
 --Unprintable chars mapping
