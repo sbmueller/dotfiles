@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd(
   {"BufWritePost", "BufWinEnter"},
   {
     group = "Fixers",
-    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.yaml,*.yml",
+    pattern = "*",
     callback = function()
       local lint = require("lint")
       lint.try_lint() -- ft specific linters
