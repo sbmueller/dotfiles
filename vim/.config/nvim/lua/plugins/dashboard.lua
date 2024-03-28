@@ -29,7 +29,7 @@ return {
           {
             desc = " Notes",
             group = "Number",
-            action = "cd ~/notes | Telescope find_files",
+            action = "ObsidianQuickSwitch",
             key = "n"
           }
         }

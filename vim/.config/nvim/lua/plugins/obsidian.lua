@@ -7,10 +7,12 @@ return {
       "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim"
     },
-    cmd = {"ObsidianToday", "ObsidianYesterday"},
+    cmd = {"ObsidianToday", "ObsidianYesterday", "ObsidianQuickSwitch"},
     opts = {
       -- Required, the path to your vault directory.
-      dir = "~/notes",
+      dir = vim.loop.os_uname().sysname == "Darwin" and
+        "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notebook" or
+        "~/notes",
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
         folder = "Journal"
