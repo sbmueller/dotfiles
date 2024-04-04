@@ -8,7 +8,6 @@ return {
       {"<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics"},
       {"gD", vim.lsp.buf.declaration, desc = "Goto Declaration"},
       {"K", vim.lsp.buf.hover, desc = "Hover Documentation"},
-      {"<C-k>", vim.lsp.buf.signature_help, desc = "Signature Help"},
       {"<leader>rn", vim.lsp.buf.rename, desc = "Rename Symbol"},
       {"<leader>h", vim.lsp.buf.code_action, desc = "LSP Code Action"}
       -- gr: Show References is handled by Telescope
@@ -18,10 +17,14 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       local lsp_status = require("lsp-status")
+
+      -- Python
       lspconfig.pyright.setup {
         on_attach = lsp_status.on_attach,
         capabilities = lsp_status.capabilities
       }
+
+      -- C/C++
       lspconfig.clangd.setup {
         cmd = {
           "clangd",
@@ -40,20 +43,29 @@ return {
         on_attach = lsp_status.on_attach,
         capabilities = lsp_status.capabilities
       }
+
+      -- Cmake
       lspconfig.cmake.setup {
         on_attach = lsp_status.on_attach,
         capabilities = lsp_status.capabilities
       }
+
+      -- Rust
       lspconfig.rust_analyzer.setup {
-        -- Server-specific settings. See `:help lspconfig-setup`
         settings = {
-          ["rust-analyzer"] = {}
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              command = "clippy"
+            }
+          }
         },
         on_attach = lsp_status.on_attach,
         capabilities = lsp_status.capabilities
       }
 
+      -- Tex
       lspconfig.texlab.setup {}
+
       -- Severity Signs
       local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}
       for type, icon in pairs(signs) do

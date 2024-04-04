@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd(
   "BufWritePost",
   {
     group = "Fixers",
-    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs,*.tex",
+    pattern = "*.c,*.cpp,*.cc,*.h,*.hpp,*.py,*.lua,*.md,*.yaml,*.json,*.rs,*.tex,*.toml",
     command = "lua Autoformat()"
   }
 )

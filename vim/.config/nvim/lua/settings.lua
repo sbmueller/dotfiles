@@ -25,8 +25,8 @@ vim.opt.cursorline = true
 --enable gui stuff
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
-vim.opt.winblend = 20
-vim.opt.pumblend = 20
+vim.opt.winblend = 10
+vim.opt.pumblend = 10
 --activate mouse support
 vim.opt.mouse = "a"
 --allow hidden buffers
