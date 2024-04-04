@@ -15,7 +15,7 @@ return {
         "~/notes",
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
-        folder = "Journal"
+        folder = "2-Areas/Journal"
       },
       -- Optional, completion.
       completion = {
@@ -27,7 +27,14 @@ return {
       -- Optional, set to true if you don't want obsidian.nvim to manage frontmatter.
       disable_frontmatter = true,
       -- Optional, key mappings.
-      mappings = {},
+      mappings = {
+        ["gf"] = {
+          action = function()
+            return require("obsidian").util.gf_passthrough()
+          end,
+          opts = {noremap = false, expr = true, buffer = true}
+        }
+      },
       -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
       -- URL it will be ignored but you can customize this behavior here.
       follow_url_func = function(url)
