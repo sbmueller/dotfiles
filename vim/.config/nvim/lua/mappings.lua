@@ -16,7 +16,7 @@ wk.register(
 --Autoformat Toggle
 wk.register(
   {
-    ["<leader>a"] = {AutoformatToggle, "Toggle Autoformat"}
+    ["<leader>a"] = {"<cmd>FormatToggle<CR>", "Toggle Autoformat"}
   }
 )
 
