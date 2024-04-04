@@ -7,8 +7,7 @@ return {
       require("lint").linters_by_ft = {
         cpp = {"cppcheck"},
         python = {"ruff"},
-        yaml = {"yamllint"},
-        markdown = {"markdownlint"}
+        yaml = {"yamllint"}
       }
     end
   }
