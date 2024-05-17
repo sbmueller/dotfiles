@@ -9,6 +9,7 @@
     diffFilter = delta --color-only
 [delta]
     navigate = true  # use n and N to move between diff sections
+    side-by-side = true
 [merge]
     conflictstyle = diff3
 [diff]
@@ -17,12 +18,10 @@
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
-[delta]
-    side-by-side = true
 [merge]
     tool = meld
 [mergetool "meld"]
-    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld --auto-merge "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [mergetool]
     keepBackup = false
 [push]
