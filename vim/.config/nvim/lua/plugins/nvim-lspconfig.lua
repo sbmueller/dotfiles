@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {"nvim-lua/lsp-status.nvim"},
-    ft = {"python", "cpp", "c", "rust", "cmake", "tex"},
+    ft = {"python", "cpp", "c", "rust", "cmake", "tex", "lua"},
     keys = {
       {"<leader>d", vim.diagnostic.open_float, desc = "Line Diagnostics"},
       {"<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics"},
@@ -72,6 +72,9 @@ return {
 
       -- Tex
       lspconfig.texlab.setup {}
+
+      -- Lua
+      lspconfig.lua_ls.setup {}
 
       -- Severity Signs
       local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}
