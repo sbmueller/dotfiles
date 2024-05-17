@@ -21,7 +21,14 @@ return {
       -- Python
       lspconfig.pyright.setup {
         on_attach = lsp_status.on_attach,
-        capabilities = lsp_status.capabilities
+        capabilities = lsp_status.capabilities,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "off"
+            }
+          }
+        }
       }
 
       -- C/C++
