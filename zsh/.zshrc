@@ -123,23 +123,22 @@ case `uname` in
     Linux)
         source ~/dotfiles/zf/zf.zsh
 
-        # >>> conda initialize >>>
-        # !! Contents within this block are managed by 'conda init' !!
-        __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+        # >>> mamba initialize >>>
+        # !! Contents within this block are managed by 'mamba init' !!
+        export MAMBA_EXE="$HOME/.local/bin/micromamba";
+        export MAMBA_ROOT_PREFIX="$HOME/micromamba";
+        __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
         if [ $? -eq 0 ]; then
-            eval "$__conda_setup"
+            eval "$__mamba_setup"
         else
-            if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-                . "$HOME/miniconda3/etc/profile.d/conda.sh"
-            else
-                export PATH="$HOME/miniconda3/bin:$PATH"
-            fi
+            alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
         fi
-
-        unset __conda_setup
-        # <<< conda initialize <<<
+        unset __mamba_setup
+        # <<< mamba initialize <<<
+        #
         export PATH="$PATH:$HOME/node_modules/.bin"
         autoload -U +X bashcompinit && bashcompinit
         complete -o nospace -C /usr/local/bin/bit bit
     ;;
 esac
+
