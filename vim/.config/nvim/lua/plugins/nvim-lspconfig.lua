@@ -1,3 +1,12 @@
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
+  else
+    vim.lsp.inlay_hint.enable(false, {bufnr = bufnr})
+  end
+  require("lsp-status").on_attach(client, bufnr)
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -20,7 +29,7 @@ return {
 
       -- Python
       lspconfig.pyright.setup {
-        on_attach = lsp_status.on_attach,
+        on_attach = on_attach,
         capabilities = lsp_status.capabilities,
         settings = {
           python = {
@@ -47,13 +56,13 @@ return {
         init_options = {
           clangdFileStatus = true
         },
-        on_attach = lsp_status.on_attach,
+        on_attach = on_attach,
         capabilities = lsp_status.capabilities
       }
 
       -- Cmake
       lspconfig.cmake.setup {
-        on_attach = lsp_status.on_attach,
+        on_attach = on_attach,
         capabilities = lsp_status.capabilities
       }
 
@@ -66,7 +75,7 @@ return {
             }
           }
         },
-        on_attach = lsp_status.on_attach,
+        on_attach = on_attach,
         capabilities = lsp_status.capabilities
       }
 
