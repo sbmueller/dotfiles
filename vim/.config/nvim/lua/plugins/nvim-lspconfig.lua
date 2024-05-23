@@ -28,11 +28,11 @@ return {
       local lsp_status = require("lsp-status")
 
       -- Python
-      lspconfig.pyright.setup {
+      lspconfig.basedpyright.setup {
         on_attach = on_attach,
         capabilities = lsp_status.capabilities,
         settings = {
-          python = {
+          basedpyright = {
             analysis = {
               typeCheckingMode = "off"
             }
