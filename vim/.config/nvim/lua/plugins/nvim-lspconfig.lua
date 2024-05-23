@@ -30,14 +30,7 @@ return {
       -- Python
       lspconfig.basedpyright.setup {
         on_attach = on_attach,
-        capabilities = lsp_status.capabilities,
-        settings = {
-          basedpyright = {
-            analysis = {
-              typeCheckingMode = "off"
-            }
-          }
-        }
+        capabilities = lsp_status.capabilities
       }
 
       -- C/C++
