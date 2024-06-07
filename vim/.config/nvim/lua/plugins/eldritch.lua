@@ -1,11 +1,11 @@
 return {
   {
-    "folke/tokyonight.nvim",
+    "eldritch-theme/eldritch.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       -- load the colorscheme here
-      vim.cmd.colorscheme "tokyonight-storm"
+      vim.cmd.colorscheme "eldritch"
     end
   }
 }
