@@ -26,7 +26,5 @@
     keepBackup = false
 [push]
     default = current
-[column]
-    ui = auto
 [branch]
     sort = -committerdate
