@@ -2,28 +2,28 @@
 
 local wk = require("which-key")
 
-wk.register(
+wk.add(
   {
-    ["n"] = {"nzz", "Next occurence and center"},
-    ["N"] = {"Nzz", "Previous occurence and center"},
-    ["<space>"] = {"<C-W><C-W>", "Next Window"},
-    ["<tab>"] = {"<cmd>bn<cr>", "Next Buffer"},
-    ["<S-tab>"] = {"<cmd>bp<cr>", "Previous Buffer"},
-    ["<leader>RN"] = {[[:%s/<C-r><C-w>//g<Left><Left>]], "Replace word globally"}
+    {"n", "nzz", desc = "Next occurence and center"},
+    {"N", "Nzz", desc = "Previous occurence and center"},
+    {"<space>", "<C-W><C-W>", desc = "Next Window"},
+    {"<tab>", "<cmd>bn<cr>", desc = "Next Buffer"},
+    {"<S-tab>", "<cmd>bp<cr>", desc = "Previous Buffer"},
+    {"<leader>RN", ":%s/<C-r><C-w>//g<Left><Left>", desc = "Replace word globally"}
   }
 )
 
 --Autoformat Toggle
-wk.register(
+wk.add(
   {
-    ["<leader>a"] = {"<cmd>FormatToggle<CR>", "Toggle Autoformat"}
+    {"<leader>a", "<cmd>FormatToggle<CR>", desc = "Toggle Autoformat"}
   }
 )
 
 --Terminal Mappings
-wk.register(
+wk.add(
   {
-    ["<Esc>"] = {"<C-\\><C-n>", "Leave Terminal Mode", noremap = true, mode = "t"}
+    {"<Esc>", "<C-\\><C-n>", desc = "Leave Terminal Mode", noremap = true, mode = "t"}
     --["<leader>t"] = {":vsplit term://zsh<CR>", "Open Terminal", noremap = true, mode = "n"}
   }
 )
