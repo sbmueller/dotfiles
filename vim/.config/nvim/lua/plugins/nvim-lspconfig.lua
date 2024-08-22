@@ -1,3 +1,4 @@
+-- Enabler for inlay hints
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
@@ -6,6 +7,26 @@ local on_attach = function(client, bufnr)
   end
   require("lsp-status").on_attach(client, bufnr)
 end
+
+-- Helper to change ltex language during runtime
+vim.api.nvim_create_user_command(
+  "LtexChangeLanguage",
+  function(data)
+    local language = data.fargs[1]
+    local clients = vim.lsp.get_active_clients()
+    for _, client in ipairs(clients) do
+      if client.name == "ltex" then
+        client.config.settings.ltex.language = language
+        client.notify("workspace/didChangeConfiguration", {settings = client.config.settings})
+      end
+    end
+    print("LTeX language changed to " .. language)
+  end,
+  {
+    nargs = 1,
+    force = true
+  }
+)
 
 return {
   {
@@ -76,7 +97,17 @@ return {
       lspconfig.texlab.setup {}
 
       -- Languagetool
-      lspconfig.ltex.setup {}
+      lspconfig.ltex.setup {
+        settings = {
+          ltex = {
+            additionalRules = {
+              enablePickyRules = true,
+              motherTongue = "de"
+            },
+            language = "en-US"
+          }
+        }
+      }
 
       -- Lua
       lspconfig.lua_ls.setup {}
