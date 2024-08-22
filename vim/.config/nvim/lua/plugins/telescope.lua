@@ -3,7 +3,7 @@ return {
     "nvim-telescope/telescope.nvim",
     lazy = true,
     cmd = "Telescope",
-    dependencies = {"nvim-lua/plenary.nvim"},
+    dependencies = {"nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim"},
     keys = {
       {
         "<leader>f",
@@ -46,11 +46,19 @@ return {
         desc = "Fuzzy Find Buffers"
       }
     },
-    opts = {
-      defaults = {
-        file_ignore_patterns = {"build/", "sca/", "target/"},
-        winblend = 50
+    config = function()
+      require("telescope").setup {
+        defaults = {
+          file_ignore_patterns = {"build/", "sca/", "target/"},
+          winblend = 50
+        },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {}
+          }
+        }
       }
-    }
+      require("telescope").load_extension("ui-select")
+    end
   }
 }
