@@ -7,12 +7,12 @@ return {
       "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim"
     },
-    cmd = {"ObsidianToday", "ObsidianYesterday", "ObsidianQuickSwitch"},
+    cmd = { "ObsidianToday", "ObsidianYesterday", "ObsidianQuickSwitch" },
     opts = {
       -- Required, the path to your vault directory.
-      dir = vim.loop.os_uname().sysname == "Darwin" and
-        "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notebook" or
-        "~/notes",
+      dir = vim.fn.isdirectory('~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notebook') ~= 0 and
+          "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notebook" or
+          "~/notes",
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
         folder = "2-Areas/Journal"
@@ -32,14 +32,14 @@ return {
           action = function()
             return require("obsidian").util.gf_passthrough()
           end,
-          opts = {noremap = false, expr = true, buffer = true}
+          opts = { noremap = false, expr = true, buffer = true }
         }
       },
       -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
       -- URL it will be ignored but you can customize this behavior here.
       follow_url_func = function(url)
         -- Open the URL in the default web browser.
-        vim.fn.jobstart({"open", url}) -- Mac OS
+        vim.fn.jobstart({ "open", url }) -- Mac OS
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
       -- Optional, set to true if you use the Obsidian Advanced URI plugin.

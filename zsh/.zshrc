@@ -3,14 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-case `uname` in
-    Darwin)
-        # ZSH_THEME=spaceship
-        eval "$(starship init zsh)"
-    ;;
-    Linux)
-        ZSH_THEME=powerlevel10k/powerlevel10k
-esac
+eval "$(starship init zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -116,30 +109,3 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
-
-eval $(thefuck --alias)
-
-# work related stuff
-case `uname` in
-    Linux)
-        source ~/dotfiles/zf/zf.zsh
-
-        # >>> mamba initialize >>>
-        # !! Contents within this block are managed by 'mamba init' !!
-        export MAMBA_EXE="$HOME/.local/bin/micromamba";
-        export MAMBA_ROOT_PREFIX="$HOME/micromamba";
-        __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-        if [ $? -eq 0 ]; then
-            eval "$__mamba_setup"
-        else
-            alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-        fi
-        unset __mamba_setup
-        # <<< mamba initialize <<<
-        #
-        export PATH="$PATH:$HOME/node_modules/.bin"
-        autoload -U +X bashcompinit && bashcompinit
-        complete -o nospace -C /usr/local/bin/bit bit
-    ;;
-esac
-
