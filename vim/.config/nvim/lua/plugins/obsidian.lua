@@ -15,7 +15,7 @@ return {
           "~/notes",
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
-        folder = "2-Areas/Journal"
+        folder = "4-Archive/Journal"
       },
       -- Optional, completion.
       completion = {
