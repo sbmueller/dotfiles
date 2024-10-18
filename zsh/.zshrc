@@ -1,6 +1,9 @@
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Add node modules to path
+export PATH=$HOME/node_modules/.bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 eval "$(starship init zsh)"
@@ -100,7 +103,6 @@ source $HOME/dotfiles/aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 autoload -U +X bashcompinit && bashcompinit
@@ -109,3 +111,5 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
+
+[[ ! -f ~/.work.zsh ]] || source ~/.work.zsh
