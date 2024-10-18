@@ -10,9 +10,11 @@ return {
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
-      "onsails/lspkind.nvim"
+      "onsails/lspkind.nvim",
+      "zbirenbaum/copilot-cmp"
     },
     config = function()
+      require("copilot_cmp").setup()
       local cmp = require "cmp"
       cmp.setup(
         {
@@ -44,6 +46,7 @@ return {
           },
           sources = cmp.config.sources(
             {
+              {name = "copilot"},
               {name = "nvim_lsp"},
               -- {name = "vsnip"} -- For vsnip users.
               {name = "luasnip"} -- For luasnip users.
@@ -90,6 +93,18 @@ return {
           )
         }
       )
+
+      -- lspkind.lua
+      local lspkind = require("lspkind")
+      lspkind.init(
+        {
+          symbol_map = {
+            Copilot = ""
+          }
+        }
+      )
+
+      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg = "#6CC644"})
     end
   }
 }
