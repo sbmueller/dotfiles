@@ -1,12 +1,16 @@
-
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Add node modules to path
 export PATH=$HOME/node_modules/.bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-eval "$(starship init zsh)"
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" || "$(sysctl -n machdep.cpu.brand_string)" == *"M2"* ]]; then
+    # Private, use a minimal shell
+    eval "$(starship init zsh)"
+else
+    # For work, use more verbose shell
+    eval "$(oh-my-posh init zsh --config /opt/homebrew/Cellar/oh-my-posh/23.20.2/themes/quick-term.omp.json)"
+fi
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -78,8 +82,6 @@ source $HOME/dotfiles/aliases
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -102,14 +104,8 @@ source $HOME/dotfiles/aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bitcomplete bit
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bitcomplete bit
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
 
-[[ ! -f ~/.work.zsh ]] || source ~/.work.zsh
+source <(fzf --zsh)
+[[ -f ~/.work.zsh ]] && source ~/.work.zsh
