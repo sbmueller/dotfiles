@@ -3,4 +3,4 @@ normal = {family="VictorMono Nerd Font", style="SemiBold"}
 italic = {family="VictorMono Nerd Font", style="SemiBold Italic"}
 bold = {family="VictorMono Nerd Font", style="Bold"}
 bold_italic = {family="VictorMono Nerd Font", style="Bold Italic"}
-size = 16
+size = 17
