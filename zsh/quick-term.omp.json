@@ -122,7 +122,7 @@
         {
           "foreground": "#8839ef",
           "style": "plain",
-          "template": "\u2570\u2500 {{ if .Root }}#{{else}}\uedfb{{end}}",
+          "template": "\u2570\u2500 {{ if .Root }}#{{else}}\uf061{{end}}",
           "type": "text"
         }
       ],

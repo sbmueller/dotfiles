@@ -3,11 +3,7 @@ export PATH=$HOME/node_modules/.bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-if [[ "$TERM_PROGRAM" == "Apple_Terminal" || "$(sysctl -n machdep.cpu.brand_string)" == *"M2"* ]]; then
-    # Private, use a minimal shell
-    eval "$(starship init zsh)"
-else
-    # For work, use more verbose shell
+if [[ "$TERM_PROGRAM" != "Apple_Terminal" ]]; then
     eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/quick-term.omp.json)"
 fi
 
