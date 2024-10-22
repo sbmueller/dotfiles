@@ -8,7 +8,7 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" || "$(sysctl -n machdep.cpu.brand_stri
     eval "$(starship init zsh)"
 else
     # For work, use more verbose shell
-    eval "$(oh-my-posh init zsh --config /opt/homebrew/Cellar/oh-my-posh/23.20.2/themes/quick-term.omp.json)"
+    eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/quick-term.omp.json)"
 fi
 
 
