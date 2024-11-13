@@ -8,17 +8,16 @@ return {
       conform.setup {
         formatters_by_ft = {
           -- Use a sub-list to run only the first available formatter
-          -- javascript = {{"prettierd", "prettier"}}
+          c = {"clang-format"},
+          cpp = {"clang-format"},
           json = {"prettier"},
+          lua = {"luafmt"},
           markdown = {"prettier"},
+          python = {"black"},
+          rust = {"rustfmt"},
+          tex = {"latexindent"},
           toml = {"prettier"},
           yaml = {"prettier"},
-          json = {"prettier"},
-          cpp = {"clang-format"},
-          c = {"clang-format"},
-          python = {"black"},
-          lua = {"luafmt"},
-          tex = {"latexindent"}
         },
         format_on_save = function(bufnr)
           -- Disable with a global or buffer-local variable
