@@ -1,5 +1,5 @@
 # Add node modules to path
-export PATH=$HOME/node_modules/.bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/node_modules/.bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
