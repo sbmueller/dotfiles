@@ -21,3 +21,4 @@ alias ci="conan install . -if build"
 #git stuff
 alias gbl="git blame -w -C -C -C"
 alias 'ggpush!'='git push --force-with-lease origin "$(git_current_branch)"'
+alias mm="micromamba"
