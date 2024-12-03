@@ -27,7 +27,14 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       local lsp_status = require("lsp-status")
-
+      -- Rounded hover border
+      vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(
+        vim.lsp.handlers.hover,
+        {
+          border = "rounded"
+        }
+      )
       -- Python
       lspconfig.basedpyright.setup {
         on_attach = on_attach,
