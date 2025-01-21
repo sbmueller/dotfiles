@@ -2,12 +2,20 @@ return {
   {
     "mfussenegger/nvim-lint",
     lazy = true,
-    ft = {"python", "yaml"},
+    ft = {"python", "yaml", "sh"},
     config = function()
-      require("lint").linters_by_ft = {
+      local lint = require("lint")
+      lint.linters_by_ft = {
         python = {"ruff"},
-        yaml = {"yamllint"}
+        yaml = {"yamllint"},
+        sh = {"shellcheck"}
       }
+      -- Severity Signs
+      local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+      end
     end
   }
 }
