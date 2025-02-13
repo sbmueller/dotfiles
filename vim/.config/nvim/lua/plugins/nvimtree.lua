@@ -29,7 +29,7 @@ return {
       git = {
         enable = true,
         ignore = true,
-        timeout = 400
+        timeout = 2000
       },
       actions = {
         open_file = {
