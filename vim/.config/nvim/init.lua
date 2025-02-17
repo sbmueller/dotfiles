@@ -9,3 +9,7 @@ require("lazynvim")
 require("autocmds")
 -- General key mappings
 require("mappings")
+-- Neovide settings
+if vim.g.neovide then
+  require("neovide")
+end
