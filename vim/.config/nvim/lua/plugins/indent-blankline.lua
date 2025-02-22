@@ -1,6 +1,7 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    lazy = true,
     ft = {"cpp", "c", "python", "json", "yaml", "lua", "tex"},
     config = function()
       require("ibl").setup {

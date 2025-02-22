@@ -1,11 +1,12 @@
 return {
   {
-    {
-      "akinsho/toggleterm.nvim",
-      version = "*",
-      opts = {
-        open_mapping = [[<leader>c]]
-      }
+    "akinsho/toggleterm.nvim",
+    lazy = true,
+    keys = {"<leader>c"},
+    cmd = "ToggleTerm",
+    version = "*",
+    opts = {
+      open_mapping = [[<leader>c]]
     }
   }
 }

@@ -1,7 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    lazy = false,
     dependencies = {"nvim-lua/lsp-status.nvim", "mfussenegger/nvim-lint"},
     config = function()
       -- Linting progress helper function

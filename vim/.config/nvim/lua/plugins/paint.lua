@@ -1,6 +1,7 @@
 return {
   {
     "folke/paint.nvim",
+    lazy = true,
     ft = "cpp",
     opts = {
       highlights = {

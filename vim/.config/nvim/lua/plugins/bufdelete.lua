@@ -1,7 +1,7 @@
 return {
   {
     "famiu/bufdelete.nvim",
-    lazy = false,
-    event = "VeryLazy"
+    lazy = true,
+    event = {"BufReadPost", "BufNewFile"}
   }
 }

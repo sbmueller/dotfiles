@@ -4,7 +4,8 @@ return {
     lazy = true,
     dependencies = {
       {"rcarriga/nvim-dap-ui", config = true},
-      {"theHamsta/nvim-dap-virtual-text"}
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio"
     },
     keys = {
       {"<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", desc = "Debug Toggle Breakpoint"},
@@ -14,7 +15,6 @@ return {
       {"<Leader>di", "<cmd>lua require('dap').step_into()<CR>", desc = "Debug Step Into"},
       {"<Leader>do", "<cmd>lua require('dap').step_out()<CR>", desc = "Debug Step Out"},
       {"<Leader>dw", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle Debug UI"},
-      {"<Leader>dw", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle Debug UI"},
       {"<Leader>de", "<cmd>lua require('dapui').eval()<CR>", desc = "Evaluate Expression under Cursor"}
     },
     config = function()
@@ -22,7 +22,7 @@ return {
       dap.defaults.fallback.terminal_win_cmd = "vertical botright new"
       dap.adapters.lldb = {
         type = "executable",
-        command = "lldb-vscode", -- adjust as needed, must be absolute path
+        command = "lldb-dap", -- adjust as needed, must be absolute path
         name = "lldb"
       }
       dap.configurations.cpp = {
