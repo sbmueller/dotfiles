@@ -27,7 +27,7 @@
           "leading_diamond": "\u256d\u2500\ue0b2",
           "template": " {{ .Icon }} ",
           "foreground": "#f2f3f8",
-          "background": "#8839ef",
+          "background": "#ff8202",
           "type": "os"
         },
         {
@@ -41,7 +41,7 @@
           "template": " {{ .Path }} ",
           "foreground": "#f2f3f8",
           "powerline_symbol": "\ue0b0",
-          "background": "#7287fd",
+          "background": "#2c6daf",
           "type": "path"
         },
         {
@@ -105,13 +105,27 @@
           "properties": {
             "time_format": "15:04:05"
           },
-          "style": "diamond",
-          "trailing_diamond": "\ue0b0",
+          "style": "powerline",
           "template": " \uf073 {{ .CurrentDate | date .Format }} ",
           "foreground": "#f2f3f8",
-          "background": "#8839ef",
+          "background": "#ff8202",
           "type": "time",
+          "powerline_symbol": "\ue0b2",
           "invert_powerline": true
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "invert_powerline": true,
+          "foreground": "#ffffff",
+          "background": "#00897b",
+          "background_templates": ["{{ if .Error }}#e91e63{{ end }}"],
+          "trailing_diamond": "\ue0b0",
+          "powerline_symbol": "\ue0b2",
+          "template": " {{ if ne .Code 0 }} {{ .Code }}{{ end }} ",
+          "properties": {
+            "always_enabled": true
+          }
         }
       ]
     },
@@ -122,7 +136,7 @@
         {
           "style": "plain",
           "template": "\u2570\u2500 {{ if .Root }}#{{else}}\uf061{{end}}",
-          "foreground": "#8839ef",
+          "foreground": "#ff8202",
           "type": "text"
         }
       ],
