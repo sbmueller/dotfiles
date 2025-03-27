@@ -9,6 +9,7 @@ return {
       {"<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree"}
     },
     opts = {
+      sync_root_with_cwd = true,
       view = {
         width = 60
       },
