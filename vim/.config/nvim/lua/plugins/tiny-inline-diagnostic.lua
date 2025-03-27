@@ -14,7 +14,15 @@ return {
             --     return diagnostic.message .. " [" .. diagnostic.source .. "]"
             -- end,
             format = function(diagnostic)
-              return diagnostic.message .. " [" .. diagnostic.code .. "]"
+              if
+                diagnostic.code and type(diagnostic.code) ~= "function" and type(diagnostic.code) ~= "table" and
+                  type(diagnostic.code) ~= "userdata"
+               then
+                -- Only concatenate if code is a string or number
+                return diagnostic.message .. " [" .. tostring(diagnostic.code) .. "]"
+              else
+                return diagnostic.message
+              end
             end
           }
         }
