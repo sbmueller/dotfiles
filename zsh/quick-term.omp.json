@@ -58,7 +58,7 @@
           "trailing_diamond": "\ue0b0",
           "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <transparent>\ue0b1</> <#f2f3f8>\uf044 {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <transparent>\ue0b1</> <#f2f3f8>\uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} <transparent>\ue0b1</> <#f2f3f8>\ueb4b {{ .StashCount }}</>{{ end }} ",
           "foreground": "#f2f3f8",
-          "background": "#378504",
+          "background": "#00897b",
           "type": "git",
           "background_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#df8e1d{{ end }}",
