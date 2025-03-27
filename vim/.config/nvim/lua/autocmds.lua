@@ -41,3 +41,13 @@ vim.api.nvim_create_autocmd(
     command = "setlocal nospell"
   }
 )
+
+vim.api.nvim_create_augroup("Sessions", {clear = true})
+vim.api.nvim_create_autocmd(
+  "VimLeavePre",
+  {
+    group = "Sessions",
+    pattern = "*",
+    command = "SessionSave"
+  }
+)

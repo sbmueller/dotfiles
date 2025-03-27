@@ -35,16 +35,10 @@ return {
                 key = "f"
               },
               {
-                desc = "󰴒 Journal",
+                desc = "󰴒 Load Session",
                 group = "DiagnosticHint",
-                action = "ObsidianToday",
+                action = "Telescope persisted",
                 key = "j"
-              },
-              {
-                desc = " Notes",
-                group = "Number",
-                action = "ObsidianQuickSwitch",
-                key = "n"
               }
             }
           }
