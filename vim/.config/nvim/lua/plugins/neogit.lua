@@ -9,6 +9,8 @@ return {
       -- Only one of these is needed.
       "nvim-telescope/telescope.nvim" -- optional
     },
-    config = true
+    opts = {
+      graph_style = "unicode"
+    }
   }
 }

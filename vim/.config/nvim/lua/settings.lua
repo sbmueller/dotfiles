@@ -66,18 +66,3 @@ vim.opt.spell = true
 vim.opt.scrolloff = 5
 --Leader Key
 vim.g.mapleader = "'"
-
-local spell_file = os.getenv("HOME") .. "/dotfiles/zf/spell/en.utf-8.add"
-function file_exists(name)
-  local f = io.open(name, "r")
-  if f ~= nil then
-    io.close(f)
-    return true
-  else
-    return false
-  end
-end
-if file_exists(spell_file) then
-  print("Found custom spell file")
-  vim.opt.spellfile = spell_file
-end

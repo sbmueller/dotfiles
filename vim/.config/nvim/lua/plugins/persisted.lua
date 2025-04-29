@@ -1,7 +1,7 @@
 return {
   {
     "olimorris/persisted.nvim",
-    cmd = {"SessionLoad", "Telescope persisted"},
+    cmd = {"SessionLoad", "SessionSave", "Telescope persisted"},
     config = function()
       require("telescope").load_extension("persisted")
       require("persisted").setup {
