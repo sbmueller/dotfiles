@@ -10,12 +10,16 @@
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "o3-mini"
+      "model": "o4-mini"
     },
     "version": "2"
   },
+  "edit_predictions": {
+    "enabled": true,
+    "threshold": 0.5
+  },
   "vim_mode": true,
-  "wrap_guides": [80],
+  "wrap_guides": [80, 120],
   "base_keymap": "VSCode",
   "ui_font_size": 17,
   "buffer_font_size": 17,
@@ -24,8 +28,10 @@
   "terminal": {
     "font_weight": 700
   },
+  "tab_size": 2,
   "ui_font_weight": 500,
   "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
   "languages": {
     "C++": {
       "formatter": {
@@ -50,12 +56,20 @@
           "arguments": ["-mode=fix", "-type=auto"]
         }
       }
+    },
+    "Python": {
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
     }
   },
   "lsp": {
     "clangd": {
       "binary": {
-        "path_lookup": true,
         "path": "clangd",
         "arguments": [
           "-j=8",
@@ -72,6 +86,7 @@
       }
     }
   },
+
   "format_on_save": "on",
   "theme": {
     "mode": "system",
@@ -81,7 +96,6 @@
   "experimental.theme_overrides": {
     "syntax": {
       "comment": {
-        "font_family": "VictorMono Nerd Font Italic",
         "font_style": "italic"
       }
     }
