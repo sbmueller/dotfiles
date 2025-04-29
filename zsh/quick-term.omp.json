@@ -108,7 +108,7 @@
           "style": "powerline",
           "template": " \uf073 {{ .CurrentDate | date .Format }} ",
           "foreground": "#f2f3f8",
-          "background": "#ff8202",
+          "background": "#df8e1d",
           "type": "time",
           "powerline_symbol": "\ue0b2",
           "invert_powerline": true
