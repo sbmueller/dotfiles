@@ -2,7 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     lazy = true,
-    event = "VeryLazy",
+    event = {"BufReadPost"},
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
       -- add any opts here
@@ -10,8 +10,8 @@ return {
       provider = "copilot",
       copilot = {
         endpoint = "https://api.githubcopilot.com",
-        model = "claude-3.7-sonnet",
-        -- model = "o3-mini",
+        -- model = "claude-3.7-sonnet",
+        model = "o4-mini",
         allow_insecure = false, -- Allow insecure server connections
         timeout = 30000, -- Timeout in milliseconds
         temperature = 0,
