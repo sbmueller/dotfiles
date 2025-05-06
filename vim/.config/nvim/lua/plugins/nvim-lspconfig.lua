@@ -1,9 +1,9 @@
 -- Enabler for inlay hints
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   else
-    vim.lsp.inlay_hint.enable(false, {bufnr = bufnr})
+    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
   end
   require("lsp-status").on_attach(client, bufnr)
 end
@@ -11,16 +11,16 @@ end
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {"nvim-lua/lsp-status.nvim"},
+    dependencies = { "nvim-lua/lsp-status.nvim" },
     lazy = true,
-    ft = {"python", "cpp", "c", "rust", "cmake", "tex", "lua", "markdown"},
+    ft = { "python", "cpp", "c", "rust", "cmake", "tex", "lua", "markdown" },
     keys = {
-      {"<leader>d", vim.diagnostic.open_float, desc = "Line Diagnostics"},
-      {"<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics"},
-      {"gD", vim.lsp.buf.declaration, desc = "Goto Declaration"},
-      {"K", vim.lsp.buf.hover, desc = "Hover Documentation"},
-      {"<leader>rn", vim.lsp.buf.rename, desc = "Rename Symbol"},
-      {"<leader>h", vim.lsp.buf.code_action, desc = "LSP Code Action"}
+      { "<leader>d",  vim.diagnostic.open_float,                 desc = "Line Diagnostics" },
+      { "<leader>D",  vim.diagnostic.setloclist,                 desc = "Buffer Diagnostics" },
+      { "gD",         vim.lsp.buf.declaration,                   desc = "Goto Declaration" },
+      { "K",          vim.lsp.buf.hover({ border = "rounded" }), desc = "Hover Documentation" },
+      { "<leader>rn", vim.lsp.buf.rename,                        desc = "Rename Symbol" },
+      { "<leader>h",  vim.lsp.buf.code_action,                   desc = "LSP Code Action" }
       -- gr: Show References is handled by Telescope
       -- gi: Show Implementations is handled by Telescope
       -- gd: Show Definitions is handled by Telescope
@@ -31,12 +31,12 @@ return {
       local cmp = require("cmp_nvim_lsp")
       -- Rounded hover border
       vim.lsp.handlers["textDocument/hover"] =
-        vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {
-          border = "rounded"
-        }
-      )
+          vim.lsp.with(
+            vim.lsp.handlers.hover,
+            {
+              border = "rounded"
+            }
+          )
       -- Python
       lspconfig.basedpyright.setup {
         on_attach = on_attach,
@@ -101,10 +101,10 @@ return {
       lspconfig.lua_ls.setup {}
 
       -- Severity Signs
-      local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}
+      local signs = { Error = "", Warn = "", Hint = "", Info = "󰋼" }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
     end
   }
