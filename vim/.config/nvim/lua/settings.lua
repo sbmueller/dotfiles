@@ -66,3 +66,6 @@ vim.opt.spell = true
 vim.opt.scrolloff = 5
 --Leader Key
 vim.g.mapleader = "'"
+
+--Display most severe diagnostics first
+vim.diagnostic.config({severity_sort = true})
