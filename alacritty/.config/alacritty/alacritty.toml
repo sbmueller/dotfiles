@@ -2,7 +2,7 @@
 padding.x = 2
 padding.y = 2
 decorations = "None"
-opacity = 0.8
+opacity = 0.9
 blur = true
 
 [font]
@@ -43,3 +43,8 @@ blue = "0x65b2ff"
 magenta = "0x906cff"
 cyan = "0x63f2f1"
 white = "0xa6b3cc"
+
+[keyboard]
+bindings = [
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" }
+]
