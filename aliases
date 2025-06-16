@@ -22,3 +22,5 @@ alias ci="conan install . -if build"
 alias gbl="git blame -w -C -C -C"
 alias 'ggpush!'='git push --force-with-lease origin "$(git_current_branch)"'
 alias mm="micromamba"
+alias ls='eza --icons --sort=type --sort=name --group-directories-first'
+alias l='eza --icons --long --git --time-style=long-iso --sort=type --sort=name --group-directories-first'
