@@ -7,7 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "assistant": {
+  "icon_theme": "Material Icon Theme",
+  "agent": {
     "default_model": {
       "provider": "copilot_chat",
       "model": "o4-mini"
@@ -65,6 +66,15 @@
           }
         }
       ]
+    },
+    "Markdown": {
+      "preferred_line_length": 80,
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
     }
   },
   "lsp": {
@@ -86,12 +96,11 @@
       }
     }
   },
-
   "format_on_save": "on",
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Frappé"
+    "dark": "Nebula Pulse"
   },
   "experimental.theme_overrides": {
     "syntax": {
