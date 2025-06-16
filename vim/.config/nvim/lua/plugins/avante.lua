@@ -8,14 +8,12 @@ return {
       -- add any opts here
       -- for example
       provider = "copilot",
-      copilot = {
-        endpoint = "https://api.githubcopilot.com",
-        -- model = "claude-3.7-sonnet",
-        model = "o4-mini",
-        allow_insecure = false, -- Allow insecure server connections
-        timeout = 30000, -- Timeout in milliseconds
-        temperature = 0,
-        max_tokens = 4096
+      providers = {
+        copilot = {
+          endpoint = "https://api.githubcopilot.com",
+          model = "claude-sonnet-4",
+          allow_insecure = false -- Allow insecure server connections
+        }
       }
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
