@@ -31,11 +31,20 @@ return {
           type = "lldb",
           request = "launch",
           program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            return require("dap.utils").pick_file({executables = true, path = vim.fn.getcwd() .. "/bazel-bin/"})
+          end,
+          args = function()
+            local args_str =
+              vim.fn.input(
+              {
+                prompt = "Arguments: ",
+                default = "--gtest_filter=*"
+              }
+            )
+            return vim.split(args_str, " +")
           end,
           cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-          args = {}
+          stopOnEntry = false
         }
       }
 
