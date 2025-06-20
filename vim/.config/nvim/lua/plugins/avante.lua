@@ -11,7 +11,7 @@ return {
       providers = {
         copilot = {
           endpoint = "https://api.githubcopilot.com",
-          model = "claude-sonnet-4",
+          model = "o4-mini",
           allow_insecure = false -- Allow insecure server connections
         }
       }
