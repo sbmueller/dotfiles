@@ -5,6 +5,7 @@ return {
     preview = {
       enable = true,
       filetypes = {"markdown", "rmd", "quarto", "Avante"}
-    }
+    },
+    experimental = {check_rtp_message = false}
   }
 }
