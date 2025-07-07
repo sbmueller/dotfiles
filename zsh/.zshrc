@@ -5,6 +5,7 @@ export PATH=$HOME/.local/bin:$HOME/node_modules/.bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 if [[ "$TERM_PROGRAM" != "Apple_Terminal" ]]; then
     eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/quick-term.omp.json)"
+    # eval "$(starship init zsh)"
 fi
 
 
@@ -105,3 +106,16 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 
 source <(fzf --zsh)
 [[ -f ~/.work.zsh ]] && source ~/.work.zsh
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE='/opt/homebrew/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/opt/homebrew/Cellar/micromamba/2.3.0';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
