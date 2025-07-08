@@ -13,7 +13,7 @@ return {
           json = {"prettier"},
           lua = {"luafmt"},
           markdown = {"prettier"},
-          python = {"black"},
+          python = {"ruff"},
           rust = {"rustfmt"},
           tex = {"latexindent"},
           toml = {"prettier"},
