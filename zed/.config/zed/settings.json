@@ -15,14 +15,9 @@
     },
     "default_profile": "ask",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
-    },
-    "version": "2"
-  },
-  "edit_predictions": {
-    "enabled": true,
-    "threshold": 0.5
+      "provider": "google",
+      "model": "gemini-2.5-flash"
+    }
   },
   "vim_mode": true,
   "wrap_guides": [80, 120],
@@ -105,7 +100,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Tokyo Night Storm"
+    "dark": "Panda Nebula"
   },
   "experimental.theme_overrides": {
     "syntax": {
