@@ -115,6 +115,11 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 source <(fzf --zsh)
 [[ -f ~/.work.zsh ]] && source ~/.work.zsh
 
+if command -v fastfetch >/dev/null 2>&1
+then
+    fastfetch -c examples/13.jsonc
+fi
+
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
 export MAMBA_EXE='/opt/homebrew/bin/micromamba';
