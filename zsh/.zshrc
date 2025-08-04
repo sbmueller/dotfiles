@@ -36,7 +36,7 @@ fi
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -45,7 +45,8 @@ fi
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_COMPFIX=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -80,7 +81,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast zsh-autosuggestions zsh-syntax-highlighting zoxide)
+plugins=(git gitfast zsh-autosuggestions zsh-syntax-highlighting zoxide bazel)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/dotfiles/aliases
@@ -109,8 +110,15 @@ source $HOME/dotfiles/aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
+
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bitcomplete bit
+complete -o nospace -C /opt/homebrew/bin/bit bit
 
 source <(fzf --zsh)
 [[ -f ~/.work.zsh ]] && source ~/.work.zsh
@@ -123,7 +131,7 @@ fi
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
 export MAMBA_EXE='/opt/homebrew/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/opt/homebrew/Cellar/micromamba/2.3.0';
+export MAMBA_ROOT_PREFIX='~/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
