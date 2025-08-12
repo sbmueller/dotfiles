@@ -26,8 +26,8 @@
           "style": "diamond",
           "leading_diamond": "\u256d\u2500\ue0b2",
           "template": " {{ .Icon }} ",
-          "foreground": "#f2f3f8",
-          "background": "#ff8202",
+          "foreground": "#1e2030",
+          "background": "#f5bde6",
           "type": "os"
         },
         {
@@ -39,9 +39,9 @@
           },
           "style": "powerline",
           "template": " {{ .Path }} ",
-          "foreground": "#f2f3f8",
+          "foreground": "#181926",
           "powerline_symbol": "\ue0b0",
-          "background": "#2c6daf",
+          "background": "#8aadf4",
           "type": "path"
         },
         {
@@ -56,15 +56,15 @@
           "style": "diamond",
           "leading_diamond": "<transparent,background>\ue0b0</>",
           "trailing_diamond": "\ue0b0",
-          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <transparent>\ue0b1</> <#f2f3f8>\uf044 {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <transparent>\ue0b1</> <#f2f3f8>\uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} <transparent>\ue0b1</> <#f2f3f8>\ueb4b {{ .StashCount }}</>{{ end }} ",
-          "foreground": "#f2f3f8",
-          "background": "#00897b",
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <transparent>\ue0b1</> <#181926>\uf044 {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <transparent>\ue0b1</> <#181926>\uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} <transparent>\ue0b1</> <#181926>\ueb4b {{ .StashCount }}</>{{ end }} ",
+          "foreground": "#181926",
+          "background": "#a6da95",
           "type": "git",
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#df8e1d{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#54433a{{ end }}",
-            "{{ if gt .Ahead 0 }}#744d89{{ end }}",
-            "{{ if gt .Behind 0 }}#744d89{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#eed49f{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ee99a0{{ end }}",
+            "{{ if gt .Ahead 0 }}#c6a0f6{{ end }}",
+            "{{ if gt .Behind 0 }}#c6a0f6{{ end }}"
           ]
         }
       ],
@@ -97,7 +97,7 @@
           "template": " \ueba2 {{ .FormattedMs }} ",
           "foreground": "#585858",
           "powerline_symbol": "\ue0b2",
-          "background": "#e4e4e4",
+          "background": "#cad3f5",
           "type": "executiontime",
           "invert_powerline": true
         },
@@ -107,8 +107,8 @@
           },
           "style": "powerline",
           "template": " \uf073 {{ .CurrentDate | date .Format }} ",
-          "foreground": "#f2f3f8",
-          "background": "#df8e1d",
+          "foreground": "#181926",
+          "background": "#f0c6c6",
           "type": "time",
           "powerline_symbol": "\ue0b2",
           "invert_powerline": true
@@ -117,9 +117,9 @@
           "type": "status",
           "style": "diamond",
           "invert_powerline": true,
-          "foreground": "#ffffff",
-          "background": "#00897b",
-          "background_templates": ["{{ if .Error }}#e91e63{{ end }}"],
+          "foreground": "#181926",
+          "background": "#a6da95",
+          "background_templates": ["{{ if .Error }}#ed8796{{ end }}"],
           "trailing_diamond": "\ue0b0",
           "powerline_symbol": "\ue0b2",
           "template": " {{ if ne .Code 0 }} {{ .Code }}{{ end }} ",
@@ -136,7 +136,7 @@
         {
           "style": "plain",
           "template": "\u2570\u2500 {{ if .Root }}#{{else}}\uf061{{end}}",
-          "foreground": "#ff8202",
+          "foreground": "#f5bde6",
           "type": "text"
         }
       ],
