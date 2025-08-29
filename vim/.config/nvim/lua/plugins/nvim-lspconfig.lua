@@ -13,7 +13,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {"nvim-lua/lsp-status.nvim"},
     lazy = true,
-    ft = {"python", "cpp", "c", "rust", "cmake", "tex", "lua", "markdown"},
+    ft = {"python", "cpp", "c", "rust", "cmake", "tex", "lua", "markdown", "bzl"},
     keys = {
       {"<leader>d", vim.diagnostic.open_float, desc = "Line Diagnostics"},
       {"<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics"},
@@ -101,6 +101,9 @@ return {
       }
       -- Lua
       lspconfig.lua_ls.setup {}
+
+      -- Starlark
+      lspconfig.starlark_rust.setup {}
 
       -- Severity Signs
       local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}

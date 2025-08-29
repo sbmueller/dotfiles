@@ -2,7 +2,7 @@ return {
   {
     "stevearc/conform.nvim",
     lazy = true,
-    ft = {"c", "cpp", "json", "lua", "markdown", "python", "rust", "tex", "yaml"},
+    ft = {"c", "cpp", "json", "lua", "markdown", "python", "rust", "tex", "yaml", "bzl"},
     config = function()
       local conform = require("conform")
       conform.setup {
@@ -17,7 +17,8 @@ return {
           rust = {"rustfmt"},
           tex = {"latexindent"},
           toml = {"prettier"},
-          yaml = {"prettier"}
+          yaml = {"prettier"},
+          bzl = {"buildifier"}
         },
         format_on_save = function(bufnr)
           -- Disable with a global or buffer-local variable
