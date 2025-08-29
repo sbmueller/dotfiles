@@ -27,7 +27,7 @@
           "leading_diamond": "\u256d\u2500\ue0b2",
           "template": " {{ .Icon }} ",
           "foreground": "#1e2030",
-          "background": "#f5bde6",
+          "background": "#f9a01b",
           "type": "os"
         },
         {
@@ -136,7 +136,7 @@
         {
           "style": "plain",
           "template": "\u2570\u2500 {{ if .Root }}#{{else}}\uf061{{end}}",
-          "foreground": "#f5bde6",
+          "foreground": "#f9a01b",
           "type": "text"
         }
       ],
