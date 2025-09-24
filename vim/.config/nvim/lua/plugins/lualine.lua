@@ -2,7 +2,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
-    dependencies = {"nvim-lua/lsp-status.nvim", "mfussenegger/nvim-lint"},
+    dependencies = {"mfussenegger/nvim-lint"},
     config = function()
       -- Linting progress helper function
       local function lint_progress()
@@ -31,7 +31,7 @@ return {
             "filetype",
             -- {"diagnostics", sources = {"nvim_diagnostic"}},
             lint_progress,
-            "require'lsp-status'.status()"
+            "lsp_status"
           },
           lualine_y = {"progress"},
           lualine_z = {"location"}

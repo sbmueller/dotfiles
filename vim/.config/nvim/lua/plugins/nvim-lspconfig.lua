@@ -5,13 +5,11 @@ local on_attach = function(client, bufnr)
   else
     vim.lsp.inlay_hint.enable(false, {bufnr = bufnr})
   end
-  require("lsp-status").on_attach(client, bufnr)
 end
 
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {"nvim-lua/lsp-status.nvim"},
     lazy = true,
     ft = {"python", "cpp", "c", "rust", "cmake", "tex", "lua", "markdown", "bzl"},
     keys = {
