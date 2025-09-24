@@ -27,7 +27,7 @@ return {
       {
         "gd",
         function()
-          require("telescope.builtin").lsp_definitions()
+          require("telescope.builtin").lsp_definitions({reuse_win = true})
         end,
         desc = "Goto Definitions"
       },
@@ -49,7 +49,7 @@ return {
     config = function()
       require("telescope").setup {
         defaults = {
-          file_ignore_patterns = {"build/", "sca/", "target/"},
+          file_ignore_patterns = {"sca/", "target/"},
           winblend = 50
         },
         extensions = {
