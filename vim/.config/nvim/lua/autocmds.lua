@@ -51,3 +51,9 @@ vim.api.nvim_create_autocmd(
     command = "SessionSave"
   }
 )
+vim.api.nvim_create_autocmd(
+  {"VimLeave", "VimSuspend"},
+  {
+    command = "set guicursor=a:ver25-blinkon400-blinkoff250"
+  }
+)
