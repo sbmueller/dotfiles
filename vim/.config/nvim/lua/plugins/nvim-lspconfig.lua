@@ -26,9 +26,6 @@ return {
       -- gd: Show Definitions is handled by Telescope
     },
     config = function()
-      local lspconfig = require("lspconfig")
-      local lsp_status = require("lsp-status")
-      local cmp = require("cmp_nvim_lsp")
       -- Rounded hover border
       vim.lsp.handlers["textDocument/hover"] =
         vim.lsp.with(
@@ -38,79 +35,102 @@ return {
         }
       )
       -- Python
-      lspconfig.basedpyright.setup {
-        on_attach = on_attach,
-        capabilities = lsp_status.capabilities,
-        settings = {
-          basedpyright = {
-            analysis = {
-              typeCheckingMode = "standard"
+      vim.lsp.enable("basedpyright")
+      vim.lsp.config(
+        "basedpyright",
+        {
+          on_attach = on_attach,
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = "standard"
+              }
             }
           }
         }
-      }
+      )
 
       -- C/C++
-      lspconfig.clangd.setup {
-        cmd = {
-          "clangd",
-          "-j=8",
-          "--clang-tidy",
-          "--background-index",
-          "--all-scopes-completion",
-          "--header-insertion=never",
-          "--suggest-missing-includes",
-          "--completion-style=detailed",
-          "--query-driver=**",
-          "--offset-encoding=utf-16",
-          "--inlay-hints=true"
-        },
-        handlers = lsp_status.extensions.clangd.setup(),
-        init_options = {
-          clangdFileStatus = true
-        },
-        on_attach = on_attach,
-        capabilities = lsp_status.capabilities
-      }
+      vim.lsp.enable("clangd")
+      vim.lsp.config(
+        "clangd",
+        {
+          cmd = {
+            "clangd",
+            "-j=8",
+            "--clang-tidy",
+            "--background-index",
+            "--all-scopes-completion",
+            "--header-insertion=never",
+            "--suggest-missing-includes",
+            "--completion-style=detailed",
+            "--query-driver=**",
+            "--offset-encoding=utf-16",
+            "--inlay-hints=true"
+          },
+          init_options = {
+            clangdFileStatus = true
+          },
+          on_attach = on_attach
+        }
+      )
 
       -- Cmake
-      lspconfig.cmake.setup {
-        on_attach = on_attach,
-        capabilities = lsp_status.capabilities
-      }
+      vim.lsp.enable("cmake")
+      vim.lsp.config(
+        "cmake",
+        {
+          on_attach = on_attach
+        }
+      )
 
       -- Rust
-      lspconfig.rust_analyzer.setup {
-        settings = {
-          ["rust-analyzer"] = {
-            checkOnSave = {
-              command = "clippy"
+      vim.lsp.enable("rust_analyzer")
+      vim.lsp.config(
+        "rust_analyzer",
+        {
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = {
+                command = "clippy"
+              }
             }
-          }
-        },
-        on_attach = on_attach,
-        capabilities = lsp_status.capabilities
-      }
+          },
+          on_attach = on_attach
+        }
+      )
 
       -- Tex
-      lspconfig.texlab.setup {}
+      vim.lsp.enable("texlab")
 
       -- Harper
-      lspconfig.harper_ls.setup {
-        filetypes = {"markdown"}
-      }
+      vim.lsp.enable("harper_ls")
+      vim.lsp.config(
+        "harper_ls",
+        {
+          filetypes = {"markdown"}
+        }
+      )
       -- Lua
-      lspconfig.lua_ls.setup {}
+      vim.lsp.enable("lua_ls")
 
       -- Starlark
-      lspconfig.starlark_rust.setup {}
+      vim.lsp.enable("starlark_rust")
 
       -- Severity Signs
-      local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
-      end
+      vim.diagnostic.config(
+        {
+          signs = {
+            active = true,
+            text = {
+              [vim.diagnostic.severity.ERROR] = "", -- e.g., Fa-times-circle
+              [vim.diagnostic.severity.WARN] = "", -- e.g., Fa-exclamation-triangle
+              [vim.diagnostic.severity.INFO] = "", -- e.g., Fa-info-circle
+              [vim.diagnostic.severity.HINT] = "󰋼" -- e.g., Fa-lightbulb
+            }
+          }
+        }
+      )
     end
   }
 }

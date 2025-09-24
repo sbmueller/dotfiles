@@ -11,14 +11,20 @@ return {
       lint.linters_by_ft = {
         python = {"ruff"},
         yaml = {"yamllint"},
-        sh = {"shellcheck"}
+        sh = {"shellcheck"},
+        markdown = {"markdownlint-cli2"}
       }
       -- Severity Signs
-      local signs = {Error = "", Warn = "", Hint = "", Info = "󰋼"}
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
-      end
+      vim.diagnostic.config(
+        {
+          signs = {
+            Error = "",
+            Warn = "",
+            Hint = "",
+            Info = "󰋼"
+          }
+        }
+      )
     end
   }
 }
