@@ -49,7 +49,7 @@ return {
     config = function()
       require("telescope").setup {
         defaults = {
-          file_ignore_patterns = {"sca/", "target/"},
+          file_ignore_patterns = {"sca/", "target/", "third_party/"},
           winblend = 50
         },
         extensions = {
