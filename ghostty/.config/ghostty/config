@@ -7,6 +7,6 @@ font-thicken-strength = 100
 adjust-cell-width = "-10%"
 link-url = true
 
-theme = Catppuccin Mocha
+theme = Rose Pine
 background-opacity = 0.95
 background-blur = 50
