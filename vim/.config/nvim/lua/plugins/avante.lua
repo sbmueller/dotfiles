@@ -7,12 +7,10 @@ return {
     opts = {
       -- add any opts here
       -- for example
-      provider = "copilot",
+      provider = "claude",
       providers = {
-        copilot = {
-          endpoint = "https://api.githubcopilot.com",
-          model = "o4-mini",
-          allow_insecure = false -- Allow insecure server connections
+        claude = {
+          model = "claude-sonnet-4-5-20250929"
         }
       }
     },
