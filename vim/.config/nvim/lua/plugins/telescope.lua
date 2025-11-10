@@ -49,8 +49,12 @@ return {
     config = function()
       require("telescope").setup {
         defaults = {
-          file_ignore_patterns = {"sca/", "target/", "third_party/"},
           winblend = 50
+        },
+        pickers = {
+          find_files = {
+            file_ignore_patterns = {"target/", "third_party/"}
+          }
         },
         extensions = {
           ["ui-select"] = {
