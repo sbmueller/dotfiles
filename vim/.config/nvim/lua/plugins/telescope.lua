@@ -53,7 +53,7 @@ return {
         },
         pickers = {
           find_files = {
-            file_ignore_patterns = {"target/", "third_party/"}
+            file_ignore_patterns = {"target/", "third_party/", "external/"}
           }
         },
         extensions = {

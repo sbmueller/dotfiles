@@ -12,7 +12,8 @@ return {
         python = {"ruff"},
         yaml = {"yamllint"},
         sh = {"shellcheck"},
-        markdown = {"markdownlint-cli2"}
+        markdown = {"markdownlint-cli2"},
+        groovy = {"npm-groovy-lint"}
       }
       -- Severity Signs
       vim.diagnostic.config(
