@@ -2,7 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     lazy = true,
-    event = {"BufReadPost"},
+    event = { "BufReadPost" },
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
       -- add any opts here
@@ -10,7 +10,7 @@ return {
       provider = "claude",
       providers = {
         claude = {
-          model = "claude-sonnet-4-5-20250929"
+          model = "claude-sonnet-4-5"
         }
       }
     },
@@ -23,9 +23,9 @@ return {
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua" -- for providers='copilot'
+      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua"         -- for providers='copilot'
     }
   }
 }
