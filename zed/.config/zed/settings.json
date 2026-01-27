@@ -7,86 +7,84 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent_buffer_font_size": 17.0,
-  "agent_ui_font_size": 17.0,
+  "agent": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
+    },
+    "model_parameters": []
+  },
+  "buffer_line_height": "comfortable",
+  "ui_font_family": "Atkinson Hyperlegible Next",
+  "agent_buffer_font_size": 18.0,
+  "agent_ui_font_size": 18.0,
   "icon_theme": "Material Icon Theme",
   "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "agent": {
-    "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
-    },
-    "default_profile": "write",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
-    }
+    "edit_prediction_provider": "copilot",
   },
   "vim_mode": true,
   "wrap_guides": [80, 120],
   "base_keymap": "VSCode",
-  "ui_font_size": 17,
-  "buffer_font_size": 17,
+  "ui_font_size": 18.0,
+  "buffer_font_size": 18.0,
   "buffer_font_family": "VictorMono Nerd Font",
   "buffer_font_weight": 700,
   "terminal": {
-    "font_weight": 700
+    "font_weight": 700,
   },
   "tab_size": 2,
-  "ui_font_weight": 500,
+  "ui_font_weight": 400.0,
   "remove_trailing_whitespace_on_save": true,
   "ensure_final_newline_on_save": true,
   "telemetry": {
-    "metrics": false
+    "metrics": false,
   },
   "indent_guides": {
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   "languages": {
     "C++": {
       "formatter": {
         "external": {
           "command": "clang-format",
-          "arguments": ["--style=file", "--assume-filename={buffer_path}"]
-        }
-      }
+          "arguments": ["--style=file", "--assume-filename={buffer_path}"],
+        },
+      },
     },
     "C": {
       "formatter": {
         "external": {
           "command": "clang-format",
-          "arguments": ["--style=file", "--assume-filename={buffer_path}"]
-        }
-      }
+          "arguments": ["--style=file", "--assume-filename={buffer_path}"],
+        },
+      },
     },
     "Starlark": {
       "formatter": {
         "external": {
           "command": "buildifier",
-          "arguments": ["-path", "{buffer_path}"]
-        }
-      }
+          "arguments": ["-path", "{buffer_path}"],
+        },
+      },
     },
     "Python": {
       "formatter": [
         {
           "language_server": {
-            "name": "ruff"
-          }
-        }
-      ]
+            "name": "ruff",
+          },
+        },
+      ],
     },
     "Markdown": {
       "preferred_line_length": 80,
       "formatter": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      }
-    }
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        },
+      },
+    },
   },
   "lsp": {
     "clangd": {
@@ -102,22 +100,22 @@
           "--completion-style=detailed",
           "--query-driver=**",
           "--offset-encoding=utf-16",
-          "--inlay-hints=true"
-        ]
-      }
-    }
+          "--inlay-hints=true",
+        ],
+      },
+    },
   },
   "format_on_save": "on",
   "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Rosé Pine"
+    "mode": "dark",
+    "light": "Kanagawa Lotus",
+    "dark": "Rosé Pine Moon",
   },
   "experimental.theme_overrides": {
     "syntax": {
       "comment": {
-        "font_style": "italic"
-      }
-    }
-  }
+        "font_style": "italic",
+      },
+    },
+  },
 }
