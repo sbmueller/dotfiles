@@ -29,12 +29,6 @@ return {
                 key = "f"
               },
               {
-                desc = "󱓩 Obsidian",
-                group = "Number",
-                action = "ObsidianQuickSwitch",
-                key = "o"
-              },
-              {
                 desc = "󰴒 Load Session",
                 group = "DiagnosticHint",
                 action = "Telescope persisted",
