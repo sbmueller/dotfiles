@@ -58,21 +58,37 @@ vim.api.nvim_create_autocmd(
   }
 )
 
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = vim.api.nvim_create_augroup("TerminalFix", { clear = true }),
-  callback = function()
-    -- This makes Tab do nothing (or behave normally) only inside terminal buffers
-    vim.keymap.set('n', '<Tab>', '<Tab>', { buffer = true, noremap = true })
-  end,
-})
+vim.api.nvim_create_autocmd(
+  "TermOpen",
+  {
+    group = vim.api.nvim_create_augroup("TerminalFix", {clear = true}),
+    callback = function()
+      -- This makes Tab do nothing (or behave normally) only inside terminal buffers
+      vim.keymap.set("n", "<Tab>", "<Tab>", {buffer = true, noremap = true})
+    end
+  }
+)
 
 -- LSP: Enable inlay hints when supported
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("LspInlayHints", { clear = true }),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+vim.api.nvim_create_autocmd(
+  "LspAttach",
+  {
+    group = vim.api.nvim_create_augroup("LspInlayHints", {clear = true}),
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if not client or not client.server_capabilities.inlayHintProvider then
+        return
+      end
+
+      local allow = {
+        clangd = true,
+        rust_analyzer = true,
+        lua_ls = true
+      }
+
+      if allow[client.name] then
+        vim.lsp.inlay_hint.enable(true, {bufnr = args.buf})
+      end
     end
-  end,
-})
+  }
+)
