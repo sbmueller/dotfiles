@@ -1,7 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "permission": {
-    "bash": "ask",
+    "bash": {
+      "*": "allow",
+      "rm *": "deny",
+      "mv *": "ask"
+    },
     "edit": "ask",
     "mcp": "ask",
     "websearch": "ask",
@@ -26,5 +30,6 @@
       "url": "https://mcp.atlassian.com/v1/mcp",
       "enabled": true
     }
-  }
+  },
+  "plugin": ["opencode-cmux"]
 }
