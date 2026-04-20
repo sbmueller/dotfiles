@@ -67,5 +67,17 @@ vim.opt.scrolloff = 5
 --Leader Key
 vim.g.mapleader = "'"
 
---Display most severe diagnostics first
-vim.diagnostic.config({severity_sort = true})
+--Display most severe diagnostics first, and configure sign column icons
+vim.diagnostic.config(
+  {
+    severity_sort = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "󰋼",
+        [vim.diagnostic.severity.HINT] = ""
+      }
+    }
+  }
+)

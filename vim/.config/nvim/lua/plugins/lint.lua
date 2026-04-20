@@ -15,17 +15,6 @@ return {
         markdown = {"markdownlint-cli2"},
         groovy = {"npm-groovy-lint"}
       }
-      -- Severity Signs
-      vim.diagnostic.config(
-        {
-          signs = {
-            Error = "",
-            Warn = "",
-            Hint = "",
-            Info = "󰋼"
-          }
-        }
-      )
     end
   }
 }
