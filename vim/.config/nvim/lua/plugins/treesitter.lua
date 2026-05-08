@@ -1,49 +1,42 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = true,
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    event = {"BufReadPost", "BufNewFile"},
-    cmd = {"TSUpdateSync"},
     config = function()
-      local configs = require("nvim-treesitter.configs")
-      configs.setup(
-        {
-          -- A list of parser names, or "all"
-          ensure_installed = {
-            "cpp",
-            "cmake",
-            "c",
-            "lua",
-            "python",
-            "rust",
-            "markdown",
-            "markdown_inline",
-            "bash",
-            "regex",
-            "vim",
-            "yaml"
-          },
-          -- Install parsers synchronously (only applied to `ensure_installed`)
-          sync_install = false,
-          -- List of parsers to ignore installing (for "all")
-          ignore_install = {},
-          highlight = {
-            -- `false` will disable the whole extension
-            enable = true,
-            -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-            -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-            -- the name of the parser)
-            -- list of language that will be disabled
+      local ensure_installed = {
+        "cpp",
+        "cmake",
+        "c",
+        "lua",
+        "python",
+        "rust",
+        "markdown",
+        "markdown_inline",
+        "bash",
+        "regex",
+        "vim",
+        "vimdoc",
+        "yaml",
+      }
 
-            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-            -- Using this option may slow down your editor, and you may see some duplicate highlights.
-            -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = false
-          }
-        }
-      )
-    end
-  }
+      require("nvim-treesitter").setup({
+        -- Directory to install parsers and queries to (prepended to `runtimepath`)
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
+
+      -- Install parsers asynchronously (no-op if already installed).
+      require("nvim-treesitter").install(ensure_installed)
+
+      -- Highlighting is no longer auto-enabled by the plugin; start treesitter
+      -- for the filetypes we care about.
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = ensure_installed,
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
+    end,
+  },
 }
