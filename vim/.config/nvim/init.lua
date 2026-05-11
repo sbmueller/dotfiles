@@ -1,15 +1,13 @@
--- Top-level NeoVim configuration file
--- Order of `requires` is important!
+-- Top-level Neovim entrypoint.
+-- Order matters: options first (incl. leader), then plugins, then everything
+-- that may rely on plugins being installed (autocmds, diagnostics).
 
--- General vim settings
-require("settings")
--- Plugins
-require("lazynvim")
--- Autocommands
-require("autocmds")
--- General key mappings
-require("mappings")
--- Neovide settings
+require("config.options")
+require("config.lazy")
+require("config.diagnostics")
+require("config.autocmds")
+require("config.keymaps")
+
 if vim.g.neovide then
-  require("neovide")
+  require("config.neovide")
 end

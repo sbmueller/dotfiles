@@ -1,16 +1,14 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    lazy = true,
-    ft = {"cpp", "c", "python", "json", "yaml", "lua", "tex"},
-    config = function()
-      require("ibl").setup {
-        exclude = {filetypes = {"dashboard"}},
-        scope = {
-          show_start = false,
-          show_end = false
-        }
-      }
-    end
-  }
+    main = "ibl",
+    ft = { "cpp", "c", "python", "json", "yaml", "lua", "tex" },
+    opts = {
+      exclude = { filetypes = { "dashboard", "snacks_dashboard" } },
+      scope = {
+        show_start = false,
+        show_end = false,
+      },
+    },
+  },
 }

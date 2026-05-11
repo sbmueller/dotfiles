@@ -1,8 +1,8 @@
 return {
   {
     "akinsho/bufferline.nvim",
+    event = "VeryLazy",
     dependencies = "nvim-tree/nvim-web-devicons",
-    lazy = false,
     opts = {
       options = {
         numbers = "buffer_id",
@@ -12,13 +12,13 @@ return {
         diagnostics = "nvim_lsp",
         show_buffer_close_icons = false,
         show_close_icon = false,
-        separator_style = "thin"
+        separator_style = "thin",
       },
       highlights = {
         buffer_selected = {
-          italic = true
-        }
-      }
-    }
-  }
+          italic = true,
+        },
+      },
+    },
+  },
 }

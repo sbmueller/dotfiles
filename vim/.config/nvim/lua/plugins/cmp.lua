@@ -1,115 +1,86 @@
+-- Completion stack: blink.cmp (modern replacement for nvim-cmp).
+--
+-- Migrated 2026-05-08. Replaces:
+--   hrsh7th/nvim-cmp + cmp-nvim-lsp + cmp-buffer + cmp-path + cmp-cmdline
+--   + cmp_luasnip + lspkind.nvim + zbirenbaum/copilot-cmp
+-- LuaSnip is still used as the snippet engine; blink.cmp drives it natively.
+
 return {
   {
-    "hrsh7th/nvim-cmp",
-    lazy = true,
-    event = {"InsertEnter", "CmdlineEnter"},
+    "saghen/blink.cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    version = "1.*", -- Use a release tag (binary fuzzy matcher is prebuilt)
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
-      "onsails/lspkind.nvim",
-      "zbirenbaum/copilot-cmp"
+      "rafamadriz/friendly-snippets",
+      "fang2hou/blink-copilot",
     },
-    config = function()
-      require("copilot_cmp").setup()
-      local cmp = require "cmp"
-      cmp.setup(
-        {
-          snippet = {
-            -- REQUIRED - you must specify a snippet engine
-            expand = function(args)
-              -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-              require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-              -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-              -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-            end
-          },
-          mapping = {
-            ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "s", "c"}),
-            ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "s", "c"}),
-            ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
-            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
-            ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-            ["<C-e>"] = cmp.mapping(
-              {
-                i = cmp.mapping.abort(),
-                c = cmp.mapping.close()
-              }
-            ),
-            -- Accept currently selected item. If none selected, `select` first item.
-            -- Set `select` to `false` to only confirm explicitly selected items.
-            ["<CR>"] = cmp.mapping.confirm({select = false})
-          },
-          sources = cmp.config.sources(
-            {
-              {name = "copilot"},
-              {name = "nvim_lsp"},
-              -- {name = "vsnip"} -- For vsnip users.
-              {name = "luasnip"} -- For luasnip users.
-              -- {name = "ultisnips"} -- For ultisnips users.
-              -- { name = 'snippy' }, -- For snippy users.
-            },
-            {
-              {name = "buffer"}
-            },
-            {
-              {name = "path"}
-            }
-          ),
-          formatting = {
-            format = require("lspkind").cmp_format(
-              {
-                with_text = false
-              }
-            )
-          },
-          window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered()
-          }
-        }
-      )
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(
-        "/",
-        {
-          sources = {
-            {name = "buffer"}
-          }
-        }
-      )
+    opts = {
+      -- Default keymap preset closely mirrors the bindings users expect from
+      -- nvim-cmp: <C-space> to open, <CR> to accept, <Tab>/<S-Tab> to cycle
+      -- selections.
+      keymap = {
+        preset = "default",
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+      },
 
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(
-        ":",
-        {
-          sources = cmp.config.sources(
-            {
-              {name = "path"}
-            },
-            {
-              {name = "cmdline"}
-            }
-          )
-        }
-      )
+      appearance = {
+        nerd_font_variant = "mono",
+        kind_icons = {
+          Copilot = "",
+        },
+      },
 
-      -- lspkind.lua
-      local lspkind = require("lspkind")
-      lspkind.init(
-        {
-          symbol_map = {
-            Copilot = ""
-          }
-        }
-      )
+      snippets = { preset = "luasnip" },
 
-      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg = "#6CC644"})
-    end
-  }
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer", "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 100,
+            async = true,
+          },
+        },
+      },
+
+      completion = {
+        accept = { auto_brackets = { enabled = false } },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+          window = { border = "rounded" },
+        },
+        menu = {
+          border = "rounded",
+          draw = {
+            treesitter = { "lsp" },
+          },
+        },
+        list = {
+          selection = { preselect = false, auto_insert = false },
+        },
+      },
+
+      signature = { enabled = true, window = { border = "rounded" } },
+
+      cmdline = {
+        enabled = true,
+        keymap = { preset = "cmdline" },
+        completion = { menu = { auto_show = true } },
+      },
+
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+    },
+    -- Highlight Copilot suggestions in the completion menu (parity with the
+    -- old lspkind tweak).
+    config = function(_, opts)
+      require("blink.cmp").setup(opts)
+      vim.api.nvim_set_hl(0, "BlinkCmpKindCopilot", { fg = "#6CC644" })
+    end,
+  },
 }

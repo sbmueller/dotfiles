@@ -1,21 +1,34 @@
+-- Browser-based live preview for Markdown.
+-- Replaced iamcco/markdown-preview.nvim (npm install was fragile).
+--
+-- Requires `deno` on PATH (https://deno.land). On macOS:  brew install deno
+-- markview.nvim handles in-buffer rendering separately.
+
 return {
   {
-    -- Install markdown preview, use npx if available.
-    "iamcco/markdown-preview.nvim",
-    cmd = {"MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop"},
-    ft = {"markdown"},
-    build = function(plugin)
-      if vim.fn.executable "npx" then
-        vim.cmd("!cd " .. plugin.dir .. " && cd app && npx --yes yarn install")
-      else
-        vim.cmd [[Lazy load markdown-preview.nvim]]
-        vim.fn["mkdp#util#install"]()
-      end
+    "toppair/peek.nvim",
+    build = "deno task --quiet build:fast",
+    cmd = { "PeekOpen", "PeekClose" },
+    ft = { "markdown" },
+    keys = {
+      { "<leader>mp", "<cmd>PeekOpen<cr>", desc = "Markdown Preview Open", ft = "markdown" },
+      { "<leader>mP", "<cmd>PeekClose<cr>", desc = "Markdown Preview Close", ft = "markdown" },
+    },
+    config = function()
+      require("peek").setup({
+        auto_load = true,
+        close_on_bdelete = true,
+        syntax = true,
+        theme = "dark",
+        update_on_change = true,
+        app = "webview",
+      })
+      vim.api.nvim_create_user_command("PeekOpen", function()
+        require("peek").open()
+      end, {})
+      vim.api.nvim_create_user_command("PeekClose", function()
+        require("peek").close()
+      end, {})
     end,
-    init = function()
-      if vim.fn.executable "npx" then
-        vim.g.mkdp_filetypes = {"markdown"}
-      end
-    end
-  }
+  },
 }

@@ -1,14 +1,15 @@
 return {
   {
     "L3MON4D3/LuaSnip",
-    lazy = true, -- Will be loaded as dependency when required
-    dependencies = {"rafamadriz/friendly-snippets"},
-    -- install jsregexp (optional!).
+    -- Loaded as a dependency of blink.cmp.
+    lazy = true,
+    dependencies = { "rafamadriz/friendly-snippets" },
+    -- jsregexp is optional but enables LSP-style snippet transforms.
     build = "make install_jsregexp",
     config = function()
-      local luasnip_loader = require("luasnip.loaders.from_vscode")
-      luasnip_loader.lazy_load() -- Snippets in path
-      luasnip_loader.lazy_load({paths = {"~/snippets"}}) -- Custom ZF snippets
-    end
-  }
+      local loader = require("luasnip.loaders.from_vscode")
+      loader.lazy_load() -- friendly-snippets and any plugin-shipped snippets
+      loader.lazy_load({ paths = { "~/snippets" } }) -- user snippets
+    end,
+  },
 }

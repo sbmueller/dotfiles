@@ -1,2 +1,2 @@
--- Enter git commit message on top
-vim.cmd("call setpos('.', [0, 1, 1, 0])")
+-- Place cursor at the top of the commit message buffer.
+vim.fn.setpos(".", { 0, 1, 1, 0 })

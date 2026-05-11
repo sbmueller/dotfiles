@@ -1,32 +1,30 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
-    ft = { "python", "cpp", "c", "rust", "cmake", "tex", "lua", "markdown", "bzl" },
-    keys = {
-      { "<leader>d", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-      { "<leader>D", vim.diagnostic.setloclist, desc = "Buffer Diagnostics" },
-      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-      { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, desc = "Hover Documentation" },
-      { "<leader>rn", vim.lsp.buf.rename, desc = "Rename Symbol" },
-      { "<leader>h", vim.lsp.buf.code_action, desc = "LSP Code Action" },
-      -- gr: Show References is handled by Telescope
-      -- gi: Show Implementations is handled by Telescope
-      -- gd: Show Definitions is handled by Telescope
-    },
+    -- On Neovim 0.11+, nvim-lspconfig is mostly a config repository for
+    -- vim.lsp.config(); loading it on the first real file is enough.
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "saghen/blink.cmp" },
     config = function()
-      -- Global LSP config (applies to all servers)
-      vim.lsp.config("*", {
-        capabilities = {
-          textDocument = {
-            semanticTokens = {
-              multilineTokenSupport = true,
-            },
+      -- Compose default LSP capabilities with blink.cmp's contributions so
+      -- servers know what completion features the client supports.
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local ok_blink, blink = pcall(require, "blink.cmp")
+      if ok_blink then
+        capabilities = blink.get_lsp_capabilities(capabilities)
+      end
+      capabilities = vim.tbl_deep_extend("force", capabilities, {
+        textDocument = {
+          semanticTokens = {
+            multilineTokenSupport = true,
           },
         },
       })
 
-      -- Python
+      -- Apply globally to all servers
+      vim.lsp.config("*", { capabilities = capabilities })
+
+      -- Python: basedpyright (typing handled by ty)
       vim.lsp.config("basedpyright", {
         settings = {
           basedpyright = {
@@ -39,7 +37,7 @@ return {
       vim.lsp.enable("basedpyright")
       vim.lsp.enable("ty")
 
-      -- C/C++
+      -- C/C++: clangd
       vim.lsp.config("clangd", {
         cmd = {
           "clangd",
@@ -60,7 +58,7 @@ return {
       })
       vim.lsp.enable("clangd")
 
-      -- Cmake
+      -- CMake
       vim.lsp.enable("cmake")
 
       -- Rust
@@ -75,7 +73,7 @@ return {
       })
       vim.lsp.enable("rust_analyzer")
 
-      -- Tex
+      -- TeX
       vim.lsp.enable("texlab")
 
       -- Harper (markdown grammar checker)

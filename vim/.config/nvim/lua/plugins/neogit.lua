@@ -1,16 +1,14 @@
 return {
   {
     "NeogitOrg/neogit",
-    lazy = true,
     cmd = "Neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-      -- Only one of these is needed.
-      "nvim-telescope/telescope.nvim" -- optional
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
     },
     opts = {
-      graph_style = "unicode"
-    }
-  }
+      graph_style = "unicode",
+    },
+  },
 }

@@ -1,68 +1,73 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    lazy = true,
     cmd = "Telescope",
-    dependencies = {"nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim"},
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
     keys = {
       {
         "<leader>f",
-        require("telescope.builtin").find_files,
-        desc = "Fuzzy Find File"
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "Fuzzy Find File",
       },
       {
         "<leader>g",
         function()
-          require("telescope.builtin").live_grep {default_text = vim.fn.expand("<cword>")}
+          require("telescope.builtin").live_grep({ default_text = vim.fn.expand("<cword>") })
         end,
-        desc = "Fuzzy Grep String"
+        desc = "Fuzzy Grep String",
       },
       {
         "gr",
         function()
           require("telescope.builtin").lsp_references()
         end,
-        desc = "Symbol References"
+        desc = "Symbol References",
       },
       {
         "gd",
         function()
-          require("telescope.builtin").lsp_definitions({reuse_win = true})
+          require("telescope.builtin").lsp_definitions({ reuse_win = true })
         end,
-        desc = "Goto Definitions"
+        desc = "Goto Definitions",
       },
       {
         "gi",
         function()
           require("telescope.builtin").lsp_implementations()
         end,
-        desc = "Goto Implementations"
+        desc = "Goto Implementations",
       },
       {
         "<leader>t",
         function()
           require("telescope.builtin").buffers()
         end,
-        desc = "Fuzzy Find Buffers"
-      }
+        desc = "Fuzzy Find Buffers",
+      },
     },
     config = function()
-      require("telescope").setup {
+      local telescope = require("telescope")
+      telescope.setup({
         defaults = {
-          winblend = 50
+          winblend = 50,
         },
         pickers = {
           find_files = {
-            file_ignore_patterns = {"target/", "third_party/", "external/", "external_data/"}
-          }
+            file_ignore_patterns = { "target/", "third_party/", "external/", "external_data/" },
+          },
         },
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {}
-          }
-        }
-      }
-      require("telescope").load_extension("ui-select")
-    end
-  }
+            require("telescope.themes").get_dropdown({}),
+          },
+        },
+      })
+      telescope.load_extension("ui-select")
+      -- persisted.nvim's telescope extension is loaded by the persisted plugin
+      -- spec via dependencies; we don't load it here to avoid forcing persisted
+      -- to load before VeryLazy.
+    end,
+  },
 }

@@ -1,7 +1,6 @@
 return {
   {
     "famiu/bufdelete.nvim",
-    lazy = true,
-    event = {"BufReadPost", "BufNewFile"}
-  }
+    cmd = { "Bdelete", "Bwipeout" },
+  },
 }

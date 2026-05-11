@@ -1,12 +1,11 @@
 return {
   {
     "akinsho/toggleterm.nvim",
-    lazy = true,
-    keys = {"<leader>c"},
     cmd = "ToggleTerm",
+    keys = {
+      { "<leader>c", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+    },
     version = "*",
-    opts = {
-      open_mapping = [[<leader>c]]
-    }
-  }
+    opts = {},
+  },
 }
