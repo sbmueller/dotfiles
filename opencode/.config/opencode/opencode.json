@@ -9,7 +9,11 @@
     "edit": "ask",
     "mcp": "ask",
     "websearch": "ask",
-    "webfetch": "ask"
+    "webfetch": "ask",
+    "external_directory": {
+      "~/.local/share/opencode/worktree/**": "allow",
+      "/tmp/**": "allow"
+    }
   },
   "mcp": {
     "basic-memory": {
@@ -31,5 +35,9 @@
       "enabled": true
     }
   },
-  "plugin": ["opencode-cmux"]
+  "plugin": [
+    "opencode-cmux",
+    "@plannotator/opencode@latest",
+    "@hueyexe/opencode-ensemble@0.14.1"
+  ]
 }
