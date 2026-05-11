@@ -10,3 +10,8 @@ link-url = true
 theme = Rose Pine
 background-opacity = 0.95
 background-blur = 50
+
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:down
+keybind = performable:ctrl+k=goto_split:up
+keybind = performable:ctrl+l=goto_split:right
