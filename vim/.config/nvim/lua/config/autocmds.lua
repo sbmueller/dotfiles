@@ -25,15 +25,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "setlocal nospell",
 })
 
--- Persisted.nvim auto-save on exit; gracefully degrade if the plugin isn't loaded.
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  group = augroup("Sessions"),
-  pattern = "*",
-  callback = function()
-    pcall(vim.cmd, "SessionSave")
-  end,
-})
-
 -- Restore a sane cursor on exit/suspend so the host terminal isn't left with
 -- a block-style cursor.
 vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {

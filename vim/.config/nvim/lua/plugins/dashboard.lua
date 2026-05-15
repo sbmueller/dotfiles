@@ -22,14 +22,16 @@ return {
           }, "\n"),
           keys = {
             { icon = "󰊳", key = "u", desc = "Update Plugins", action = ":Lazy update" },
-            { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
+            { icon = "󰍉", key = "f", desc = "Find File", action = ":Telescope find_files" },
             { icon = "󰴒", key = "j", desc = "Load Session", action = ":Telescope persisted" },
-            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+            { icon = "󰩈", key = "q", desc = "Quit", action = ":qa" },
           },
         },
         sections = {
           { section = "header" },
           { section = "keys", gap = 1, padding = 1 },
+          { icon = "󱔗", title = "Sessions", section = "projects", indent = 2, padding = 1 },
+          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
           { section = "startup" },
         },
       },

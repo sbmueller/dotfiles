@@ -11,6 +11,8 @@ return {
         "cmake",
         "comment",
         "cpp",
+        "diff",
+        "git_rebase",
         "gitcommit",
         "lua",
         "markdown",
