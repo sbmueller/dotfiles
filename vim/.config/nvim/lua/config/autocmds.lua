@@ -18,11 +18,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- Disable spell-check inside terminal buffers.
+-- Terminal-buffer tweaks: disable spell-check and shadow the global
+-- <Tab>/<S-Tab> buffer-cycle mappings so <Tab> falls through to the terminal.
 vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup("Terminal"),
   pattern = "*",
-  command = "setlocal nospell",
+  callback = function(args)
+    vim.opt_local.spell = false
+    vim.keymap.set("n", "<Tab>", "<Tab>", { buffer = args.buf, noremap = true })
+    vim.keymap.set("n", "<S-Tab>", "<S-Tab>", { buffer = args.buf, noremap = true })
+  end,
 })
 
 -- Restore a sane cursor on exit/suspend so the host terminal isn't left with
