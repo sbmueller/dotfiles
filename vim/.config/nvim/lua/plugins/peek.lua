@@ -3,6 +3,8 @@
 --
 -- Requires `deno` on PATH (https://deno.land). On macOS:  brew install deno
 -- markview.nvim handles in-buffer rendering separately.
+--
+-- Usage: :PeekOpen / :PeekClose
 
 return {
   {
@@ -10,10 +12,6 @@ return {
     build = "deno task --quiet build:fast",
     cmd = { "PeekOpen", "PeekClose" },
     ft = { "markdown" },
-    keys = {
-      { "<leader>mp", "<cmd>PeekOpen<cr>", desc = "Markdown Preview Open", ft = "markdown" },
-      { "<leader>mP", "<cmd>PeekClose<cr>", desc = "Markdown Preview Close", ft = "markdown" },
-    },
     config = function()
       require("peek").setup({
         auto_load = true,
@@ -21,7 +19,7 @@ return {
         syntax = true,
         theme = "dark",
         update_on_change = true,
-        app = "webview",
+        app = "browser",
       })
       vim.api.nvim_create_user_command("PeekOpen", function()
         require("peek").open()

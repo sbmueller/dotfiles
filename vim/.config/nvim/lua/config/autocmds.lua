@@ -74,6 +74,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, vim.tbl_extend("force", opts, { desc = "Hover Documentation" }))
     set("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename Symbol" }))
     set("n", "<leader>h", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP Code Action" }))
-    -- gd, gr, gi are handled by Telescope (see plugins/telescope.lua)
+    set("n", "gd", function() Snacks.picker.lsp_definitions({ jump = { reuse_win = true } }) end,
+        vim.tbl_extend("force", opts, { desc = "Goto Definitions" }))
+    set("n", "gr", function() Snacks.picker.lsp_references() end,
+        vim.tbl_extend("force", opts, { desc = "Symbol References" }))
+    set("n", "gi", function() Snacks.picker.lsp_implementations() end,
+        vim.tbl_extend("force", opts, { desc = "Goto Implementations" }))
   end,
 })
