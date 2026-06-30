@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set("n", "<leader>h", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP Code Action" }))
     set("n", "gd", function() Snacks.picker.lsp_definitions({ jump = { reuse_win = true } }) end,
         vim.tbl_extend("force", opts, { desc = "Goto Definitions" }))
-    set("n", "gr", function() Snacks.picker.lsp_references() end,
+    set("n", "gr", function() Snacks.picker.lsp_references({ include_declaration = false }) end,
         vim.tbl_extend("force", opts, { desc = "Symbol References" }))
     set("n", "gi", function() Snacks.picker.lsp_implementations() end,
         vim.tbl_extend("force", opts, { desc = "Goto Implementations" }))
