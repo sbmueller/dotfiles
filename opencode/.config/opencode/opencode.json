@@ -38,6 +38,6 @@
   "plugin": [
     "opencode-cmux",
     "@plannotator/opencode@latest",
-    "@hueyexe/opencode-ensemble@0.14.1"
+    "@hueyexe/opencode-ensemble@0.15.0"
   ]
 }
