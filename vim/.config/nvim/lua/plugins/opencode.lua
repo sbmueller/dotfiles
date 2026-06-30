@@ -44,6 +44,20 @@ return {
       ---@type opencode.Opts
       vim.g.opencode_opts = {}
       vim.o.autoread = true -- required for opts.events.reload
+
+      -- Inject tokens from keyring
+      local function keyring_get(service, key)
+        local handle = io.popen("keyring get " .. service .. " " .. key .. " 2>/dev/null")
+        if not handle then return nil end
+        local value = handle:read("*l")
+        handle:close()
+        return value ~= "" and value or nil
+      end
+
+      local gh_token = keyring_get("tokens", "github_token")
+      local atl_token = keyring_get("tokens", "atlassian_token")
+      if gh_token then vim.env.GH_TOKEN = gh_token end
+      if atl_token then vim.env.ATL_TOKEN = atl_token end
     end,
   },
 }
