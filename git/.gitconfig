@@ -13,6 +13,7 @@
     side-by-side = true
 [diff]
     tool = kdiff3
+    external = difft
 [difftool]
     prompt = false
 [difftool "kdiff3"]
